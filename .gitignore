@@ -5,6 +5,11 @@
 *.war
 *.ear
 
+# LaTeX
+*.aux
+*.log
+*.pdf
+
 # Eclipse files #
 *.pydevproject
 .project
