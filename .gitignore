@@ -41,3 +41,4 @@ local.properties
 # Misc #
 .DS_Store
 *.*~
+*.synctex.gz
