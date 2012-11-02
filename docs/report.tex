@@ -5,6 +5,9 @@
 \usepackage{url}
 \usepackage{graphicx}
 
+% Remove red border around refs and make them stand out.
+\usepackage[colorlinks=true,linkcolor=blue]{hyperref}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Check these macro values for appropriateness for your own document.
 
@@ -69,21 +72,36 @@ into two person teams. For the purposes of the discussion the teams are
 labelled based on the calendars they evaluated.
 
 The final paper prototype was a combination of our findings from the
-calendars above and the design is illustrated in Figure~\ref{fig:fpp}.
+calendars.
 
 \section{Calendar on OS X}
 
-Paper prototype has minimalist design with three views: week, month,
-and year. These views are available through three buttons that are
-always on the screen at the top centre-right of the screen. The
-currently selected view is colour/depressed differently than the
-others.
-
 Apple Inc.'s use of skeuomorphism creates an interface similar to a real 
 calendar with simulated page rips, faux-leather textures for UI
-elements, and page turn animations.
+elements, and page turn animations. The design of the paper prototype
+based on this calendar borrowed from the ethos of Apple's design.
 
-\subsection{Problems during Evaluation}
+\subsection{Think-aloud Evaluation}
+The participant was asked to perform a series of set tasks, incorporated
+into a scenario. Below the tasks are described and feedback from the
+participant noted:
+
+\begin{itemize}
+\item Add an event for a friends party.
+\item Change the event to the following week.
+\item Delete the event.
+\item Set a recurring event.
+\item Find out which days of the month are the busiest and quietest
+respectively
+
+The year view for the calendar fills days in colour indicating the
+number of appointments scheduled for that day, in a spectrum from
+red (busy) to white (quiet). This made this particular task incredibly
+simple and it is this reason this feature was included in an early
+paper prototype (see Section~\ref{sec:osxpp}).
+
+\item Change the calendar catergories currently displayed.
+\end{itemize}
 
 The participant noted feeling uncomfortable during the evaluation as it
 was unnatural for the them to have to vocalise their actions. At some
@@ -91,41 +109,35 @@ points during the experiment, the participant seemed confused or
 surprised by the feedback from the system, occasionally expressing
 uncertainty on how to proceed further with the task.
 
-\pagebreak
-
 \subsection{Paper prototypes}
+\label{sec:osxpp}
 
-Images of our paper prototype are shown below:
+The paper prototype has a minimalist design with three views: week,
+month, and year. These views are available through three buttons that
+are always on the screen at the top centre-right. The currently selected
+view is coloured differently than the others and appears depressed.
 
-This is the initial draft of the pop up window that would be shown when a user
-wishes to add a new event, edit an existing event, or delete an existing
-event.
+The initial draft of the event dialog pop up window, that would be
+shown when a user decides to add a new event, or wishes to edit or
+delete an existing event, is illustrated in Figure~\ref{fig:addevent}.
 
-\includegraphics[scale=0.5]{CMCLGDREvent.png}
+A user is able to have multiple calendars, perhaps to split up work and
+home events. This screen (Figure~\ref{fig:viewcal}) allows a user to
+choose which calendars to view, add a new calendar, or delete an old
+calendar and associated events.
 
-A user is able to have multiple calendars, perhaps to split up work and home
-events. This screen allows a user to choose which calendars to view, add a new
-calendar, or delete an old calendar and associated events.
+The month view for our calendar is shown in Figure~\ref{fig:monthview}.
+This view is also the default view. Events are listed in summary form
+in the grid of squares. When a user clicks on the grid, the full listing
+for the selected day is shown in the side panel on the right.
 
-\includegraphics[scale=0.5]{CMCLGDRViewCalendar.png}
+The year view for our calendar is depicted in Figure~\ref{fig:yearview}.
+The primary purpose of the view is to allow daily summaries to be
+visualised. Similar to Apple's Calendar application, days which are
+busy are coloured in an increasing level of opaqueness, dependant on
+the number of events added for the associated day.
 
 \pagebreak
-
-This is the month view for our calendar. This view is also the default view.
-Events are listed in summary form in the grid of squares. When a user clicks on
-the grid, the full listing for the selected day is shown in the side panel on
-the right.
-
-\includegraphics[scale=0.45,angle=90]{CMCLGDRMonth.png}
-
-\pagebreak
-
-This is the year view for our calendar. The primary purpose of the view is to
-allow daily summaries to be visualised. Similar to Apple's Calendar application,
-days which are busy are coloured in an increasing level of opaqueness,
-dependant on the number of events added for the associated day.
-
-\includegraphics[scale=0.45,angle=90]{CMCLGDRYear.png}
 
 \section{Evolution on Scientific Linux}
 
@@ -148,13 +160,6 @@ feature and the view indicator).
 
 \subsection{Problems during Evaluation}
 
-\begin{figure}
-\centering
-%\includegraphics[height=H,width=W]{finalpaperprototye.pdf}
-\vspace{-50mm}
-\caption{Final prototype design.}
-\label{fig:ffp}
-\end{figure}
 
 %%%%%%%%%
 
@@ -165,6 +170,37 @@ See figures (need figures).
 
 %% Separate sections with line of comment symbols.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\appendix
+\section{Figures for Calendar on OS X}
+
+\begin{figure}
+\centering
+\includegraphics[height=9cm,width=9.5cm]{CMCLGDREvent.png}
+\caption{Add Event dialog}
+\label{fig:addevent}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[height=8cm,width=8.5cm]{CMCLGDRViewCalendar.png}
+\caption{View Calendar Dialog}
+\label{fig:viewcal}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[scale=0.5,angle=90]{CMCLGDRMonth.png}
+\caption{Month View}
+\label{fig:monthview}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[scale=0.5,angle=90]{CMCLGDRYear.png}
+\caption{Year View}
+\label{fig:yearrview}
+\end{figure}
 
 \end{document}
 
