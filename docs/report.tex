@@ -49,12 +49,12 @@ be detailed.
 
 \section{Overview}
 
-Our prototypes were based on the Facebook, OS X, Evolution on Scientific
-Linux, 30 Boxes, and Google calendars. For prototyping and evaluating
-we split up into two person teams. For the purposes of the discussion
-the teams are labelled based on the calendars they evaluated.
+The prototypes were based on the Facebook, OS X, Evolution on Scientific
+Linux, 30 Boxes, and Google calendars. For prototyping and evaluating,
+the team split up into two person sub-teams. For the purposes of the
+discussion the teams are labelled based on the calendars they evaluated.
 
-The final paper prototype was a combination of our findings from the
+The final paper prototype was a combination of the findings from the
 calendars.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -130,12 +130,12 @@ home events. The screen (Figure~\ref{fig:viewcal}) allows a user to
 choose which calendars to view, add a new calendar, or delete an old
 calendar and associated events.
 
-The month view for our calendar is shown in Figure~\ref{fig:monthview}.
+The month view for the calendar is shown in Figure~\ref{fig:monthview}.
 This view is also the default view. Events are listed in summary form
 in the grid of squares. When a user clicks on the grid, the full listing
 for the selected day is shown in the side panel on the right.
 
-The year view for our calendar is depicted in Figure~\ref{fig:yearview}.
+The year view for the calendar is depicted in Figure~\ref{fig:yearview}.
 The primary purpose of this view is to allow daily summaries to be
 visualised. Similar to Apple's Calendar application, days which are
 busy are coloured in an increasing level of opaqueness, dependent on
@@ -157,50 +157,52 @@ provide the correct format (including /'s) or not.
 
 \section{Evolution on Scientific Linux}
 
-This paper prototype was designed using our findings from our evaluation 
-of Evolution on Scientific Linux. Overall we found that we disliked most
-of the features of Evolution and as such most of the features of this
-prototype are our improvements on features of Evolution.
+This paper prototype was designed using the findings from the evaluation 
+of Evolution on Scientific Linux. Overall, the evaluation showed
+dislike for most of the features of Evolution and as such most of the
+features of this prototype are improvements on features of Evolution.
 
 \subsection{Paper Prototype}
 
-The first thing we noticed about Evolution was that there was not
-always a clear indication of the current system state. So for our
-prototype we included a clear `Day/Week/Month/Year' section at the
+The first thing that was noticed about Evolution was that there was not
+always a clear indication of the current system state. So for the
+prototype a clear `Day/Week/Month/Year' section was included at the
 top of the screen which also allowed the user to quickly switch between
-views. We have only created the paper prototype for the Month view due
+views. The only paper prototype created was for the Month view due
 to time constraints but the other views would have conformed to the
 same general layout (i.e the sidebar and the ability to switch views
 should be present in all views).
 
-Another indicator of system state we added was a check box section on
+Another indicator of system state added was a check box section on
 the left of the main view to allow users to select different categories
 of event to be displayed, possibly having multiple categories shown at
-any one time. Also related to event categories, we found Evolution's
-system for adding a new category to be rather unintuitive so we added a
+any one time. Also, related to event categories, Evolution's
+system for adding a new category was rather unintuitive so a
 clear indication in the categories section of the sidebar labelled
-`Add New'.
+`Add New' was added to this paper prototype.
 
-We also didn't like the inconsistencies we found whilst using the
-Evolution system so we decided the different views in our prototype
-should have the same features available (i.e. the sidebar feature and
-the view indicator).
+Inconsistencies were found whilst using the Evolution system which
+prompted the decision to have different views in this prototype to
+have the same features available (i.e. the sidebar feature and the view
+indicator).
 
 The user should also be able to double-click on an event in any view and
 have a summary of that event displayed in the lower section of the
 sidebar. This decision was made because Evolution took the user to a
-seperate page to view a summary which we thought was unnecessary.
+seperate page to view a summary which seems unnecessary.
 
 All of the adding, editing and deleting events on this prototype was 
 handled from the menu bar at the top of the screen. For the final
-prototype we decided that this was not a particularly practical solution
-and that this functionality would be better handled from the main view.
+prototype it was decided that this was not a particularly practical
+solution and that this functionality would be better handled from the
+main view.
 
 \subsection{Think-aloud Evaluation of paper prototype}
 
-To evaluate this prototype we asked a member of the group who was not
-involved in this particular design to complete some tasks using our
-prototype. These are our findings:
+To evaluate this prototype, a member of the team not involved in this
+particular design completed some tasks using this prototype.
+
+Below are the findings from the evaluation:
 
 \begin{itemize}
 \item Add an appointment.
@@ -209,8 +211,8 @@ The user experienced some difficulty whilst adding an appointment,
 although they did successfully complete the task, the process took a
 little longer than expected. The user voiced his distress that he was
 unable to simply click on a day and have the option to add pop up.
-Instead in our design we kept all core actions inside the File menu
-which we believed to be intuitive, however the user felt that
+Instead in prototype design all core actions are kept inside the
+File menu, believed to be intuitive, however the user felt that
 the design lacked a connection between system-orientated design and
 real world use, and commented on the lack of visibility for such a
 simple feature.
@@ -252,9 +254,9 @@ the user would not need to calculate and do any extra work themselves.
 \item Find out which days of the month are the busiest and quietest
 respectively
 
-In our design we have a mini calender on the left hand side which is 
-visible regardless of which view you are currently in. In this mini
-calender each of the days has a colour indicator showing how busy that
+In the prototype, a mini calender on the left hand side is visible
+regardless of which view you are currently in. In this mini calender
+each of the days has a colour indicator showing how busy that
 particular day is; white meaning not busy, orange being moderately
 busy and red meaning very busy. The user understood this when looking
 at the prototype without any explanation and delared that this feature
@@ -279,7 +281,30 @@ tick boxes for category selection.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{30 Boxes online calendar}
+\section{Google, Facebook, and 30 Boxes calendars}
+
+\subsection{Google calendar}
+
+Most of the team is familiar with the Google calendar design, and as
+such, it has influenced the prototype greatly. The day view on the
+right is inspired by this calendar.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Facebook Events calendar}
+
+Facebook's Events calendar is shaped by the company's focus on social
+interaction. As such, events are geared towards social activities, and
+leave a lot to be desired for a private, personal calendar. The
+evaluation showed that this calendar only has two features that
+might be useful : the ability to share easily with your friends,
+and the integrated Bing Maps for appointment location, which could be
+used to calculate if the user has time to travel between two
+appointments at different locations.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{30 Boxes online calendar}
 
 The 30 Boxes online calendar presents the user with a minimalistic yet
 informative view of the following fortnight's events and the previous
@@ -307,7 +332,7 @@ he could drag and drop.
 \item Set a recurring appointment with a given duration
 
 30 Boxes has a nice feature that lets you specify recurrences that
-don't have a pattern.
+do not have a pattern.
 
 \item Find the busiest and quietest days of the month
 
@@ -328,9 +353,9 @@ switches to that week's view) may not be intuitive to novice users.
 
 \subsection{Paper Prototype}
 
-Our subteam then designed a paper prototype based on a merging of the
+This sub-team then designed a paper prototype based on a merging of the
 Google calendar day view and the 30 Boxes month view. The idea of this
-prototype is to convey as much relevant information as we can on a
+prototype is to convey as much relevant information as possible on a
 single view. A user can click on any day and the day view on the right
 will update with those day's appointments, ordered by time. Other
 features are: colours can be used to represent different categories
@@ -340,46 +365,32 @@ view on the right to the month view on the left, and there are now
 explicit buttons for switching to a week or year view in the top
 left corner. 
 
-Another action we focused on was the actual creation of a new
-appointment. We believe modern calendars have too much information
-during the creation stage. As such, a user might be overwhelmed by all
-the fields he needs to complete to create a simple appointment.
-Our appointment creation pop-up is split into pages, and a valid
-appointment only needs the information on the first page to be created.
-That is just a name and time. The other fields are available on the
-next page, accessible through a link in the bottom right corner of the
-pop-up. There a user can specify repetition, add reminders, add a
-location, assign a category, share with others or add extra details
-about the appointment.
+Another action focused on was the actual creation of a new
+appointment. A user might be overwhelmed by calendars that provide many
+fields that have to be completed to create a simple appointment.
+The appointment creation pop-up, designed in this prototype, is split
+into pages, and a valid appointment only needs the information on the
+first page to be created that is, just a name and time. The other
+fields are available on the next page, accessible through a link in the
+bottom right corner of the pop-up. There a user can specify repetition,
+add reminders, add a location, assign a category, share with others or
+add extra details about the appointment.
 
 \subsection{Think-aloud evaluation of paper prototype}
 
-We ran through the same tasks as the 30 Boxes Think-aloud evaluation,
-noticing that we still had problems finding the busiest days in the
-month and adding an appointment to a day in a clear, unambiguous way
-for the user. As such, the final prototype has a plus button for adding
-events, and uses colour to convey how busy a day is.
+The same tasks were used to evaluate the prototype as the 30 Boxes
+Think-aloud evaluation, noticing there still were problems finding the
+busiest days in the month and adding an appointment to a day in a
+clear, unambiguous way for the user. As such, the final prototype has a
+plus button for adding events, and uses colour to convey the days which
+are busy.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Google calendar}
+\section{The final prototype}
 
-Most of the team is familiar with the Google calendar design, and as
-such, it has influenced our prototype greatly. The day view on the
-right is inspired by this calendar.
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\section{Facebook Events calendar}
-
-Facebook's Events calendar is shaped by the company's focus on social
-interaction. As such, events are geared towards social activities, and
-leave a lot to be desired for a private, personal calendar. Our
-evaluation showed that this calendar only has two features that
-might be useful : the ability to share easily with your friends,
-and the integrated Bing Maps for appointment location, which could be
-used to calculate if the user has time to travel between two
-appointments at different locations.
+The team discussed the findings from the evaluation of the early
+prototype designs and designed the final version of the prototype.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
