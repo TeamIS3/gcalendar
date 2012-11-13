@@ -1,7 +1,12 @@
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.*;
 
+/**
+ * Common swing element code here
+ * 
+ * @author gordon
+ * @version 1.0
+ */
 public class Common extends JFrame {
 
 	private static final long serialVersionUID = 1L;
