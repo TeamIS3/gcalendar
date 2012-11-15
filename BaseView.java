@@ -13,24 +13,21 @@ import java.awt.*;
  */
 public abstract class BaseView extends JPanel {
 	private static final long serialVersionUID = 1L;
+    private JPanel viewPanel;
     
-    public BaseView() {}
+    public BaseView() {
+        super();
+        setPreferredSize(new Dimension(900, 700));
+    }
     
     public void setupGui() {
         // Set up main panel for frame.
 		this.setLayout(new BorderLayout());
         
-        // Create an upper panel to achieve the correct
-        // layout.
-        JPanel upperPanel = new JPanel(new BorderLayout());
-        JPanel viewPanel = new JPanel(new BorderLayout());
-        addViewButtons(viewPanel);
-        upperPanel.add(viewPanel, BorderLayout.EAST);
-        
-        // Populate the main panel.
-        this.add(upperPanel, BorderLayout.NORTH);
 		setupCalendar();
     }
+    
+    public JPanel getViewPanel() { return viewPanel; }
     
     /**
      * Method called by @see setupGui() to 
@@ -39,19 +36,4 @@ public abstract class BaseView extends JPanel {
      *
      */
     protected abstract void setupCalendar();
-    
-    private void addViewButtons(JPanel viewPanel) {
-         // Create view buttons.
-        JButton weekButton = new JButton("Week");
-        JButton monthButton = new JButton("Month");
-        JButton yearButton = new JButton("Year");
-        
-        viewPanel.add(weekButton, BorderLayout.WEST);
-        viewPanel.add(monthButton, BorderLayout.CENTER);
-        viewPanel.add(yearButton, BorderLayout.EAST);
-    }
-    
-    public void actionPerformed(ActionEvent e) {
-        
-    }
 }
