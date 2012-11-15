@@ -3,11 +3,12 @@ import javax.swing.table.AbstractTableModel;
 public class MonthDataModel extends AbstractTableModel {
 
 	private static final long serialVersionUID = 1L;
-	@SuppressWarnings("unused")
 	private int offset;
+	private int days;
 
-	public MonthDataModel(int n) {
-		offset = n;
+	public MonthDataModel(int off, int d) {
+		offset = off;
+		days = d;
 	}
 
 	private String[] names = { "Monday", "Tuesday", "Wednesday", "Thursday",
@@ -26,9 +27,8 @@ public class MonthDataModel extends AbstractTableModel {
 	}
 
 	public Object getValueAt(int row, int col) {
-		int offset = 3;
 		int i = ((7 * row) + (col + 1) - offset);
-		return (i < 32 && i > 0) ? i : null;
+		return (i <= days && i > 0) ? i : null;
 	}
 
 }

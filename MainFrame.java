@@ -44,7 +44,7 @@ public class MainFrame extends JFrame {
 	}
 
 	private void generateMonthGrid() {
-		TableModel monthView = new MonthDataModel(3);
+		TableModel monthView = new MonthDataModel(6, 30);
 		JTable month = new JTable(monthView);
         month.getTableHeader().setReorderingAllowed(false);
 		JScrollPane scrollPane = new JScrollPane(month);
