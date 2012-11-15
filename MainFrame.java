@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.event.*;
 import javax.swing.table.*;
 
 import java.awt.*;
@@ -10,8 +11,6 @@ import java.awt.*;
  * @version 1.0
  */
 public class MainFrame extends JFrame {
-	private static JPanel mainPanel;
-
 	private static final long serialVersionUID = 1L;
 
 	public MainFrame() {
@@ -23,43 +22,51 @@ public class MainFrame extends JFrame {
 		setSize(new Dimension(900, 700));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
-        setJMenuBar(Common.createMenuBar());
+        setJMenuBar(createMenuBar());
         
-		mainPanel = new JPanel();
-		mainPanel.setLayout(new BorderLayout());
-        
-        // Create an upper panel to achieve the correct
-        // layout.
-        JPanel upperPanel = new JPanel(new BorderLayout());
-        JPanel viewPanel = new JPanel(new BorderLayout());
-        addViewButtons(viewPanel);
-        upperPanel.add(viewPanel, BorderLayout.EAST);
-        
-        // Populate the main panel.
-        mainPanel.add(upperPanel, BorderLayout.NORTH);
-		generateMonthGrid();
+		BaseView mainPanel = new MonthView();
+        mainPanel.setupGui();
         
         getContentPane().add(mainPanel);
 		setVisible(true);
 	}
-
-	private void generateMonthGrid() {
-		TableModel monthView = new MonthDataModel(3);
-		JTable month = new JTable(monthView);
-        month.getTableHeader().setReorderingAllowed(false);
-		JScrollPane scrollPane = new JScrollPane(month);
-		month.setRowHeight(100);
-		mainPanel.add(scrollPane, BorderLayout.CENTER);
-	}
     
-    private void addViewButtons(JPanel viewPanel) {
-         // Create view buttons.
-        JButton weekButton = new JButton("Week");
-        JButton monthButton = new JButton("Month");
-        JButton yearButton = new JButton("Year");
-        
-        viewPanel.add(weekButton, BorderLayout.WEST);
-        viewPanel.add(monthButton, BorderLayout.CENTER);
-        viewPanel.add(yearButton, BorderLayout.EAST);
-    }
+    public static JMenuBar createMenuBar() {
+		JMenuBar menuBar = new JMenuBar();
+		// File menu
+		JMenu fileMenu = new JMenu("File");
+		// File -> Exit
+		JMenuItem exitItem = new JMenuItem("Exit");
+		exitItem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+			}
+		});
+		fileMenu.add(exitItem);
+		menuBar.add(fileMenu);
+
+		// Event menu
+		JMenu eventMenu = new JMenu("Event");
+		// Event -> New event
+		JMenuItem newEventItem = new JMenuItem("New event");
+		eventMenu.add(newEventItem);
+		// Event -> Edit event
+		JMenuItem editEventItem = new JMenuItem("Edit event");
+		eventMenu.add(editEventItem);
+		// Event -> Delete event
+		JMenuItem deleteEventItem = new JMenuItem("Delete event");
+		eventMenu.add(deleteEventItem);
+		// Event menu finished.
+		menuBar.add(eventMenu);
+
+		// Category menu
+		JMenu categoryMenu = new JMenu("Category");
+		// Category -> View categories
+		JMenuItem viewCategoriesItem = new JMenuItem("View categories");
+		categoryMenu.add(viewCategoriesItem);
+		// Category menu finished.
+		menuBar.add(categoryMenu);
+
+		return menuBar;
+	}
 }
