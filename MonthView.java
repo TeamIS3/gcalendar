@@ -3,6 +3,12 @@ import javax.swing.table.*;
 
 import java.awt.*;
 
+/**
+ * Month view for the calendar
+ * 
+ * @author gordon
+ *
+ */
 public class MonthView extends BaseView {
 
     private static final long serialVersionUID = 1L;

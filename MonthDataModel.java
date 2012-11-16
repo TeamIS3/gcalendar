@@ -1,5 +1,11 @@
 import javax.swing.table.AbstractTableModel;
 
+/**
+ * Data Model for the Month table
+ * 
+ * @author gordon
+ * 
+ */
 public class MonthDataModel extends AbstractTableModel {
 
     private static final long serialVersionUID = 1L;
