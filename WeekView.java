@@ -19,10 +19,11 @@ public class WeekView extends BaseView {
 
     protected void setupCalendar() {
         TableModel weekView = new WeekDataModel();
-        JTable month = new JTable(weekView);
-        month.getTableHeader().setReorderingAllowed(false);
-        JScrollPane scrollPane = new JScrollPane(month);
-        month.setRowHeight(100);
+        JTable week = new JTable(weekView);
+        week.getTableHeader().setReorderingAllowed(false);
+        JScrollPane scrollPane = new JScrollPane(week);
+        week.setRowSelectionAllowed(false);
+        week.setRowHeight(50);
         this.add(scrollPane, BorderLayout.CENTER);
     }
 }

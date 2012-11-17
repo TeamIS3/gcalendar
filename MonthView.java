@@ -23,6 +23,7 @@ public class MonthView extends BaseView {
         month.getTableHeader().setReorderingAllowed(false);
         JScrollPane scrollPane = new JScrollPane(month);
         month.setRowHeight(100);
+        month.setRowSelectionAllowed(false);
         this.add(scrollPane, BorderLayout.CENTER);
     }
 }
