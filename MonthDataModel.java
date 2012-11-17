@@ -30,7 +30,7 @@ public class MonthDataModel extends AbstractTableModel {
 
     public int getRowCount() {
         int result = (days + offset) / names.length;
-        if((days+offset)%names.length!=0)
+        if ((days + offset) % names.length != 0)
             result++;
         return result;
     }
