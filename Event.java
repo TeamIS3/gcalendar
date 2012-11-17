@@ -32,6 +32,12 @@ public class Event {
     public Date getEndDate() { return endDate; }
     
     
+    public void setName(String name) { this.name = name; }
+    public void setLocation(String loc) { location = loc; }
+    public void setDescription(String desc) { this.desc = desc; }
+    public void setStartDate(Date start) { startDate = start; }
+    public void setEndDate(Date end) { endDate = end; }
+    
     public String toString() {
         StringBuilder str = new StringBuilder();
         
