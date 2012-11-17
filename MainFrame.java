@@ -28,7 +28,7 @@ public class MainFrame extends JFrame implements ActionListener {
         setLocation(100, 100);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
-        eventDialog = new EventDialog(this, "Add an Event");
+        eventDialog = new EventDialog(this, "Add an Event", new CalendarModel());
         eventDialog.setVisible(false);
         eventDialog.pack();
         setJMenuBar(createMenuBar());
