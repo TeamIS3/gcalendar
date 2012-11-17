@@ -7,7 +7,7 @@ import java.awt.*;
  * Week view for the calendar
  * 
  * @author gordon
- *
+ * 
  */
 public class WeekView extends BaseView {
 

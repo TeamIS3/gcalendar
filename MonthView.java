@@ -7,7 +7,7 @@ import java.awt.*;
  * Month view for the calendar
  * 
  * @author gordon
- *
+ * 
  */
 public class MonthView extends BaseView {
 
