@@ -14,22 +14,22 @@ public class WeekDataModel extends AbstractTableModel {
             "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00",
             "19:00", "20:00", "21:00", "22:00", "23:00" };
 
-    public WeekDataModel() {
-    }
-
     private String[] names = { "", "Monday", "Tuesday", "Wednesday",
             "Thursday", "Friday", "Saturday", "Sunday" };
+
+    public WeekDataModel() {
+    }
 
     public String getColumnName(int col) {
         return names[col];
     }
 
     public int getColumnCount() {
-        return 8;
+        return names.length;
     }
 
     public int getRowCount() {
-        return 24;
+        return hours.length;
     }
 
     public Object getValueAt(int row, int col) {
