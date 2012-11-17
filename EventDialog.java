@@ -11,7 +11,8 @@ import java.awt.event.*;
  * @author cmcl
  * @version 1.0
  */
-public class EventDialog extends JDialog {
+public class EventDialog extends JDialog implements ActionListener {
+    private JButton okayButton, delButton, cancelButton;
 
     public EventDialog(JFrame frame, String title) {
         super(frame, title, Dialog.ModalityType.DOCUMENT_MODAL);
@@ -54,9 +55,23 @@ public class EventDialog extends JDialog {
     public JPanel createSidePanel() {
         JPanel sidePanel = new SpacedPanel(new Dimension(5, 5));
         sidePanel.setLayout(new BoxLayout(sidePanel, BoxLayout.Y_AXIS));
-        sidePanel.add(new JButton("Cancel"));
-        sidePanel.add(new JButton("Delete"));
-        sidePanel.add(new JButton("Okay"));
+        
+        cancelButton = new JButton("Cancel");
+        delButton = new JButton("Delete");
+        okayButton = new JButton("Okay");
+        
+        cancelButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                setVisible(false);
+            }
+        });
+        delButton.addActionListener(this);
+        okayButton.addActionListener(this);
+        
+        sidePanel.add(cancelButton);
+        sidePanel.add(delButton);
+        sidePanel.add(okayButton);
+        
         sidePanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10,
                                                             10));
 
@@ -87,6 +102,18 @@ public class EventDialog extends JDialog {
         return lowerPanel;
     }
     
+    /**
+     * Handles the Okay and Delete button actions for
+     * creation of Events.
+     */
+    public void actionPerformed(ActionEvent e) {
+        JButton b = (JButton) e.getSource();
+        if (b == okayButton) {
+            System.err.println("I'm going to create an event now.");
+        } else if (b == delButton) {
+            System.err.println("I'm going to delete this event now.");
+        }
+    }
     
     /**
      * main method to simply test the dialog class
@@ -116,7 +143,6 @@ public class EventDialog extends JDialog {
             }
         });
     }
-    
     
 }
 
