@@ -17,7 +17,8 @@ public class MainFrame extends JFrame implements ActionListener {
     private Map<JButton, BaseView> viewMap;
     private JPanel viewPanel;
     private JScrollPane scrollPane;
-
+    private EventDialog eventDialog;
+    
     public MainFrame() {
         super();
     }
@@ -26,7 +27,13 @@ public class MainFrame extends JFrame implements ActionListener {
         setTitle("IS3 Calendar");
         setLocation(100, 100);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
+        eventDialog = new EventDialog(this, "Add an Event");
+        eventDialog.setVisible(false);
+        eventDialog.pack();
         setJMenuBar(createMenuBar());
+        
+        
         views = new BaseView[3];
 
         viewMap = new HashMap<JButton, BaseView>();
@@ -53,7 +60,7 @@ public class MainFrame extends JFrame implements ActionListener {
         setVisible(true);
     }
 
-    public static JMenuBar createMenuBar() {
+    public JMenuBar createMenuBar() {
         JMenuBar menuBar = new JMenuBar();
         // File menu
         JMenu fileMenu = new JMenu("File");
@@ -71,6 +78,11 @@ public class MainFrame extends JFrame implements ActionListener {
         JMenu eventMenu = new JMenu("Event");
         // Event -> New event
         JMenuItem newEventItem = new JMenuItem("New event");
+        newEventItem.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                eventDialog.setVisible(true);
+            }
+        });
         eventMenu.add(newEventItem);
         // Event -> Edit event
         JMenuItem editEventItem = new JMenuItem("Edit event");
