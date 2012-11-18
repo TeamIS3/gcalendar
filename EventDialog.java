@@ -14,6 +14,7 @@ import java.awt.event.*;
 public class EventDialog extends JDialog implements ActionListener {
     private JButton okayButton, delButton, cancelButton;
     private JTextField nameField, locField;
+    private JTextField startDateField, endDateField;
     private JTextArea descArea;
     private CalendarModel model;
     private final DateDialog startDateDialog, endDateDialog;
@@ -22,8 +23,15 @@ public class EventDialog extends JDialog implements ActionListener {
         super(frame, title, Dialog.ModalityType.DOCUMENT_MODAL);
         
         this.model = model;
-        startDateDialog = new DateDialog(this, "Event Start Date");
-        endDateDialog = new DateDialog(this, "Event End Date");
+        DateListener startListener = new DateListener();
+        DateListener endListener = new DateListener();
+        startDateDialog = new DateDialog(this, "Event Start Date",
+                                         startListener);
+        endDateDialog = new DateDialog(this, "Event End Date",
+                                       endListener);
+        
+        startListener.setOwner(startDateDialog);
+        endListener.setOwner(endDateDialog);
         
         startDateDialog.setVisible(false);
         endDateDialog.setVisible(false);
@@ -66,13 +74,14 @@ public class EventDialog extends JDialog implements ActionListener {
         descArea = new JTextArea(desc, 4, largest.length());
         descArea.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
         
+        startDateField = new JEventField("Enter event start date...",
+                                         largest.length());
+        endDateField = new JEventField("Enter event end date...",
+                                       largest.length());
+
         inputPanel.add(nameField);
-        inputPanel.add(createDatePanel("Enter event start date...",
-                                        largest.length(),
-                                        startDateDialog));
-        inputPanel.add(createDatePanel("Enter event end date...",
-                                        largest.length(),
-                                        endDateDialog));
+        inputPanel.add(createDatePanel(startDateField, startDateDialog));
+        inputPanel.add(createDatePanel(endDateField, endDateDialog));
         inputPanel.add(locField);
         inputPanel.add(descArea);
         
@@ -87,12 +96,11 @@ public class EventDialog extends JDialog implements ActionListener {
      *
      * @returns panel for the date input fields.
      */
-    private JPanel createDatePanel(String initText, int ncolumns,
+    private JPanel createDatePanel(JTextField textField,
                                    final DateDialog dialog) {
         JPanel datePanel = new JPanel();
         datePanel.setLayout(new BoxLayout(datePanel, BoxLayout.X_AXIS));
         
-        JTextField textField = new JEventField(initText, ncolumns);
         textField.setEditable(false);
         
         JButton dialogButton = new JButton("..");
@@ -177,11 +185,15 @@ public class EventDialog extends JDialog implements ActionListener {
             String name = nameField.getText();
             String loc = locField.getText();
             String desc = descArea.getText();
+            Date start = startDateDialog.getDate();
+            Date end = endDateDialog.getDate();
             if (event != null) {
                 event.setName(name);
                 event.setLocation(loc);
                 event.setDescription(desc);
-            } else model.push(new Event(name, loc, desc, null, null));
+                event.setStartDate(start);
+                event.setEndDate(end);
+            } else model.push(new Event(name, loc, desc, start, end));
         } else if (b == delButton) {
             if (model.peek() != null) model.pop();
         }
@@ -200,10 +212,38 @@ public class EventDialog extends JDialog implements ActionListener {
         String loc = e == null ? "Enter event location..." : e.getLocation();
         String desc = (e == null ? "Enter event description..." : 
                                    e.getDescription());
-                                  
+        String startDate = (e == null ? "Enter event start date..." :
+                                        e.getStartDate().toString());
+        String endDate = (e == null ? "Enter event end date..." :
+                                      e.getEndDate().toString());
         nameField.setText(name);
         locField.setText(loc);
         descArea.setText(desc);
+        startDateField.setText(startDate);
+        endDateField.setText(endDate);
+    }
+    
+    private class DateListener implements ActionListener {
+        private DateDialog owner;
+        
+        public DateListener() {
+            owner = null;
+        }
+        
+        public void setOwner(DateDialog d) { owner = d; }
+        public DateDialog getOwner() { return owner; }
+        
+        /**
+         * Invoked by a date dialog.
+         * Update date text fields, corresponding to owner, to new date.
+         */
+        public void actionPerformed(ActionEvent e) {
+            if (owner == startDateDialog) {
+                startDateField.setText(owner.getDate().toString());
+            } else if (owner == endDateDialog) {
+                endDateField.setText(owner.getDate().toString());
+            }
+        }
     }
     
     /**

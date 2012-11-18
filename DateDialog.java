@@ -20,11 +20,21 @@ public class DateDialog extends JDialog implements ActionListener {
     
     private JComboBox dayBox, monthBox, yearBox;
     private JButton okayButton, cancelButton;
+    private ActionListener listener;
     
-    public DateDialog(Window window, String title) {
+    /**
+     * Constructor for a date dialog.
+     *
+     * @param listener listens for changes to the date and updates
+     * the parent component's fields accordingly. The information
+     * is also used to modify Events that owns the date information.
+     */
+    public DateDialog(Window window, String title,
+                      ActionListener listener) {
         super(window, title);
         
         currentDate = new Date(1, 1, 2011);
+        this.listener = listener;
         
         setLocationRelativeTo(window);
         
@@ -45,10 +55,11 @@ public class DateDialog extends JDialog implements ActionListener {
             currentDate.setDay((Integer)dayBox.getSelectedItem());
             currentDate.setMonth((Integer)monthBox.getSelectedItem());
             currentDate.setYear((Integer)yearBox.getSelectedItem());
-        } else if (b == cancelButton) {
-            
+            // Ensure listener is called after the date is updated.
+            listener.actionPerformed(e);
         }
         setVisible(false);
+        
     }
     
     /**
@@ -111,9 +122,17 @@ public class DateDialog extends JDialog implements ActionListener {
                 frame.setLocation(200, 100);
                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 
+                ActionListener testListener = new ActionListener() {
+                    public void actionPerformed(ActionEvent e) {
+                        System.err.println("Listening in on 'okay' "+
+                                           "button clicks.");
+                    }
+                };
+                
                 JButton b = new JButton("Open dialog");
                 final DateDialog dialog = new DateDialog(frame,
-                                                   "This is a date dialog");
+                                                   "This is a date dialog",
+                                                   testListener);
                 dialog.setVisible(false);
                 dialog.pack();
                 
