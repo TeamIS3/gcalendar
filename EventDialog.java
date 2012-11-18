@@ -45,7 +45,7 @@ public class EventDialog extends JDialog implements ActionListener {
      *
      * @return the input field panel.
      */
-    public JPanel createInputPanel() {
+    private JPanel createInputPanel() {
         JPanel inputPanel = new SpacedPanel(new Dimension(5, 5));
         inputPanel.setLayout(new BoxLayout(inputPanel, BoxLayout.Y_AXIS));
         
@@ -56,7 +56,7 @@ public class EventDialog extends JDialog implements ActionListener {
         String desc = (e == null ? "Enter event description..." : 
                                    e.getDescription());
         
-        // Calculate largest string for equal-sized text fields.
+        // Calculate largest string to have equal-sized text fields.
         String largest = name.length() > loc.length() ? name : loc;
         largest = largest.length() > desc.length() ? largest : desc;
         
@@ -87,8 +87,8 @@ public class EventDialog extends JDialog implements ActionListener {
      *
      * @returns panel for the date input fields.
      */
-    public JPanel createDatePanel(String initText, int ncolumns,
-                                  final DateDialog dialog) {
+    private JPanel createDatePanel(String initText, int ncolumns,
+                                   final DateDialog dialog) {
         JPanel datePanel = new JPanel();
         datePanel.setLayout(new BoxLayout(datePanel, BoxLayout.X_AXIS));
         
@@ -114,7 +114,7 @@ public class EventDialog extends JDialog implements ActionListener {
      *
      * @returns the side panel.
      */
-    public JPanel createSidePanel() {
+    private JPanel createSidePanel() {
         JPanel sidePanel = new SpacedPanel(new Dimension(5, 5));
         sidePanel.setLayout(new BoxLayout(sidePanel, BoxLayout.Y_AXIS));
         
@@ -147,7 +147,7 @@ public class EventDialog extends JDialog implements ActionListener {
      *
      * @returns the dialog button panel.
      */
-    public JPanel createLowerPanel() {
+    private JPanel createLowerPanel() {
         JPanel lowerPanel = new JPanel(new BorderLayout());
         
         JPanel lowerLeftPanel = new SpacedPanel(new Dimension(5, 5));

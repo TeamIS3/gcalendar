@@ -32,6 +32,13 @@ public class DateDialog extends JDialog implements ActionListener {
         add(createButtonPanel(), BorderLayout.SOUTH);
     }
     
+    public void setDate(Date d) {
+        currentDate = d;
+        updateSelections();
+    }
+    
+    public Date getDate() { return currentDate; }
+    
     public void actionPerformed(ActionEvent e) {
         JButton b = (JButton) e.getSource();
         if (b == okayButton) {
