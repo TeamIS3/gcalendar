@@ -21,12 +21,12 @@ public class DateDialog extends JDialog implements ActionListener {
     private JComboBox dayBox, monthBox, yearBox;
     private JButton okayButton, cancelButton;
     
-    public DateDialog(JFrame frame, String title) {
-        super(frame, title);
+    public DateDialog(Window window, String title) {
+        super(window, title);
         
         currentDate = new Date(1, 1, 2011);
         
-        setLocationRelativeTo(frame);
+        setLocationRelativeTo(window);
         
         add(createDatePanel(), BorderLayout.NORTH);
         add(createButtonPanel(), BorderLayout.SOUTH);

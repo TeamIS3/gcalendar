@@ -16,11 +16,20 @@ public class EventDialog extends JDialog implements ActionListener {
     private JTextField nameField, locField;
     private JTextArea descArea;
     private CalendarModel model;
+    private final DateDialog startDateDialog, endDateDialog;
     
     public EventDialog(JFrame frame, String title, CalendarModel model) {
         super(frame, title, Dialog.ModalityType.DOCUMENT_MODAL);
         
         this.model = model;
+        startDateDialog = new DateDialog(this, "Event Start Date");
+        endDateDialog = new DateDialog(this, "Event End Date");
+        
+        startDateDialog.setVisible(false);
+        endDateDialog.setVisible(false);
+        
+        startDateDialog.pack();
+        endDateDialog.pack();
         
         setLocationRelativeTo(frame);
         
@@ -58,12 +67,45 @@ public class EventDialog extends JDialog implements ActionListener {
         descArea.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
         
         inputPanel.add(nameField);
+        inputPanel.add(createDatePanel("Enter event start date...",
+                                        largest.length(),
+                                        startDateDialog));
+        inputPanel.add(createDatePanel("Enter event end date...",
+                                        largest.length(),
+                                        endDateDialog));
         inputPanel.add(locField);
         inputPanel.add(descArea);
         
         inputPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10,
                                                              10));
         return inputPanel;
+    }
+    
+    /**
+     * Create the panel to hold a date text field
+     * and button that displays a date dialog when clicked.
+     *
+     * @returns panel for the date input fields.
+     */
+    public JPanel createDatePanel(String initText, int ncolumns,
+                                  final DateDialog dialog) {
+        JPanel datePanel = new JPanel();
+        datePanel.setLayout(new BoxLayout(datePanel, BoxLayout.X_AXIS));
+        
+        JTextField textField = new JEventField(initText, ncolumns);
+        textField.setEditable(false);
+        
+        JButton dialogButton = new JButton("..");
+        dialogButton.setBackground(Color.BLACK);
+        dialogButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                dialog.setVisible(true);
+            }
+        });
+        
+        datePanel.add(textField);
+        datePanel.add(dialogButton);
+        return datePanel;
     }
     
     /**
@@ -162,7 +204,7 @@ public class EventDialog extends JDialog implements ActionListener {
         nameField.setText(name);
         locField.setText(loc);
         descArea.setText(desc);
-   }
+    }
     
     /**
      * main method to simply test the dialog class
