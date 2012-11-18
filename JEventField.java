@@ -10,9 +10,16 @@ import java.awt.*;
  */
 public class JEventField extends JTextField {
     
+    public JEventField() {
+        this(null);
+    }
+    
     public JEventField(String text) {
-        super(text);
+        this(text, 0);
+    }
+    
+    public JEventField(String text, int ncolumns) {
+        super(text, ncolumns);
         setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
     }
-
 }

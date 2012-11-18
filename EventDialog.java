@@ -47,10 +47,14 @@ public class EventDialog extends JDialog implements ActionListener {
         String desc = (e == null ? "Enter event description..." : 
                                    e.getDescription());
         
-        nameField = new JEventField(name);
-        locField = new JEventField(loc);
+        // Calculate largest string for equal-sized text fields.
+        String largest = name.length() > loc.length() ? name : loc;
+        largest = largest.length() > desc.length() ? largest : desc;
         
-        descArea = new JTextArea(desc);
+        nameField = new JEventField(name, largest.length());
+        locField = new JEventField(loc, largest.length());
+        
+        descArea = new JTextArea(desc, 4, largest.length());
         descArea.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
         
         inputPanel.add(nameField);
