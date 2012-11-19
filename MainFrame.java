@@ -80,6 +80,7 @@ public class MainFrame extends JFrame implements ActionListener {
         JMenuItem newEventItem = new JMenuItem("New event");
         newEventItem.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                eventDialog.createEvent();
                 eventDialog.setVisible(true);
             }
         });
@@ -87,9 +88,20 @@ public class MainFrame extends JFrame implements ActionListener {
         // Event -> Edit event
         JMenuItem editEventItem = new JMenuItem("Edit event");
         eventMenu.add(editEventItem);
+        editEventItem.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                eventDialog.editEvent();
+                eventDialog.setVisible(true);
+            }
+        });
         // Event -> Delete event
         JMenuItem deleteEventItem = new JMenuItem("Delete event");
         eventMenu.add(deleteEventItem);
+        deleteEventItem.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                eventDialog.deleteEvent();
+            }
+        });
         // Event menu finished.
         menuBar.add(eventMenu);
 

@@ -20,4 +20,6 @@ public class CalendarModel {
     public Event peek() { return events.peek(); }
     
     public Event pop() { return events.pop(); }
+    
+    public boolean isEmpty() { return events.isEmpty(); }
 }

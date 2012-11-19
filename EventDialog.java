@@ -17,12 +17,15 @@ public class EventDialog extends JDialog implements ActionListener {
     private JTextField startDateField, endDateField;
     private JTextArea descArea;
     private CalendarModel model;
+    private boolean createEvent;
     private final DateDialog startDateDialog, endDateDialog;
     
     public EventDialog(JFrame frame, String title, CalendarModel model) {
         super(frame, title, Dialog.ModalityType.DOCUMENT_MODAL);
         
         this.model = model;
+        createEvent = true;
+        
         DateListener startListener = new DateListener();
         DateListener endListener = new DateListener();
         startDateDialog = new DateDialog(this, "Event Start Date",
@@ -46,6 +49,8 @@ public class EventDialog extends JDialog implements ActionListener {
         add(createSidePanel(), BorderLayout.EAST);
         add(createLowerPanel(), BorderLayout.SOUTH);
     }
+    
+    public CalendarModel getModel() { return model; }
     
     /**
      * Creates the panel that holds all input fields for the
@@ -181,7 +186,7 @@ public class EventDialog extends JDialog implements ActionListener {
         if (b == okayButton) {
             // Take the top event and if non-null modify it with
             // the values in the text fields.
-            Event event = model.peek();
+            Event event = createEvent ? null : model.peek();
             String name = nameField.getText();
             String loc = locField.getText();
             String desc = descArea.getText();
@@ -200,14 +205,21 @@ public class EventDialog extends JDialog implements ActionListener {
         setVisible(false);
     }
     
-    @Override
-    public void setVisible(boolean visible) {
-        super.setVisible(visible);
-        updateFields();
+    public void createEvent() {
+        createEvent = true;
+        updateFields(null);
     }
     
-    private void updateFields() {
-        Event e = model.peek();
+    public void editEvent() {
+        createEvent = false;
+        updateFields(model.peek());
+    }
+    
+    public void deleteEvent() {
+        delButton.doClick();
+    }
+    
+    private void updateFields(Event e) {
         String name = e == null ? "Enter event name..." : e.getName();
         String loc = e == null ? "Enter event location..." : e.getLocation();
         String desc = (e == null ? "Enter event description..." : 
