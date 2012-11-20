@@ -1,4 +1,5 @@
 import java.util.Deque;
+import java.util.Iterator;
 import java.util.LinkedList;
 
 /**
@@ -8,7 +9,7 @@ import java.util.LinkedList;
  * @author cmcl
  * @version 1.0
  */
-public class CalendarModel {
+public class CalendarModel implements Iterable<Event> {
     private Deque<Event> events;
     
     public CalendarModel() {
@@ -22,4 +23,6 @@ public class CalendarModel {
     public Event pop() { return events.pop(); }
     
     public boolean isEmpty() { return events.isEmpty(); }
+
+    public Iterator<Event> iterator() { return events.iterator(); }
 }
