@@ -23,7 +23,7 @@ public class RepetitionDialog extends JDialog implements ActionListener {
                       ActionListener listener) {
         super(window, title);
         this.listener = listener;
-        setResizable(true);
+        
         setLocationRelativeTo(window);
 		add(createRadioPanel(), BorderLayout.WEST);
 		add(createMiddlePanel(),BorderLayout.CENTER);
@@ -40,7 +40,7 @@ public class RepetitionDialog extends JDialog implements ActionListener {
 		JLabel middleLabel=new JLabel("");
 		JPanel lowerPanel= new JPanel(new BorderLayout());
 
-		JTextField quantity=new JTextField("      ");
+		JTextField quantity=new JEventField("      ");
 		JLabel daysLabel=new JLabel("  Days");
 
 		lowerPanel.add(quantity,BorderLayout.WEST);

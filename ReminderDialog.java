@@ -21,7 +21,7 @@ public class ReminderDialog extends JDialog implements ActionListener {
                       ActionListener listener) {
         super(window, title);
         this.listener = listener;
-        setResizable(true);
+        
         setLocationRelativeTo(window);
 
         add(createSelectionPanel(), BorderLayout.WEST);
@@ -52,7 +52,7 @@ public class ReminderDialog extends JDialog implements ActionListener {
 
 		JPanel inputPanel = new JPanel();
 		JPanel radioPanel = new JPanel(new GridLayout(3, 1));
-		JTextField quantity=new JTextField("Number of   ");
+		JTextField quantity=new JEventField("Number of   ");
 
 		inputPanel.add(quantity);
         radioPanel.add(minutesButton);

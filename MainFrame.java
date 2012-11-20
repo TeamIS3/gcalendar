@@ -19,9 +19,12 @@ public class MainFrame extends JFrame implements ActionListener {
     private JScrollPane scrollPane;
     private EventDialog eventDialog;
     private CalendarModel model;
+    private final CalendarOperation calOp;
     
     public MainFrame() {
         super();
+        model = new CalendarModel();
+        calOp = new CalendarOperation(model);
     }
 
     public void setupGui() {
@@ -29,8 +32,6 @@ public class MainFrame extends JFrame implements ActionListener {
         setLocation(100, 100);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
-        model = new CalendarModel();
-        final CalendarOperation calOp = new CalendarOperation(model);
         calOp.loadCalendar("Calendar.cal");
         
         addWindowListener(new WindowAdapter() {

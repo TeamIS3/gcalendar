@@ -19,6 +19,8 @@ public class EventDialog extends JDialog implements ActionListener {
     private CalendarModel model;
     private boolean createEvent;
     private final DateDialog startDateDialog, endDateDialog;
+    private final ReminderDialog reminderDialog;
+    private final RepetitionDialog repetitionDialog;
     
     public EventDialog(JFrame frame, String title, CalendarModel model) {
         super(frame, title, Dialog.ModalityType.DOCUMENT_MODAL);
@@ -28,10 +30,18 @@ public class EventDialog extends JDialog implements ActionListener {
         
         DateListener startListener = new DateListener();
         DateListener endListener = new DateListener();
+        ActionListener dummyListener = new ActionListener() {
+            public void actionPerformed(ActionEvent e) {}
+        };
         startDateDialog = new DateDialog(this, "Event Start Date",
                                          startListener);
         endDateDialog = new DateDialog(this, "Event End Date",
                                        endListener);
+                                       
+        reminderDialog = new ReminderDialog(this, "Event reminder",
+                                            dummyListener);
+        repetitionDialog = new RepetitionDialog(this, "Event repetition",
+                                                dummyListener);
         
         startListener.setOwner(startDateDialog);
         endListener.setOwner(endDateDialog);
@@ -39,8 +49,14 @@ public class EventDialog extends JDialog implements ActionListener {
         startDateDialog.setVisible(false);
         endDateDialog.setVisible(false);
         
+        reminderDialog.setVisible(false);
+        repetitionDialog.setVisible(false);
+        
         startDateDialog.pack();
         endDateDialog.pack();
+        
+        reminderDialog.pack();
+        repetitionDialog.pack();
         
         setLocationRelativeTo(frame);
         
@@ -166,10 +182,22 @@ public class EventDialog extends JDialog implements ActionListener {
         JPanel lowerLeftPanel = new SpacedPanel(new Dimension(5, 5));
         lowerLeftPanel.setLayout(new BoxLayout(lowerLeftPanel,
                                                BoxLayout.Y_AXIS));
+        JButton reminder, repetition, category;
+        lowerLeftPanel.add(reminder = new JButton("Set reminder"));
+        lowerLeftPanel.add(repetition = new JButton("Set repetition"));
+        lowerLeftPanel.add(category = new JButton("Set category"));
         
-        lowerLeftPanel.add(new JButton("Set reminder"));
-        lowerLeftPanel.add(new JButton("Set repetition"));
-        lowerLeftPanel.add(new JButton("Set category"));
+        reminder.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                reminderDialog.setVisible(true);
+            }
+        });
+        
+        repetition.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                repetitionDialog.setVisible(true);
+            }
+        });
         
         lowerPanel.add(lowerLeftPanel, BorderLayout.WEST);
         lowerPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10,

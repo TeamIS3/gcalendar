@@ -21,5 +21,6 @@ public class JEventField extends JTextField {
     public JEventField(String text, int ncolumns) {
         super(text, ncolumns);
         setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
+        setDropTarget(null);
     }
 }
