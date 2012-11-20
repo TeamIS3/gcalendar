@@ -46,6 +46,12 @@ public class Date implements Comparable<Date> {
         else return year - d.year;
     }
     
+    public boolean equals(Object o) {
+        return (o instanceof Date && ((Date)o).day == day &&
+            ((Date)o).month == month && ((Date)o).year == year);
+    }
+            
+    
     public String toString() {
         return day + "/" + month + "/" + year;
     }
@@ -65,6 +71,8 @@ public class Date implements Comparable<Date> {
             new Pair("!d3.isValid()", !d3.isValid()),
             new Pair("d1.compareTo(d4) > 0", d1.compareTo(d4) > 0),
             new Pair("d2.compareTo(d4) > 0", d2.compareTo(d4) > 0),
+            new Pair("d2.equals(d2)", d2.equals(d2)),
+            new Pair("!d2.equals(d1)", !d2.equals(d1)),
         };
         
         for (Pair p : tests) testDate(p.getKey(), p.getValue());
