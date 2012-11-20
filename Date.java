@@ -8,6 +8,10 @@ import java.util.Map;
  * @version 1.0
  */
 public class Date implements Comparable<Date> {
+    public static final Integer[] days = getDays();
+    public static final Integer[] months = getMonths();
+    public static final Integer[] years = getYears();
+    //public static final Integer[] daysInMonth = getDaysInMonth();
     private int day, month, year;
     
     public Date(int d, int m, int y) {
@@ -34,8 +38,14 @@ public class Date implements Comparable<Date> {
     
     public int getYear() { return year; }
     public void setYear(int y) { year = y; }
-
+    
+    public boolean isLeapYear() {
+        return ((year % 4 == 0 && year % 100 != 0) ||
+                (year % 100 == 0 && year % 400 == 0));
+    }
+    
     public boolean isValid() {
+        Integer[] daysInMonth = getDaysInMonth(this);
         return day > 0 && day < 32 && month > 1 && month < 13 && year > 0;
     }
     
@@ -106,5 +116,36 @@ public class Date implements Comparable<Date> {
         public String getKey() { return key; }
         
         public Boolean getValue() { return value; }
+    }
+    
+    private static Integer[] getDays() {
+        Integer[] days = new Integer[31];
+        for (int i = 0; i < days.length; i++) days[i] = i+1;
+        return days;
+    }
+    
+    private static Integer[] getMonths() {
+        Integer[] months = new Integer[12];
+        for (int i = 0; i < months.length; i++) months[i] = i+1;
+        return months;
+    }
+    
+    private static Integer[] getYears() {
+        Integer[] years = new Integer[2];
+        years[0] = 2011;
+        years[1] = 2012;
+        return years;
+   }
+    
+    private static Integer[] getDaysInMonth(Date d) {
+        Integer[] daysInMonth = new Integer[months.length];
+        
+        for (int i = 0; i < daysInMonth.length; i++) {
+            switch (i+1) {
+                case 3:
+                    break;
+            }
+        }
+        return daysInMonth;
     }
 }

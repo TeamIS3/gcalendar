@@ -11,11 +11,6 @@ import java.awt.event.*;
  * @version 1.0
  */
 public class DateDialog extends JDialog implements ActionListener {
-
-    private static Integer[] days = getDays();
-    private static Integer[] months = getMonths();
-    private static Integer[] years = getYears();
-    
     private Date currentDate; // date user selected on last viewing.
     
     private JComboBox dayBox, monthBox, yearBox;
@@ -79,9 +74,9 @@ public class DateDialog extends JDialog implements ActionListener {
     private JPanel createDatePanel() {
         JPanel datePanel = new SpacedPanel(new Dimension(5, 5));
         
-        dayBox = new JComboBox(days);
-        monthBox = new JComboBox(months);
-        yearBox = new JComboBox(years);
+        dayBox = new JComboBox(Date.days);
+        monthBox = new JComboBox(Date.months);
+        yearBox = new JComboBox(Date.years);
         
         updateSelections();
         
@@ -148,24 +143,4 @@ public class DateDialog extends JDialog implements ActionListener {
             }
         });
     }
-    
-    private static Integer[] getDays() {
-        Integer[] days = new Integer[31];
-        for (int i = 0; i < days.length; i++) days[i] = i+1;
-        return days;
-    }
-    
-    private static Integer[] getMonths() {
-        Integer[] months = new Integer[12];
-        for (int i = 0; i < months.length; i++) months[i] = i+1;
-        return months;
-    }
-    
-    private static Integer[] getYears() {
-        Integer[] years = new Integer[2];
-        years[0] = 2011;
-        years[1] = 2012;
-        return years;
-   }
-
 }
