@@ -18,6 +18,7 @@ public class MainFrame extends JFrame implements ActionListener {
     private JPanel viewPanel;
     private JScrollPane scrollPane;
     private EventDialog eventDialog;
+    private CalendarModel model;
     
     public MainFrame() {
         super();
@@ -28,7 +29,8 @@ public class MainFrame extends JFrame implements ActionListener {
         setLocation(100, 100);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
-        eventDialog = new EventDialog(this, "Add an Event", new CalendarModel());
+        model = new CalendarModel();
+        eventDialog = new EventDialog(this, "Add an Event", model);
         eventDialog.setVisible(false);
         eventDialog.pack();
         setJMenuBar(createMenuBar());
@@ -150,8 +152,8 @@ public class MainFrame extends JFrame implements ActionListener {
     }
 
     private void createViews() {
-        views[0] = new WeekView();
-        views[1] = new MonthView();
-        views[2] = new YearView();
+        views[0] = new WeekView(model);
+        views[1] = new MonthView(model);
+        views[2] = new YearView(model);
     }
 }
