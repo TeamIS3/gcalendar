@@ -13,8 +13,8 @@ public class MonthView extends BaseView {
 
     private static final long serialVersionUID = 1L;
 
-    public MonthView() {
-        super();
+    public MonthView(CalendarModel model) {
+        super(model);
     }
 
     protected void setupCalendar() {

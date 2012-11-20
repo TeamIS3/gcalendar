@@ -13,8 +13,8 @@ public class WeekView extends BaseView {
 
     private static final long serialVersionUID = 1L;
 
-    public WeekView() {
-        super();
+    public WeekView(CalendarModel model) {
+        super(model);
     }
 
     protected void setupCalendar() {

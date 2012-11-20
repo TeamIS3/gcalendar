@@ -11,10 +11,12 @@ import java.awt.*;
 public abstract class BaseView extends JPanel {
     private static final long serialVersionUID = 1L;
     private JPanel viewPanel;
-
-    public BaseView() {
+    private CalendarModel model;
+    
+    public BaseView(CalendarModel model) {
         super();
         setPreferredSize(new Dimension(900, 700));
+        this.model = model;
     }
 
     public void setupGui() {
