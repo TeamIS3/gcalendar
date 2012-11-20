@@ -47,14 +47,23 @@ public class DateDialog extends JDialog implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         JButton b = (JButton) e.getSource();
         if (b == okayButton) {
-            currentDate.setDay((Integer)dayBox.getSelectedItem());
-            currentDate.setMonth((Integer)monthBox.getSelectedItem());
-            currentDate.setYear((Integer)yearBox.getSelectedItem());
-            // Ensure listener is called after the date is updated.
-            listener.actionPerformed(e);
-        }
-        setVisible(false);
-        
+            Date d = new Date ((Integer)dayBox.getSelectedItem(),
+                               (Integer)monthBox.getSelectedItem(),
+                               (Integer)yearBox.getSelectedItem());
+            if (d.isValid()) {
+                currentDate.setDay(d.getDay());
+                currentDate.setMonth(d.getMonth());
+                currentDate.setYear(d.getYear());
+                setVisible(false);
+                // Ensure listener is called after the date is updated.
+                listener.actionPerformed(e);
+            } else {
+                String title = "Date error";
+                String msg = d.toString() + " is not a valid date.";
+                JOptionPane.showMessageDialog(this, msg, title,
+                                              JOptionPane.ERROR_MESSAGE);
+            }
+        } else if (b == cancelButton) setVisible(false);
     }
     
     /**

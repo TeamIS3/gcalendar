@@ -49,7 +49,7 @@ public class Date implements Comparable<Date> {
     
     public boolean isValid() {
         Integer[] daysInMonth = getDaysInMonth(this);
-        return month > 1 && month < 13 && day > 0 &&
+        return month > 0 && month < 13 && day > 0 &&
             day <= daysInMonth[month-1] && year > 0;
     }
     
@@ -80,6 +80,7 @@ public class Date implements Comparable<Date> {
         Date d3 = new Date(9, 1, -1);
         Date d4 = new Date(2, 12, 2011);
         Date nonLeapYear = new Date(29, 2, 2011);
+        Date validDate = new Date(1, 1, 2011);
         
         int passes = 0, fails = 0;
         
@@ -91,6 +92,7 @@ public class Date implements Comparable<Date> {
             new Pair("d2.equals(d2)", d2.equals(d2)),
             new Pair("!d2.equals(d1)", !d2.equals(d1)),
             new Pair("!nonLeapYear.isValid()", !nonLeapYear.isValid()),
+            new Pair("validDate.isValid()", validDate.isValid()),
         };
         
         for (Pair p : tests) {
