@@ -30,29 +30,28 @@ public class CalendarOperation {
 		try {
 		try {
 		     // open file
-			 bis = new BufferedReader(new FileReader(filename));			 
+		     bis = new BufferedReader(new FileReader(filename));			 
 		     String s=null;
 		     s = bis.readLine();
 		     //while we still have events to read
 		     while (s != null) {
 		    	 Event ev;
 		    	 String name=null,loc=null,desc=null;
-			     Date start=null,end=null;
+		    	 Date start=null,end=null;
 			     //String categories=null;
 			     //Time startTime=null,endTime=null;
 			     //repetition,reminder
 			     
-			     name=bis.readLine();		    	 
+		    	 name=bis.readLine();		    	 
 		    	 loc = bis.readLine();
 		    	 desc = bis.readLine();
 		    	 //date has '/' as a delimiter
-		    	 Scanner sc = 
-		    			 new Scanner(bis.readLine())
-		    	 				.useDelimiter("/");
+		    	 Scanner sc = new Scanner(bis.readLine())
+		    	 			.useDelimiter("/");
 		    	 start = new Date(sc.nextInt(),
 		    			 sc.nextInt(),sc.nextInt());		    	 
 		    	 sc = new Scanner(bis.readLine())
-		    	 				.useDelimiter("/");		    	 
+		    	 			.useDelimiter("/");		    	 
 		    	 end = new Date(sc.nextInt(),
 		    			 sc.nextInt(),sc.nextInt());
 		    	 //push event
@@ -61,28 +60,30 @@ public class CalendarOperation {
 		    	 
 		    	 //read delimiters
 		    	 bis.readLine();
-		    	 s=bis.readLine();
+		    	 s = bis.readLine();
 		      }
 		      bis.close();		      
 		      return true;
 			
 		      // in case the file does not exist, create it
 		    } catch (FileNotFoundException e) {
-		    	System.err.println("File not found, creating file ...");
+		    	System.err.println("File not found, "+
+		    				"creating file ...");
 		    	FileOutputStream out;
-				 PrintStream p;		 
-				 try{
-					 out = new FileOutputStream(filename);
-					 p = new PrintStream(out);
-					 p.close();
-					 out.close();
-					 return true;
-				 } catch (Exception e2) { 
-						System.err.println ("Error writing file: "+
-								e2.getStackTrace()); 
-						return false;
-				 }		    	
-		    }	
+		    	PrintStream p;		 
+		    try{
+				out = new FileOutputStream(filename);
+				p = new PrintStream(out);
+				p.close();
+				out.close();
+				return true;
+			} catch (Exception e2) { 
+				System.err.println ("Error "+
+					"writing file: "+
+					e2.getStackTrace()); 
+				return false;
+			}		    	
+		  }	
 		} catch(IOException e){e.printStackTrace();}
 		 return false;
 	}
@@ -112,17 +113,18 @@ public class CalendarOperation {
 			 out.close();
 			 return true;
 		 } catch (Exception e) { 
-				System.err.println ("Error writing to file: "+
+			System.err.println ("Error writing to file: "+
 						e.getStackTrace()); 
 				return false;
 		 } 	
 	 }
 	
     //test method
-	
+	/*
 	public static void main(String[] args){
 		if(args.length!=2){
-			System.out.println("Usage: java CalendarOperations inputfilename outputfilename");
+			System.out.println("Usage: java "+
+		"CalendarOperations inputfilename outputfilename");
 			return;
 		}			
 		boolean loaded = false;
@@ -133,5 +135,5 @@ public class CalendarOperation {
 		System.out.println(test.events.peek());
 		test.saveCalendar(args[1]);
 	}
-	 
+	 */
 }
