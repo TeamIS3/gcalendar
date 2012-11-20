@@ -18,8 +18,8 @@ public class CalendarOperation {
 
 	private CalendarModel events;
 
-	public CalendarOperation(){
-		this.events = new CalendarModel();
+	public CalendarOperation(CalendarModel m){
+		this.events = m;
 	}
 
 	// load the events into the calendar from a given filename
@@ -120,7 +120,6 @@ public class CalendarOperation {
 	 }
 	
     //test method
-	/*
 	public static void main(String[] args){
 		if(args.length!=2){
 			System.out.println("Usage: java "+
@@ -129,11 +128,10 @@ public class CalendarOperation {
 		}			
 		boolean loaded = false;
 		System.out.println(loaded);
-		CalendarOperation test = new CalendarOperation();
+		CalendarOperation test = new CalendarOperation(new CalendarModel());
 		loaded = test.loadCalendar(args[0]);
 		System.out.println(loaded);
 		System.out.println(test.events.peek());
 		test.saveCalendar(args[1]);
 	}
-	 */
 }

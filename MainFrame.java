@@ -30,6 +30,16 @@ public class MainFrame extends JFrame implements ActionListener {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
         model = new CalendarModel();
+        final CalendarOperation calOp = new CalendarOperation(model);
+        calOp.loadCalendar("Calendar.cal");
+        
+        addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent we) {
+                calOp.saveCalendar("Calendar.cal");
+            }
+        });
+        
+        
         eventDialog = new EventDialog(this, "Add an Event", model);
         eventDialog.setVisible(false);
         eventDialog.pack();
