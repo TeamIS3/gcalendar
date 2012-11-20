@@ -1,6 +1,8 @@
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
+import java.io.IOException;
 import java.io.PrintStream;
 import java.util.Iterator;
 import java.util.Scanner;
@@ -10,7 +12,7 @@ import java.util.Scanner;
  * This is accessed by the calendar model.
  *
  * @author VictorPantazi
- * @version 1.0
+ * @version 1.1
  */
 public class CalendarOperation {
 
@@ -24,7 +26,8 @@ public class CalendarOperation {
 	// boolean to be used by CalendarModel to check if a file 
 	// is already loaded
 	public boolean loadCalendar(String filename){						
-		BufferedReader bis = null;	   
+		BufferedReader bis = null;	 
+		try {
 		try {
 		     // open file
 			 bis = new BufferedReader(new FileReader(filename));			 
@@ -61,8 +64,26 @@ public class CalendarOperation {
 		    	 s=bis.readLine();
 		      }
 		      bis.close();		      
-		      return true;		    
-		    } catch (Exception e) {e.printStackTrace();}		 
+		      return true;
+			
+		      // in case the file does not exist, create it
+		    } catch (FileNotFoundException e) {
+		    	System.err.println("File not found, creating file ...");
+		    	FileOutputStream out;
+				 PrintStream p;		 
+				 try{
+					 out = new FileOutputStream(filename);
+					 p = new PrintStream(out);
+					 p.close();
+					 out.close();
+					 return true;
+				 } catch (Exception e2) { 
+						System.err.println ("Error writing file: "+
+								e2.getStackTrace()); 
+						return false;
+				 }		    	
+		    }	
+		} catch(IOException e){e.printStackTrace();}
 		 return false;
 	}
 
@@ -98,15 +119,19 @@ public class CalendarOperation {
 	 }
 	
     //test method
-	/*
+	
 	public static void main(String[] args){
+		if(args.length!=2){
+			System.out.println("Usage: java CalendarOperations inputfilename outputfilename");
+			return;
+		}			
 		boolean loaded = false;
 		System.out.println(loaded);
 		CalendarOperation test = new CalendarOperation();
-		loaded = test.loadCalendar("test.gcal");
+		loaded = test.loadCalendar(args[0]);
 		System.out.println(loaded);
 		System.out.println(test.events.peek());
-		test.saveCalendar("testing.gcal");
+		test.saveCalendar(args[1]);
 	}
-	*/	 
+	 
 }
