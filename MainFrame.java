@@ -81,6 +81,7 @@ public class MainFrame extends JFrame implements ActionListener {
         JMenuItem exitItem = new JMenuItem("Exit");
         exitItem.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                calOp.saveCalendar("Calendar.cal");
                 System.exit(0);
             }
         });
