@@ -19,19 +19,19 @@ public class MonthDataModel extends AbstractTableModel {
         offset = off;
         days = d;
     }
-    
+
     public int getOffset() {
         return offset;
     }
-    
+
     public int getDays() {
         return days;
     }
-    
+
     public void setOffset(int i) {
         offset = i;
     }
-    
+
     public void setDays(int i) {
         days = i;
     }
