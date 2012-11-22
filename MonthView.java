@@ -17,8 +17,8 @@ public class MonthView extends BaseView {
     private GridBagConstraints gbc;
     Integer[] days = Date.getDaysInMonth(currentDate.getYear());
 
-    public MonthView(CalendarModel model) {
-        super(model);
+    public MonthView(CalendarModel model, JLabel viewLabel) {
+        super(model, viewLabel);
     }
 
     protected void setupCalendar() {
@@ -65,6 +65,7 @@ public class MonthView extends BaseView {
                 monthView.setOffset(offset);
                 monthView.setDays(numDays);
                 monthView.fireTableDataChanged();
+                viewLabel.setText(MonthView.this.toString());
             }
         });
         panel.add(previousB);
@@ -84,9 +85,14 @@ public class MonthView extends BaseView {
                 monthView.setOffset(offset);
                 monthView.setDays(numDays);
                 monthView.fireTableDataChanged();
+                viewLabel.setText(MonthView.this.toString());
             }
         });
         panel.add(nextB);
+    }
+    
+    public String toString() {
+        return currentDate.toString();
     }
 
 }

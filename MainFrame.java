@@ -16,6 +16,7 @@ public class MainFrame extends JFrame implements ActionListener {
     private JButton currentButton;
     private Map<JButton, BaseView> viewMap;
     private JPanel viewPanel;
+    private JLabel viewLabel;
     private JScrollPane scrollPane;
     private EventDialog eventDialog;
     private CalendarModel model;
@@ -50,12 +51,16 @@ public class MainFrame extends JFrame implements ActionListener {
         views = new BaseView[3];
 
         viewMap = new HashMap<JButton, BaseView>();
-
+        viewLabel = new JLabel();
+        
         createViews();
-
+        
         JPanel mainPanel = new JPanel(new BorderLayout());
         JPanel upperPanel = new JPanel(new BorderLayout());
+        JPanel labelPanel = new JPanel(new BorderLayout());
         viewPanel = new JPanel(new BorderLayout());
+        
+        upperPanel.add(labelPanel, BorderLayout.WEST);
         upperPanel.add(viewPanel, BorderLayout.EAST);
         mainPanel.add(upperPanel, BorderLayout.NORTH);
 
@@ -63,10 +68,13 @@ public class MainFrame extends JFrame implements ActionListener {
             v.setupGui();
 
         scrollPane = new JScrollPane(views[1]);
-
+        viewLabel.setText(views[1].toString());
+        
         mainPanel.add(scrollPane, BorderLayout.CENTER);
+        
+        labelPanel.add(viewLabel, BorderLayout.WEST);
         createButtons();
-
+        
         getContentPane().add(mainPanel);
         // Create buttons
         pack();
@@ -136,7 +144,9 @@ public class MainFrame extends JFrame implements ActionListener {
         if (v != null) {
             // Update the view.
             scrollPane.setViewportView(v);
-
+            // Update the view label
+            viewLabel.setText(v.toString());
+            
             // Update enabled/disabled buttons.
             currentButton.setEnabled(true);
             source.setEnabled(false);
@@ -164,8 +174,8 @@ public class MainFrame extends JFrame implements ActionListener {
     }
 
     private void createViews() {
-        views[0] = new WeekView(model);
-        views[1] = new MonthView(model);
-        views[2] = new YearView(model);
+        views[0] = new WeekView(model, viewLabel);
+        views[1] = new MonthView(model, viewLabel);
+        views[2] = new YearView(model, viewLabel);
     }
 }

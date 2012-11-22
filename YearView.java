@@ -12,8 +12,8 @@ public class YearView extends BaseView {
             "Aug", "Sep", "Oct", "Nov", "Dec" };
     private int[] days = { 31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
 
-    public YearView(CalendarModel model) {
-        super(model);
+    public YearView(CalendarModel model, JLabel viewLabel) {
+        super(model, viewLabel);
     }
 
     public void setupCalendar() {
@@ -35,5 +35,9 @@ public class YearView extends BaseView {
         JScrollPane scrollPane = new JScrollPane(month);
         this.add(scrollPane, BorderLayout.CENTER);
         panel.add(scrollPane);
+    }
+    
+    public String toString() {
+        return currentDate.toString();
     }
 }

@@ -17,16 +17,18 @@ public abstract class BaseView extends JPanel {
     protected JPanel viewPanel;
     protected JPanel panel;
     protected CalendarModel model;
+    protected JLabel viewLabel;
     protected JButton nextB, previousB;
-    protected Map<Date, List<Event>> dateMap;
+    protected Map<Date, SortedSet<Event>> dateMap;
     protected Date beginDate, endDate; // calendar range.
     protected Date currentDate;
     
-    public BaseView(CalendarModel model) {
+    public BaseView(CalendarModel model, JLabel viewLabel) {
         super();
         setPreferredSize(new Dimension(900, 700));
         this.model = model;
-        dateMap = new HashMap<Date, List<Event>>();
+        this.viewLabel = viewLabel;
+        dateMap = new HashMap<Date, SortedSet<Event>>();
         beginDate = new Date(1, 1, 2011);
         currentDate = new Date(beginDate);
         endDate = new Date(31, 12, 2012);
@@ -41,10 +43,10 @@ public abstract class BaseView extends JPanel {
             Date st = e.getStartDate();
             Date end = e.getEndDate();
             for (; !st.equals(end); st.increment()) {
-                List<Event> eventList = dateMap.get(st);
-                if (eventList == null) eventList = new LinkedList<Event>();
-                eventList.add(e);
-                dateMap.put(st, eventList);
+                SortedSet<Event> eventSet = dateMap.get(st);
+                if (eventSet == null) eventSet = new TreeSet<Event>();
+                eventSet.add(e);
+                dateMap.put(st, eventSet);
             }
         }
     }
@@ -68,4 +70,6 @@ public abstract class BaseView extends JPanel {
      * 
      */
     protected abstract void setupCalendar();
+    
+    public abstract String toString();
 }

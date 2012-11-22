@@ -16,8 +16,8 @@ public class WeekView extends BaseView {
     private WeekDataModel weekView;
     private GridBagConstraints gbc;
 
-    public WeekView(CalendarModel model) {
-        super(model);
+    public WeekView(CalendarModel model, JLabel viewLabel) {
+        super(model, viewLabel);
     }
 
     protected void setupCalendar() {
@@ -50,6 +50,7 @@ public class WeekView extends BaseView {
     private void addPreviousButton() {
         previousB.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                viewLabel.setText(WeekView.this.toString());
             }
         });
         panel.add(previousB);
@@ -58,8 +59,13 @@ public class WeekView extends BaseView {
     private void addNextButton() {
         nextB.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                viewLabel.setText(WeekView.this.toString());
             }
         });
         panel.add(nextB);
+    }
+    
+    public String toString() {
+        return "Week View";
     }
 }
