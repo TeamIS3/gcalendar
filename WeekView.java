@@ -50,6 +50,9 @@ public class WeekView extends BaseView {
     private void addPreviousButton() {
         previousB.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                for(int i = 0; i < 7; i++) {
+                    currentDate.decrement();
+                }
                 viewLabel.setText(WeekView.this.toString());
             }
         });
@@ -59,6 +62,9 @@ public class WeekView extends BaseView {
     private void addNextButton() {
         nextB.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                for(int i = 0; i < 7; i++) {
+                    currentDate.increment();
+                }
                 viewLabel.setText(WeekView.this.toString());
             }
         });
@@ -66,6 +72,6 @@ public class WeekView extends BaseView {
     }
     
     public String toString() {
-        return "Week View";
+        return currentDate.toString();
     }
 }
