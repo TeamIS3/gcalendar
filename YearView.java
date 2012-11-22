@@ -15,9 +15,8 @@ public class YearView extends BaseView {
         GridLayout grid = new GridLayout(0, 4);
         JPanel panel = new JPanel();
         panel.setLayout(grid);
-        String[] names = { "January", "February", "March", "April", "May",
-                "June", "July", "August", "September", "October", "November",
-                "December" };
+        String[] names = { "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul",
+                "Aug", "Sep", "Oct", "Nov", "Dec" };
         int[] days = { 31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
         int offset = 0;
         for (int i = 0; i < 12; i++) {
