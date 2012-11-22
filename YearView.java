@@ -18,8 +18,11 @@ public class YearView extends BaseView {
         String[] names = { "January", "February", "March", "April", "May",
                 "June", "July", "August", "September", "October", "November",
                 "December" };
+        int[] days = { 31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+        int offset = 0;
         for (int i = 0; i < 12; i++) {
-            TableModel temp = new YearDataModel(names[i]);
+            TableModel temp = new YearDataModel(names[i], offset, days[i]);
+            offset = (offset + days[i]) % 7;
             JTable month = new JTable(temp);
             JScrollPane scrollPane = new JScrollPane(month);
             this.add(scrollPane, BorderLayout.CENTER);
