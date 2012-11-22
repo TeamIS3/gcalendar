@@ -12,8 +12,8 @@ public class MonthDataModel extends AbstractTableModel {
     private int offset;
     private int days;
 
-    private String[] names = { "Monday", "Tuesday", "Wednesday", "Thursday",
-            "Friday", "Saturday", "Sunday" };
+    private String[] names = { "Monday", "Tuesday", "Wednesday",
+            "Thursday", "Friday", "Saturday", "Sunday" };
 
     public MonthDataModel(int off, int d) {
         offset = off;

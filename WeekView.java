@@ -3,7 +3,8 @@ import java.awt.*;
 import java.awt.event.*;
 
 /**
- * Week view for the calendar
+ * Week view for the calendar. A week is represented by a JTable
+ *  of 8 columns, 0 column is a list of hours.
  * 
  * @author gordon
  * 
@@ -21,6 +22,7 @@ public class WeekView extends BaseView {
     }
 
     protected void setupCalendar() {
+        // Create a GridBagLayout for the two buttons and JTable
         panel = new JPanel(new GridBagLayout());
         setUpGBC();
         addPreviousButton();
@@ -50,9 +52,10 @@ public class WeekView extends BaseView {
     private void addPreviousButton() {
         previousB.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                for(int i = 0; i < 7; i++) {
+                // Move on to last week
+                for (int i = 0; i < 7; i++)
                     currentDate.decrement();
-                }
+                // Update JLabel string to show new date
                 viewLabel.setText(WeekView.this.toString());
             }
         });
@@ -62,16 +65,19 @@ public class WeekView extends BaseView {
     private void addNextButton() {
         nextB.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                for(int i = 0; i < 7; i++) {
+                // Move on to next week
+                for (int i = 0; i < 7; i++)
                     currentDate.increment();
-                }
+                // Update JLabel string to show new date
                 viewLabel.setText(WeekView.this.toString());
             }
         });
         panel.add(nextB);
     }
-    
+
     public String toString() {
+        // JLabel string shows current date's default format
         return currentDate.toString();
     }
+
 }

@@ -30,8 +30,10 @@ public class MonthView extends BaseView {
     }
 
     private void addTable() {
-        int offset = 5; // 1st of January 2011 was a Saturday
-        monthView = new MonthDataModel(offset, days[currentDate.getMonth() - 1]);
+        // 1st of January 2011 was a Saturday
+        int offset = 5;
+        monthView = new MonthDataModel(offset, 
+                days[currentDate.getMonth() - 1]);
         month = new JTable(monthView);
         month.getTableHeader().setReorderingAllowed(false);
         month.setRowHeight(100);
@@ -90,13 +92,14 @@ public class MonthView extends BaseView {
         });
         panel.add(nextB);
     }
-    
+
     public String toString() {
-        return monthName(currentDate.getMonth()) + " " + currentDate.getYear();
+        return monthName(currentDate.getMonth()) + " "
+                        + currentDate.getYear();
     }
-    
+
     private String monthName(int i) {
-        return Date.monthNames[i-1];
+        return Date.monthNames[i - 1];
     }
 
 }

@@ -114,7 +114,7 @@ public class ReminderDialog extends JDialog implements ActionListener {
                 
                 JButton b = new JButton("Open dialog");
                 final ReminderDialog dialog = new ReminderDialog(frame,
-                                                   "This is a reminder dialog",
+                                              "This is a reminder dialog",
                                                    testListener);
                 dialog.setVisible(false);
                 dialog.pack();
