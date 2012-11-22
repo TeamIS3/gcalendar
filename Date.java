@@ -8,7 +8,7 @@ import java.util.Map;
  * @version 1.0
  */
 public class Date implements Comparable<Date> {
-    private static final int JAN = 1, FEB = 2, MAR = 3, APR = 4, MAY = 5,
+    public static final int JAN = 1, FEB = 2, MAR = 3, APR = 4, MAY = 5,
                              JUN = 6, JUL = 7, AUG = 8, SEP = 9, OCT = 10,
                              NOV = 11, DEC = 12;
     public static final Integer[] days = getDays();
@@ -48,9 +48,8 @@ public class Date implements Comparable<Date> {
     }
     
     public boolean isValid() {
-        Integer[] daysInMonth = getDaysInMonth(this);
-        return month > 0 && month < 13 && day > 0 &&
-            day <= daysInMonth[month-1] && year > 0;
+        return year > 0 && month > 0 && month < 13 && day > 0 &&
+            day <= getDaysInMonth(year)[month-1];
     }
     
     public int compareTo(Date d) {
@@ -151,14 +150,17 @@ public class Date implements Comparable<Date> {
     }
     
     /**
-     * Obtain the days in every month of the year in which
-     * the Date d occurs.
+     * Obtain the days in every month of the year passed as a argument.
      *
      * @returns a list of month lengths indexed by month (starting
      * from zero).
      */
-    private static Integer[] getDaysInMonth(Date d) {
+    public static Integer[] getDaysInMonth(int year) {
+        if (year < 0) return null;
+        
         Integer[] daysInMonth = new Integer[months.length];
+        
+        Date d = new Date(1, 1, year);
         
         for (int i = 0; i < daysInMonth.length; i++) {
             switch (i+1) {

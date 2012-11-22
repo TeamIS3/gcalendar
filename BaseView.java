@@ -17,12 +17,17 @@ public abstract class BaseView extends JPanel {
     protected CalendarModel model;
     protected JButton nextB, previousB;
     protected Map<Date, List<Event>> dateMap;
+    protected Date beginDate, endDate; // calendar range.
+    protected Date currentDate;
     
     public BaseView(CalendarModel model) {
         super();
         setPreferredSize(new Dimension(900, 700));
         this.model = model;
         dateMap = new HashMap<Date, List<Event>>();
+        beginDate = new Date(1, 1, 2011);
+        currentDate = new Date(beginDate);
+        endDate = new Date(31, 12, 2012);
         populate();
     }
     
@@ -30,7 +35,11 @@ public abstract class BaseView extends JPanel {
      * Populate the date map with events.
      */
     protected void populate() {
-        
+        for (Event e : model) {
+            Date st = e.getStartDate();
+            Date end = e.getEndDate();
+            
+        }
     }
 
     public void setupGui() {
