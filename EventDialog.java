@@ -1,4 +1,8 @@
+import java.util.Map;
+import java.util.HashMap;
+
 import javax.swing.*;
+import javax.swing.text.*;
 import javax.swing.event.*;
 
 import java.awt.*;
@@ -17,15 +21,18 @@ public class EventDialog extends JDialog implements ActionListener {
     private JTextField startDateField, endDateField;
     private JTextArea descArea;
     private CalendarModel model;
+    private Map<JTextComponent, String> textMap;
     private boolean createEvent;
     private final DateDialog startDateDialog, endDateDialog;
     private final ReminderDialog reminderDialog;
     private final RepetitionDialog repetitionDialog;
     
+    
     public EventDialog(JFrame frame, String title, CalendarModel model) {
         super(frame, title, Dialog.ModalityType.DOCUMENT_MODAL);
         
         this.model = model;
+        textMap = new HashMap<JTextComponent, String>();
         createEvent = true;
         
         DateListener startListener = new DateListener();
@@ -99,6 +106,31 @@ public class EventDialog extends JDialog implements ActionListener {
                                          largest.length());
         endDateField = new JEventField("Enter event end date...",
                                        largest.length());
+        
+        // Add text fields to map
+        textMap.put(nameField, "Enter event name..");
+        textMap.put(locField, "Enter event location..");
+        textMap.put(descArea, "Enter event description...");
+                                       
+        MouseListener clearListener = new MouseAdapter() {
+            public void mouseClicked(MouseEvent e) {
+                JTextComponent source = (JTextComponent) e.getSource();
+                source.setText(null);
+            }
+            
+            public void mouseExited(ActionEvent e) {
+                JTextComponent source = (JTextComponent) e.getSource();
+                System.err.println("Called " + textMap.get(source));
+                if (source.getText().equals("")) {
+                    source.setText(textMap.get(source));
+                }
+            }
+        };
+        
+        nameField.addMouseListener(clearListener);
+        System.err.println("In " + textMap.get(nameField));
+        locField.addMouseListener(clearListener);
+        descArea.addMouseListener(clearListener);
 
         inputPanel.add(nameField);
         inputPanel.add(createDatePanel(startDateField, startDateDialog));
