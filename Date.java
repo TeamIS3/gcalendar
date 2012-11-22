@@ -67,6 +67,22 @@ public class Date implements Comparable<Date> {
         } else day++;
     }
     
+    /**
+     * Decrement the date by one day.
+     */
+    public void decrement() {
+        Integer[] daysInMonth = getDaysInMonth(year);
+        if (day == 1) {
+            if (month == JAN) {
+                month = DEC;
+                year--;
+            } else
+                month--;
+            day = daysInMonth[month - 1];
+        } else
+            day--;
+    }
+    
     public int compareTo(Date d) {
         if (year == d.year)
             if (month == d.month) return day - d.day;

@@ -15,6 +15,7 @@ public class MonthView extends BaseView {
     private JTable month;
     private MonthDataModel monthView;
     private GridBagConstraints gbc;
+    Integer[] days = Date.getDaysInMonth(currentDate.getYear());
 
     public MonthView(CalendarModel model) {
         super(model);
@@ -29,7 +30,8 @@ public class MonthView extends BaseView {
     }
 
     private void addTable() {
-        monthView = new MonthDataModel(0, 31);
+        int offset = 6; // 1st of January 2011 was a Saturday
+        monthView = new MonthDataModel(offset, days[currentDate.getMonth() - 1]);
         month = new JTable(monthView);
         month.getTableHeader().setReorderingAllowed(false);
         month.setRowHeight(100);
@@ -49,12 +51,19 @@ public class MonthView extends BaseView {
     private void addPreviousButton() {
         previousB.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                int month = currentDate.getMonth();
+                currentDate.decrement();
+                while (month == currentDate.getMonth()) {
+                    currentDate.decrement();
+                }
                 int offset = monthView.getOffset();
-                int days = monthView.getDays();
-                offset = (offset - days) % 7;
+                int numDays = days[currentDate.getMonth() - 1];
+                offset = (offset - numDays) % 7;
                 if (offset < 0)
                     offset += 7;
+                numDays = days[currentDate.getMonth() - 1];
                 monthView.setOffset(offset);
+                monthView.setDays(numDays);
                 monthView.fireTableDataChanged();
             }
         });
@@ -64,10 +73,16 @@ public class MonthView extends BaseView {
     private void addNextButton() {
         nextB.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                currentDate.increment();
+                while (currentDate.getDay() != 1) {
+                    currentDate.increment();
+                }
                 int offset = monthView.getOffset();
-                int days = monthView.getDays();
-                offset = (offset + days) % 7;
+                int numDays = monthView.getDays();
+                offset = (offset + numDays) % 7;
+                numDays = days[currentDate.getMonth() - 1];
                 monthView.setOffset(offset);
+                monthView.setDays(numDays);
                 monthView.fireTableDataChanged();
             }
         });
