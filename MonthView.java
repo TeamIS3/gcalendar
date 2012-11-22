@@ -92,7 +92,11 @@ public class MonthView extends BaseView {
     }
     
     public String toString() {
-        return currentDate.toString();
+        return monthName(currentDate.getMonth()) + " " + currentDate.getYear();
+    }
+    
+    private String monthName(int i) {
+        return Date.monthNames[i-1];
     }
 
 }
