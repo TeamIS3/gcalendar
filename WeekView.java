@@ -11,10 +11,11 @@ import java.awt.event.*;
 public class WeekView extends BaseView {
 
     private static final long serialVersionUID = 1L;
-    JPanel panel;
-    JTable week;
-    WeekDataModel weekView;
-    JButton nextB, previousB;
+    private JPanel panel;
+    private JTable week;
+    private WeekDataModel weekView;
+    private JButton nextB, previousB;
+    private GridBagConstraints gbc;
 
     public WeekView(CalendarModel model) {
         super(model);
@@ -22,11 +23,21 @@ public class WeekView extends BaseView {
 
     protected void setupCalendar() {
         panel = new JPanel(new GridBagLayout());
-        GridBagConstraints gbc = new GridBagConstraints();
+        setUpGBC();
+        addPreviousButton();
+        addTable();
+        addNextButton();
+        this.add(panel, BorderLayout.CENTER);
+    }
+
+    private void setUpGBC() {
+        gbc = new GridBagConstraints();
         gbc.weightx = 1.0;
         gbc.weighty = 1.0;
         gbc.fill = GridBagConstraints.BOTH;
-        addPreviousButton();
+    }
+
+    private void addTable() {
         weekView = new WeekDataModel();
         week = new JTable(weekView);
         week.getTableHeader().setReorderingAllowed(false);
@@ -35,8 +46,6 @@ public class WeekView extends BaseView {
         week.setRowHeight(50);
         this.add(scrollPane, BorderLayout.CENTER);
         panel.add(scrollPane, gbc);
-        addNextButton();
-        this.add(panel, BorderLayout.CENTER);
     }
 
     private void addPreviousButton() {

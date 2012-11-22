@@ -12,10 +12,11 @@ import java.awt.event.*;
 public class MonthView extends BaseView {
 
     private static final long serialVersionUID = 1L;
-    JPanel panel;
-    JTable month;
-    MonthDataModel monthView;
-    JButton nextB, previousB;
+    private JPanel panel;
+    private JTable month;
+    private MonthDataModel monthView;
+    private JButton nextB, previousB;
+    private GridBagConstraints gbc;
 
     public MonthView(CalendarModel model) {
         super(model);
@@ -23,11 +24,14 @@ public class MonthView extends BaseView {
 
     protected void setupCalendar() {
         panel = new JPanel(new GridBagLayout());
-        GridBagConstraints gbc = new GridBagConstraints();
-        gbc.weightx = 1.0;
-        gbc.weighty = 1.0;
-        gbc.fill = GridBagConstraints.BOTH;
+        setUpGBC();
         addPreviousButton();
+        addTable();
+        addNextButton();
+        this.add(panel, BorderLayout.CENTER);
+    }
+
+    private void addTable() {
         monthView = new MonthDataModel(0, 31);
         month = new JTable(monthView);
         month.getTableHeader().setReorderingAllowed(false);
@@ -36,9 +40,13 @@ public class MonthView extends BaseView {
         JScrollPane scrollPane = new JScrollPane(month);
         this.add(scrollPane, BorderLayout.CENTER);
         panel.add(scrollPane, gbc);
-        addNextButton();
-        this.add(panel, BorderLayout.CENTER);
+    }
 
+    private void setUpGBC() {
+        gbc = new GridBagConstraints();
+        gbc.weightx = 1.0;
+        gbc.weighty = 1.0;
+        gbc.fill = GridBagConstraints.BOTH;
     }
 
     private void addPreviousButton() {
@@ -50,7 +58,6 @@ public class MonthView extends BaseView {
                 offset = (offset - days) % 7;
                 if (offset < 0)
                     offset += 7;
-                System.out.println(offset);
                 monthView.setOffset(offset);
                 monthView.fireTableDataChanged();
             }
