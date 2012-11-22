@@ -7,7 +7,6 @@ public class YearView extends BaseView {
 
     private static final long serialVersionUID = 1L;
     private GridLayout grid;
-    private JPanel panel;
     private int offset = 0;
     private String[] names = { "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul",
             "Aug", "Sep", "Oct", "Nov", "Dec" };
@@ -19,7 +18,6 @@ public class YearView extends BaseView {
 
     public void setupCalendar() {
         grid = new GridLayout(0, 4);
-        panel = new JPanel();
         panel.setLayout(grid);
         for (int i = 0; i < 12; i++) {
             addTable(i);

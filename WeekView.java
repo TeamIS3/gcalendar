@@ -14,7 +14,6 @@ public class WeekView extends BaseView {
     private JPanel panel;
     private JTable week;
     private WeekDataModel weekView;
-    private JButton nextB, previousB;
     private GridBagConstraints gbc;
 
     public WeekView(CalendarModel model) {
@@ -49,7 +48,6 @@ public class WeekView extends BaseView {
     }
 
     private void addPreviousButton() {
-        previousB = new JButton("Previous");
         previousB.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
             }
@@ -58,7 +56,6 @@ public class WeekView extends BaseView {
     }
 
     private void addNextButton() {
-        nextB = new JButton("Next");
         nextB.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
             }

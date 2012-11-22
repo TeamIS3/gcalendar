@@ -12,10 +12,8 @@ import java.awt.event.*;
 public class MonthView extends BaseView {
 
     private static final long serialVersionUID = 1L;
-    private JPanel panel;
     private JTable month;
     private MonthDataModel monthView;
-    private JButton nextB, previousB;
     private GridBagConstraints gbc;
 
     public MonthView(CalendarModel model) {
@@ -23,7 +21,6 @@ public class MonthView extends BaseView {
     }
 
     protected void setupCalendar() {
-        panel = new JPanel(new GridBagLayout());
         setUpGBC();
         addPreviousButton();
         addTable();
@@ -50,7 +47,6 @@ public class MonthView extends BaseView {
     }
 
     private void addPreviousButton() {
-        previousB = new JButton("Previous");
         previousB.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 int offset = monthView.getOffset();
@@ -66,7 +62,6 @@ public class MonthView extends BaseView {
     }
 
     private void addNextButton() {
-        nextB = new JButton("Next");
         nextB.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 int offset = monthView.getOffset();

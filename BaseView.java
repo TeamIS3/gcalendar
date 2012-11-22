@@ -10,8 +10,10 @@ import java.awt.*;
  */
 public abstract class BaseView extends JPanel {
     private static final long serialVersionUID = 1L;
-    private JPanel viewPanel;
-    private CalendarModel model;
+    protected JPanel viewPanel;
+    protected JPanel panel;
+    protected CalendarModel model;
+    protected JButton nextB, previousB;
     
     public BaseView(CalendarModel model) {
         super();
@@ -22,6 +24,9 @@ public abstract class BaseView extends JPanel {
     public void setupGui() {
         // Set up main panel for frame.
         this.setLayout(new BorderLayout());
+        nextB = new JButton("Next");
+        previousB = new JButton("Previous");
+        panel = new JPanel(new GridBagLayout());
         setupCalendar();
     }
 
