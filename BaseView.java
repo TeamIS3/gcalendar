@@ -29,7 +29,7 @@ public abstract class BaseView extends JPanel {
         this.model = model;
         this.viewLabel = viewLabel;
         dateMap = new HashMap<Date, SortedSet<Event>>();
-        beginDate = new Date(1, 1, 2011);
+        beginDate = new Date(3, 1, 2011); // Start on a Monday for sanity
         currentDate = new Date(beginDate);
         endDate = new Date(31, 12, 2012);
         populate();
