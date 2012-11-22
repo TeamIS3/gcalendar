@@ -108,29 +108,28 @@ public class EventDialog extends JDialog implements ActionListener {
                                        largest.length());
         
         // Add text fields to map
-        textMap.put(nameField, "Enter event name..");
-        textMap.put(locField, "Enter event location..");
+        textMap.put(nameField, "Enter event name...");
+        textMap.put(locField, "Enter event location...");
         textMap.put(descArea, "Enter event description...");
-                                       
-        MouseListener clearListener = new MouseAdapter() {
-            public void mouseClicked(MouseEvent e) {
+        
+        FocusListener focusListener = new FocusListener() {
+            public void focusGained(FocusEvent e) {
                 JTextComponent source = (JTextComponent) e.getSource();
-                source.setText(null);
+                if (textMap.get(source).equals(source.getText())) {
+                    source.setText(null);
+                }
             }
             
-            public void mouseExited(ActionEvent e) {
+            public void focusLost(FocusEvent e) {
                 JTextComponent source = (JTextComponent) e.getSource();
-                System.err.println("Called " + textMap.get(source));
-                if (source.getText().equals("")) {
+                if (source.getText().equals(""))
                     source.setText(textMap.get(source));
-                }
             }
         };
         
-        nameField.addMouseListener(clearListener);
-        System.err.println("In " + textMap.get(nameField));
-        locField.addMouseListener(clearListener);
-        descArea.addMouseListener(clearListener);
+        nameField.addFocusListener(focusListener);
+        locField.addFocusListener(focusListener);
+        descArea.addFocusListener(focusListener);
 
         inputPanel.add(nameField);
         inputPanel.add(createDatePanel(startDateField, startDateDialog));
