@@ -100,7 +100,8 @@ public class DateDialog extends JDialog implements ActionListener {
      */
     private JPanel createButtonPanel() {
         JPanel buttonPanel = new SpacedPanel(new Dimension(5, 5));
-        buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.X_AXIS));
+        buttonPanel.setLayout(new BoxLayout(buttonPanel, 
+                            BoxLayout.X_AXIS));
         
         okayButton = new JButton("Okay");
         cancelButton = new JButton("Cancel");
@@ -110,8 +111,8 @@ public class DateDialog extends JDialog implements ActionListener {
         
         buttonPanel.add(okayButton);
         buttonPanel.add(cancelButton);
-        buttonPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10,
-                                                              10));
+        buttonPanel.setBorder(BorderFactory.
+                createEmptyBorder(10, 10, 10,10));
         return buttonPanel;
     }
     
@@ -135,8 +136,8 @@ public class DateDialog extends JDialog implements ActionListener {
                 
                 JButton b = new JButton("Open dialog");
                 final DateDialog dialog = new DateDialog(frame,
-                                                   "This is a date dialog",
-                                                   testListener);
+                                         "This is a date dialog",
+                                         testListener);
                 dialog.setVisible(false);
                 dialog.pack();
                 

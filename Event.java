@@ -55,8 +55,9 @@ public class Event {
      *
      */
     public static void main(String[] args) {
-        Event e1 = new Event("Partae", "Ma hoose", "Gettin' wrecked",
-                             new Date(31, 12, 2012), new Date(2, 1, 2013));
+        Event e1 = new Event("Partae", "Ma hoose", 
+                "Gettin' wrecked", new Date(31, 12, 2012), 
+                new Date(2, 1, 2013));
         Event e2 = new Event();
         System.out.println(e1);
         System.out.println("==============");

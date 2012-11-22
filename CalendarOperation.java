@@ -128,7 +128,8 @@ public class CalendarOperation {
 		}			
 		boolean loaded = false;
 		System.out.println(loaded);
-		CalendarOperation test = new CalendarOperation(new CalendarModel());
+		CalendarOperation test = 
+		        new CalendarOperation(new CalendarModel());
 		loaded = test.loadCalendar(args[0]);
 		System.out.println(loaded);
 		System.out.println(test.events.peek());

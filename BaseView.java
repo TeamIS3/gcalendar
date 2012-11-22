@@ -65,9 +65,8 @@ public abstract class BaseView extends JPanel {
     }
 
     /**
-     * Method called by @see setupGui() to create the particular calendar view
-     * e.g. week, month, year, etc.
-     * 
+     * Method called by @see setupGui() to create the particular 
+     * calendar view e.g. week, month, year, etc.
      */
     protected abstract void setupCalendar();
     

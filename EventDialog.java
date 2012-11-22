@@ -88,7 +88,8 @@ public class EventDialog extends JDialog implements ActionListener {
         // Retrieve information for top of model
         Event e = model.peek();
         String name = e == null ? "Enter event name..." : e.getName();
-        String loc = e == null ? "Enter event location..." : e.getLocation();
+        String loc = e == null ? 
+                "Enter event location..." : e.getLocation();
         String desc = (e == null ? "Enter event description..." : 
                                    e.getDescription());
         
@@ -100,7 +101,8 @@ public class EventDialog extends JDialog implements ActionListener {
         locField = new JEventField(loc, largest.length());
         
         descArea = new JTextArea(desc, 4, largest.length());
-        descArea.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
+        descArea.setBorder(BorderFactory.
+                createLineBorder(Color.BLACK, 1));
         
         startDateField = new JEventField("Enter event start date...",
                                          largest.length());
@@ -279,8 +281,10 @@ public class EventDialog extends JDialog implements ActionListener {
     }
     
     private void updateFields(Event e) {
-        String name = e == null ? "Enter event name..." : e.getName();
-        String loc = e == null ? "Enter event location..." : e.getLocation();
+        String name = e == null ? 
+                "Enter event name..." : e.getName();
+        String loc = e == null ? 
+                "Enter event location..." : e.getLocation();
         String desc = (e == null ? "Enter event description..." : 
                                    e.getDescription());
         String startDate = (e == null ? "Enter event start date..." :
@@ -329,8 +333,7 @@ public class EventDialog extends JDialog implements ActionListener {
                 
                 JButton b = new JButton("Open dialog");
                 final JDialog dialog = new EventDialog(frame,
-                                                       "This is a dialog",
-                                                       new CalendarModel());
+                        "This is a dialog", new CalendarModel());
                 dialog.setVisible(false);
                 dialog.pack();
                 

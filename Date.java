@@ -14,10 +14,10 @@ public class Date implements Comparable<Date> {
     public static final Integer[] days = getDays();
     public static final Integer[] months = getMonths();
     public static final Integer[] years = getYears();
-    public static final String[] monthNames = {"January", "February", "March",
-                                                "April", "May", "June", "July",
-                                                "August", "September", "October",
-                                                "November", "December"};
+    public static final String[] monthNames = {"January", "February", 
+                            "March", "April", "May", "June", "July",
+                            "August", "September", "October",
+                            "November", "December"};
     
     private int day, month, year;
     
