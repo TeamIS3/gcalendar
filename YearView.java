@@ -26,6 +26,7 @@ public class YearView extends BaseView {
     }
 
     private void addTable(int i) {
+        days[1] = currentDate.isLeapYear() ? 29 : 28;
         TableModel temp = new YearDataModel(names[i], offset, days[i]);
         offset = (offset + days[i]) % 7;
         JTable month = new JTable(temp);
@@ -38,6 +39,6 @@ public class YearView extends BaseView {
     }
     
     public String toString() {
-        return currentDate.toString();
+        return currentDate.getYear() + "";
     }
 }
