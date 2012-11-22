@@ -28,7 +28,7 @@ public class MonthView extends BaseView {
         gbc.weighty = 1.0;
         gbc.fill = GridBagConstraints.BOTH;
         addPreviousButton();
-        monthView = new MonthDataModel(6, 30);
+        monthView = new MonthDataModel(0, 31);
         month = new JTable(monthView);
         month.getTableHeader().setReorderingAllowed(false);
         month.setRowHeight(100);

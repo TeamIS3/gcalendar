@@ -14,7 +14,7 @@ public class YearDataModel extends AbstractTableModel {
     }
 
     public String getColumnName(int col) {
-        return col==0 ? names[0] : null;
+        return col == 0 ? names[0] : null;
     }
 
     public int getOffset() {
