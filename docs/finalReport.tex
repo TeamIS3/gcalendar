@@ -4,6 +4,25 @@
 
 \usepackage{url}
 \usepackage{graphicx}
+\usepackage{color}
+\definecolor{javared}{rgb}{0.6,0,0}
+\definecolor{javagreen}{rgb}{0.25,0.5,0.35}
+\definecolor{javapurple}{rgb}{0.5,0,0.35}
+\definecolor{javadocblue}{rgb}{0.25,0.35,0.75}
+\usepackage{listings}
+\lstset {
+	language=Java,
+	basicstyle=\ttfamily,
+	keywordstyle=\color{javapurple}\bfseries,
+	stringstyle=\color{javared},
+	commentstyle=\color{javagreen},
+	morecomment=[s][\color{javadocblue}]{/**}{*/},
+	numbers=left,
+	numberstyle=\color{black},
+	tabsize=4,
+	showspaces=false,
+	showstringspaces=false
+}
 %\usepackage{fullpage}
 
 % Remove red border around refs and make them stand out.
@@ -54,6 +73,14 @@ Including design of experience and what we found out...
 Say how much are GUI is the same as, or different to, the final paper
 prototype. Describe any changes made and why. What would we like to have
 added and how would it be done in swing.
+
+\appendix
+
+\section{Code listing}
+
+\subsection{Main.java}
+
+\lstinputlisting{../Main.java}
 
 \end{document}
 
