@@ -29,6 +29,7 @@ public class YearView extends BaseView {
         TableModel temp = new YearDataModel(names[i], offset, days[i]);
         offset = (offset + days[i]) % 7;
         JTable month = new JTable(temp);
+        month.getTableHeader().setReorderingAllowed(false);
         month.setRowSelectionAllowed(false);
         month.setRowHeight(30);
         JScrollPane scrollPane = new JScrollPane(month);
