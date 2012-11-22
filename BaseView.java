@@ -1,3 +1,5 @@
+import java.util.*;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -14,11 +16,21 @@ public abstract class BaseView extends JPanel {
     protected JPanel panel;
     protected CalendarModel model;
     protected JButton nextB, previousB;
+    protected Map<Date, List<Event>> dateMap;
     
     public BaseView(CalendarModel model) {
         super();
         setPreferredSize(new Dimension(900, 700));
         this.model = model;
+        dateMap = new HashMap<Date, List<Event>>();
+        populate();
+    }
+    
+    /**
+     * Populate the date map with events.
+     */
+    protected void populate() {
+        
     }
 
     public void setupGui() {
