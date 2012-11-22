@@ -52,6 +52,21 @@ public class Date implements Comparable<Date> {
             day <= getDaysInMonth(year)[month-1];
     }
     
+    /**
+     * Increment the date by one day.
+     */
+    public void increment() {
+        Integer[] daysInMonth = getDaysInMonth(year);
+        
+        if (day == daysInMonth[month-1]) {
+            if (month == DEC) {
+                month = JAN;
+                year++;
+            } else month++;
+            day = 1;
+        } else day++;
+    }
+    
     public int compareTo(Date d) {
         if (year == d.year)
             if (month == d.month) return day - d.day;
@@ -81,6 +96,10 @@ public class Date implements Comparable<Date> {
         Date nonLeapYear = new Date(29, 2, 2011);
         Date validDate = new Date(1, 1, 2011);
         
+        Date endOfYear = new Date(31, 12, 2012);
+        endOfYear.increment();
+        Date notEndOfFeb = new Date(28, 2, 2012);
+        notEndOfFeb.increment();
         int passes = 0, fails = 0;
         
         Pair[] tests = {
@@ -92,6 +111,10 @@ public class Date implements Comparable<Date> {
             new Pair("!d2.equals(d1)", !d2.equals(d1)),
             new Pair("!nonLeapYear.isValid()", !nonLeapYear.isValid()),
             new Pair("validDate.isValid()", validDate.isValid()),
+            new Pair("endOfYear.increment().equals(newYear)",
+                     endOfYear.equals(new Date(1, 1, 2013))),
+            new Pair("!notEndOfFeb.increment().equals(march)",
+                     !notEndOfFeb.equals(new Date(1, 3, 2012))),
         };
         
         for (Pair p : tests) {

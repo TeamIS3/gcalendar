@@ -1,7 +1,9 @@
 import java.util.*;
 
 import javax.swing.*;
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.GridBagLayout;
+import java.awt.Dimension;
 
 /**
  * BaseView swing element code here
@@ -38,7 +40,12 @@ public abstract class BaseView extends JPanel {
         for (Event e : model) {
             Date st = e.getStartDate();
             Date end = e.getEndDate();
-            
+            for (; !st.equals(end); st.increment()) {
+                List<Event> eventList = dateMap.get(st);
+                if (eventList == null) eventList = new LinkedList<Event>();
+                eventList.add(e);
+                dateMap.put(st, eventList);
+            }
         }
     }
 
