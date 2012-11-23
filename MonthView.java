@@ -31,7 +31,8 @@ public class MonthView extends BaseView {
     private void addTable() {
         // 1st of January 2011 was a Saturday
         int offset = 5;
-        monthView = new MonthDataModel(offset, days[currentDate.getMonth() - 1]);
+        monthView = new MonthDataModel(offset, 
+                    days[currentDate.getMonth() - 1]);
         // Load currently known events for the date into
         // the table.
         monthView.setData(dateMap.get(currentDate));

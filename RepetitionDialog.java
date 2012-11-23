@@ -142,9 +142,10 @@ public class RepetitionDialog extends JDialog implements ActionListener {
                 };
                 
                 JButton b = new JButton("Open dialog");
-                final RepetitionDialog dialog = new RepetitionDialog(frame,
-                                                 "This is a repetition dialog",
-                                                   testListener);
+                final RepetitionDialog dialog = 
+                              new RepetitionDialog(frame,
+                                  "This is a repetition dialog",
+                                  testListener);
                 dialog.setVisible(false);
                 dialog.pack();
                 
