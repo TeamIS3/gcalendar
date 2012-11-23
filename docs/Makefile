@@ -1,4 +1,4 @@
-DOCS := report.tex
+DOCS := report.tex finalReport.tex
 PDFS := $(DOCS:%.tex=%.pdf)
 
 all: $(PDFS)
