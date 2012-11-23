@@ -26,7 +26,7 @@ public class EventDialog extends JDialog implements ActionListener {
     private final DateDialog startDateDialog, endDateDialog;
     private final ReminderDialog reminderDialog;
     private final RepetitionDialog repetitionDialog;
-    
+    private final CategoryDialog catDialog;
     
     public EventDialog(JFrame frame, String title, CalendarModel model) {
         super(frame, title, Dialog.ModalityType.DOCUMENT_MODAL);
@@ -49,6 +49,9 @@ public class EventDialog extends JDialog implements ActionListener {
                                             dummyListener);
         repetitionDialog = new RepetitionDialog(this, "Event repetition",
                                                 dummyListener);
+                                                
+        catDialog = new CategoryDialog(this, "Event Category",
+                                       dummyListener);
         
         startListener.setOwner(startDateDialog);
         endListener.setOwner(endDateDialog);
@@ -58,12 +61,14 @@ public class EventDialog extends JDialog implements ActionListener {
         
         reminderDialog.setVisible(false);
         repetitionDialog.setVisible(false);
+        catDialog.setVisible(false);
         
         startDateDialog.pack();
         endDateDialog.pack();
         
         reminderDialog.pack();
         repetitionDialog.pack();
+        catDialog.pack();
         
         setLocationRelativeTo(frame);
         
@@ -229,6 +234,12 @@ public class EventDialog extends JDialog implements ActionListener {
         repetition.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 repetitionDialog.setVisible(true);
+            }
+        });
+        
+        catDialog.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                catDialog.setVisible(true);
             }
         });
         
