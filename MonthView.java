@@ -30,8 +30,7 @@ public class MonthView extends BaseView {
     }
 
     private void addTable() {
-        // 1st of January 2011 was a Saturday
-        int offset = 5;
+        int offset = Date.getDayFromDate(new Date(1, 1, currentDate.getYear()));
         monthView = new MonthDataModel(offset, days[currentDate.getMonth() - 1]);
         // Load currently known events for the date into
         // the table.
@@ -66,7 +65,7 @@ public class MonthView extends BaseView {
                 }
                 // Update offset for where the new month starts
                 int offset = monthView.getOffset();
-		days = Date.getDaysInMonth(currentDate.getYear()); 
+                days = Date.getDaysInMonth(currentDate.getYear()); 
                 int numDays = days[currentDate.getMonth() - 1];
                 offset = (offset - numDays) % 7;
                 if (offset < 0)
@@ -98,7 +97,7 @@ public class MonthView extends BaseView {
                 // Update offset to work out where this
                 // new month starts in the week.
                 offset = (offset + numDays) % 7;
-		days = Date.getDaysInMonth(currentDate.getYear()); 
+                days = Date.getDaysInMonth(currentDate.getYear()); 
                 numDays = days[currentDate.getMonth() - 1];
                 monthView.setOffset(offset);
                 monthView.setDays(numDays);

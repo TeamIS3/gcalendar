@@ -101,35 +101,35 @@ public class Date implements Comparable<Date> {
             ((Date)o).month == month && ((Date)o).year == year);
     }
 
-    public String dayName(){
-	String result="";
-	Date temp = new Date(1,1,1970);
-	int count = 0;
-	while(getYear()>temp.getYear()){
-		if(temp.isLeapYear())
-			count+=366;
-		else count +=365;
-		temp.setYear(temp.getYear()+1);
-	}
-	Integer[] daysInMonth = getDaysInMonth(year);
-	while(getMonth()>temp.getMonth()){		
-		count+=daysInMonth[temp.getMonth()];
-		temp.setMonth(temp.getMonth()+1);
-	}
-	while(getDay()>temp.getDay()){
-		count+=1;
-		temp.increment();
-	}
-	switch (count%7) {
-                case 0: return dayNames[3];
-                case 1: return dayNames[4];
-                case 2: return dayNames[5];
-                case 3: return dayNames[6];
-                case 4: return dayNames[0];
-                case 5: return dayNames[1];
-                case 6: return dayNames[2];
-            }
-	return "Mathematical impossibility has occurred. Congrats.";	
+    public String dayName() {
+        String result="";
+        Date temp = new Date(1,1,1970);
+        int count = 0;
+        while (getYear()>temp.getYear()) {
+            if (temp.isLeapYear())
+                count+=366;
+            else count +=365;
+            temp.setYear(temp.getYear()+1);
+        }
+        Integer[] daysInMonth = getDaysInMonth(year);
+        while (getMonth()>temp.getMonth()) {
+            count+=daysInMonth[temp.getMonth()];
+            temp.setMonth(temp.getMonth()+1);
+        }
+        while (getDay()>temp.getDay()) {
+            count+=1;
+            temp.increment();
+        }
+        switch (count%7) {
+                    case 0: return dayNames[3];
+                    case 1: return dayNames[4];
+                    case 2: return dayNames[5];
+                    case 3: return dayNames[6];
+                    case 4: return dayNames[0];
+                    case 5: return dayNames[1];
+                    case 6: return dayNames[2];
+                }
+        return "Mathematical impossibility has occurred. Congrats.";
     }
             
     
@@ -168,6 +168,8 @@ public class Date implements Comparable<Date> {
                      endOfYear.equals(new Date(1, 1, 2013))),
             new Pair("!notEndOfFeb.increment().equals(march)",
                      !notEndOfFeb.equals(new Date(1, 3, 2012))),
+            new Pair("23/11/2012 == Friday",
+                     getDayFromDate(new Date(23, 11, 2012)) == 4),
         };
         
         for (Pair p : tests) {
@@ -263,4 +265,61 @@ public class Date implements Comparable<Date> {
         }
         return daysInMonth;
     }
+    
+    /**
+     * This method returns a number indicating the day that the date
+     * falls on.
+     *
+     * 0 = Monday, 1 = Tuesday etc.
+     *
+     * Disclaimer: The code in this method is not to indicative of the
+     * software engineering profession. Do not try this at home.
+     */
+    public static int getDayFromDate(Date d){
+        String[][] YEARS = {
+            {"00", "06", "17", "23", "28","34", "45", "51", "56", "62", "73", "79", "84", "90"}, 
+            {"01", "07", "12", "18", "29", "35", "40", "46", "57", "63", "68", "74", "85", "91", "96"},
+            {"02", "13", "19", "24", "30", "47", "52", "58", "69", "75", "80", "86", "97"},
+            {"03", "08", "14", "25", "31", "36", "42", "53", "59", "64", "70", "81", "87", "92", "98"},
+            {"09", "15", "20", "26", "37", "43", "48", "54", "65", "71", "76", "82", "93", "99"},
+            {"04", "10", "21", "27", "32", "38", "49", "55", "60", "66", "77", "83", "88", "94"},
+            {"05", "11", "16", "22", "33", "39", "44", "50", "61", "67", "72", "78", "89", "95"}
+		};
+        int[] MONTH_INDEX = {1, 4, 4, 0, 2, 5, 0, 3, 6, 1, 4, 6};
+        int lpYear = 0;
+        if (d.isLeapYear() && d.month <= FEB) lpYear = -1;
+        
+		int num = d.day + MONTH_INDEX[d.month-1] + lpYear;
+        
+        // Obtain year data as a string
+        String y = new Integer(d.getYear()).toString();
+        
+		// Add century data
+        Integer century = new Integer(y.substring(0, 2));
+		switch(century){
+		case 18:
+			num += 2;
+			break;
+		case 19:
+			break;
+		case 20:
+			num += 6;
+			break;
+		}
+        // Finally, calculate the year index
+        int yearIndex = 0;
+        // Get  the last two digits from the year
+        String lastTwo = y.substring(2);
+        for (int i = 0; i < YEARS.length; i++) {
+            String[] indices = YEARS[i];
+            for (String year : indices) {
+                if (lastTwo.equals(year)) {
+                    yearIndex = i;
+                    break;
+                }
+            }
+        }
+		num += yearIndex; // Add year number code on.
+		return (num + 5) % 7;
+	}
 }
