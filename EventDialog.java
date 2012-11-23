@@ -1,10 +1,7 @@
 import java.util.Map;
 import java.util.HashMap;
-
 import javax.swing.*;
 import javax.swing.text.*;
-import javax.swing.event.*;
-
 import java.awt.*;
 import java.awt.event.*;
 
@@ -16,6 +13,8 @@ import java.awt.event.*;
  * @version 1.0
  */
 public class EventDialog extends JDialog implements ActionListener {
+
+    private static final long serialVersionUID = 1L;
     private JButton okayButton, delButton, cancelButton;
     private JTextField nameField, locField;
     private JTextField startDateField, endDateField;
@@ -319,7 +318,6 @@ public class EventDialog extends JDialog implements ActionListener {
         }
         
         public void setOwner(DateDialog d) { owner = d; }
-        public DateDialog getOwner() { return owner; }
         
         /**
          * Invoked by a date dialog.
@@ -356,7 +354,6 @@ public class EventDialog extends JDialog implements ActionListener {
                     }
                 });
                 frame.getContentPane().add(b);
-                
                 frame.pack();
                 frame.setVisible(true);
             }
