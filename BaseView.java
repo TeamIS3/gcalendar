@@ -41,12 +41,13 @@ public abstract class BaseView extends JPanel {
     protected void populate() {
         for (Event e : model) {
             Date st = e.getStartDate();
+            Date temp = new Date(st);
             Date end = e.getEndDate();
-            for (; !st.equals(end); st.increment()) {
-                SortedSet<Event> eventSet = dateMap.get(st);
+            for (; !temp.equals(end); temp.increment()) {
+                SortedSet<Event> eventSet = dateMap.get(temp);
                 if (eventSet == null) eventSet = new TreeSet<Event>();
                 eventSet.add(e);
-                dateMap.put(st, eventSet);
+                dateMap.put(temp, eventSet);
             }
         }
     }
