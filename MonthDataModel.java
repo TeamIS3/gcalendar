@@ -60,7 +60,7 @@ public class MonthDataModel extends AbstractTableModel {
     public Object getValueAt(int row, int col) {
         int i = ((7 * row) + (col + 1) - offset);
         if (data != null)
-            return data.first().toString();
+            return data.first();
         else
             return (i <= days && i > 0) ? i : null;
     }
