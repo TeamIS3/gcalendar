@@ -1,7 +1,7 @@
 import javax.swing.*;
-
 import java.awt.*;
 import java.awt.event.*;
+import java.util.SortedSet;
 
 /**
  * Month view for the calendar
@@ -34,6 +34,7 @@ public class MonthView extends BaseView {
         int offset = 5;
         monthView = new MonthDataModel(offset, 
                 days[currentDate.getMonth() - 1]);
+        monthView.setData(dateMap.get(currentDate));
         month = new JTable(monthView);
         month.getTableHeader().setReorderingAllowed(false);
         month.setRowHeight(100);
@@ -66,6 +67,7 @@ public class MonthView extends BaseView {
                 numDays = days[currentDate.getMonth() - 1];
                 monthView.setOffset(offset);
                 monthView.setDays(numDays);
+                monthView.setData(dateMap.get(currentDate));
                 monthView.fireTableDataChanged();
                 viewLabel.setText(MonthView.this.toString());
             }
@@ -86,6 +88,7 @@ public class MonthView extends BaseView {
                 numDays = days[currentDate.getMonth() - 1];
                 monthView.setOffset(offset);
                 monthView.setDays(numDays);
+                monthView.setData(dateMap.get(currentDate));
                 monthView.fireTableDataChanged();
                 viewLabel.setText(MonthView.this.toString());
             }

@@ -1,3 +1,4 @@
+import java.util.SortedSet;
 import javax.swing.table.AbstractTableModel;
 
 /**
@@ -11,6 +12,7 @@ public class MonthDataModel extends AbstractTableModel {
     private static final long serialVersionUID = 1L;
     private int offset;
     private int days;
+    private SortedSet<Event> data;
 
     private String[] names = { "Monday", "Tuesday", "Wednesday",
             "Thursday", "Friday", "Saturday", "Sunday" };
@@ -26,6 +28,10 @@ public class MonthDataModel extends AbstractTableModel {
 
     public int getDays() {
         return days;
+    }
+
+    public void setData(SortedSet<Event> e) {
+        data = e;
     }
 
     public void setOffset(int i) {
@@ -53,7 +59,10 @@ public class MonthDataModel extends AbstractTableModel {
 
     public Object getValueAt(int row, int col) {
         int i = ((7 * row) + (col + 1) - offset);
-        return (i <= days && i > 0) ? i : null;
+        if (data != null)
+            return data.first().toString();
+        else
+            return (i <= days && i > 0) ? i : null;
     }
 
 }
