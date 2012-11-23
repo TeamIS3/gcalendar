@@ -77,7 +77,7 @@ public class DayView extends BaseView {
 
     public String toString() {
         // JLabel string shows current date's default format
-        return currentDate.toString();
+        return currentDate.dayName()+" "+currentDate;
     }
 
 }

@@ -18,6 +18,8 @@ public class Date implements Comparable<Date> {
                             "March", "April", "May", "June", "July",
                             "August", "September", "October",
                             "November", "December"};
+    public static final String[] dayNames = { "Monday", "Tuesday", "Wednesday",
+            "Thursday", "Friday", "Saturday", "Sunday" };
     
     private int day, month, year;
     
@@ -97,6 +99,38 @@ public class Date implements Comparable<Date> {
     public boolean equals(Object o) {
         return (o instanceof Date && ((Date)o).day == day &&
             ((Date)o).month == month && ((Date)o).year == year);
+    }
+
+    public String dayName(){
+	String result="";
+	Date temp = new Date(1,1,1970);
+	int count = 0;
+	while(getYear()>temp.getYear()){
+		if(temp.isLeapYear())
+			count+=366;
+		else count +=365;
+		temp.setYear(temp.getYear()+1);
+	}
+	Integer[] daysInMonth = getDaysInMonth(year);
+	while(getMonth()>temp.getMonth()){		
+		count+=daysInMonth[temp.getMonth()];
+		temp.setMonth(temp.getMonth()+1);
+	}
+	while(getDay()>temp.getDay()){
+		count+=1;
+		temp.increment();
+	}
+	System.out.println(count+" "+(count%7));
+	switch (count%7) {
+                case 0: result = "Thursday"; break;
+                case 1: result = "Friday"; break;
+                case 2: result = "Saturday"; break;
+                case 3: result = "Sunday"; break;
+                case 4: result = "Monday"; break;
+                case 5: result = "Tuesday"; break;
+                case 6: result = "Wednesday"; break;
+            }
+	return result;	
     }
             
     
