@@ -1,7 +1,7 @@
 import javax.swing.*;
-import javax.swing.event.*;
 import java.awt.*;
 import java.awt.event.*;
+
 /**
  * Dialog to set a repetitive event
  *
@@ -9,10 +9,11 @@ import java.awt.event.*;
  * @version 1.0
  */
 public class RepetitionDialog extends JDialog implements ActionListener {
-    
-	private JTextField quantity;
+
+    private static final long serialVersionUID = 1L;
+    private JTextField quantity;
    	private JRadioButton dailyButton, weeklyButton, fortButton,
-			monthlyButton, yearlyButton, everyButton;
+			monthlyButton, yearlyButton;
     private JButton okayButton, cancelButton;
     private ActionListener listener;
     private Repetition rep;
@@ -42,7 +43,6 @@ public class RepetitionDialog extends JDialog implements ActionListener {
 	private JPanel createMiddlePanel(){
 		JPanel middlePanel=new JPanel(new BorderLayout());
 		JLabel topLabel=new JLabel("");	
-		JLabel middleLabel=new JLabel("");
 		JPanel lowerPanel= new JPanel(new BorderLayout());
 
 		JTextField quantity=new JEventField("      ");
@@ -142,9 +142,10 @@ public class RepetitionDialog extends JDialog implements ActionListener {
                 };
                 
                 JButton b = new JButton("Open dialog");
-                final RepetitionDialog dialog = new RepetitionDialog(frame,
-                                                 "This is a repetition dialog",
-                                                   testListener);
+                final RepetitionDialog dialog = 
+                              new RepetitionDialog(frame,
+                                  "This is a repetition dialog",
+                                  testListener);
                 dialog.setVisible(false);
                 dialog.pack();
                 
@@ -154,7 +155,6 @@ public class RepetitionDialog extends JDialog implements ActionListener {
                     }
                 });
                 frame.getContentPane().add(b);
-                
                	frame.pack();
                 frame.setVisible(true);
             }

@@ -1,6 +1,3 @@
-import java.util.AbstractMap;
-import java.util.Map;
-
 /**
  * Class to represent a date.
  *
@@ -18,8 +15,8 @@ public class Date implements Comparable<Date> {
                             "March", "April", "May", "June", "July",
                             "August", "September", "October",
                             "November", "December"};
-    public static final String[] dayNames = { "Monday", "Tuesday", "Wednesday",
-            "Thursday", "Friday", "Saturday", "Sunday" };
+    public static final String[] dayNames = { "Monday", "Tuesday", 
+        "Wednesday", "Thursday", "Friday", "Saturday", "Sunday" };
     
     private int day, month, year;
     
@@ -102,7 +99,6 @@ public class Date implements Comparable<Date> {
     }
 
     public String dayName() {
-        String result="";
         Date temp = new Date(1,1,1970);
         int count = 0;
         while (getYear()>temp.getYear()) {

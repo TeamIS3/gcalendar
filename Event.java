@@ -5,7 +5,7 @@
  * @author cmcl
  * @version 1.0
  */
-public class Event implements Comparable {
+public class Event implements Comparable<Event> {
     private String name;
     private String location;
     private String desc; // description
@@ -33,7 +33,7 @@ public class Event implements Comparable {
     public Date getEndDate() { return endDate; }
     public Repetition getRepetition() {return rep; }
     
-    public int compareTo(Object v) {
+    public int compareTo(Event v) {
         return 0;
     }
     
