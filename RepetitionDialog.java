@@ -15,7 +15,8 @@ public class RepetitionDialog extends JDialog implements ActionListener {
 			monthlyButton, yearlyButton, everyButton;
     private JButton okayButton, cancelButton;
     private ActionListener listener;
-    
+    private Repetition rep;
+
     /**
      * Constructor for a Repetition dialog.
      */
@@ -30,6 +31,10 @@ public class RepetitionDialog extends JDialog implements ActionListener {
         add(createButtonPanel(), BorderLayout.EAST);
     }
     
+    public Repetition getRepetition(){
+        return rep;
+    }
+
     /**
      * Create the middle panel of Dialog which contains the
 		input box associated with 'every' radio button
@@ -101,7 +106,20 @@ public class RepetitionDialog extends JDialog implements ActionListener {
      public void actionPerformed(ActionEvent e) {
         JButton b = (JButton) e.getSource();
         if (b == okayButton) {
-  
+            if(dailyButton.isSelected())
+                rep = new Repetition("Daily", 1);
+            else if(weeklyButton.isSelected())
+                rep = new Repetition("Weekly", 1);
+            else if(fortButton.isSelected())
+                rep = new Repetition("Fortnightly", 1);
+            else if(monthlyButton.isSelected())
+                rep = new Repetition("Monthly", 1);
+            else if(yearlyButton.isSelected())
+                rep = new Repetition("Yearly", 1);
+            else{
+                int repetitions = Integer.parseInt(quantity.getText());
+                rep = new Repetition("Days", repetitions);
+            }
             listener.actionPerformed(e);
         }
         setVisible(false);
