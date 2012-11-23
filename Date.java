@@ -120,17 +120,16 @@ public class Date implements Comparable<Date> {
 		count+=1;
 		temp.increment();
 	}
-	System.out.println(count+" "+(count%7));
 	switch (count%7) {
-                case 0: result = "Thursday"; break;
-                case 1: result = "Friday"; break;
-                case 2: result = "Saturday"; break;
-                case 3: result = "Sunday"; break;
-                case 4: result = "Monday"; break;
-                case 5: result = "Tuesday"; break;
-                case 6: result = "Wednesday"; break;
+                case 0: return dayNames[3];
+                case 1: return dayNames[4];
+                case 2: return dayNames[5];
+                case 3: return dayNames[6];
+                case 4: return dayNames[0];
+                case 5: return dayNames[1];
+                case 6: return dayNames[2];
             }
-	return result;	
+	return "Mathematical impossibility has occurred. Congrats.";	
     }
             
     
