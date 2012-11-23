@@ -1,7 +1,7 @@
 import javax.swing.*;
-import javax.swing.event.*;
 import java.awt.*;
 import java.awt.event.*;
+
 /**
  * Dialog to set a reminder
  *
@@ -9,8 +9,8 @@ import java.awt.event.*;
  * @version 1.0
  */
 public class ReminderDialog extends JDialog implements ActionListener {
-    
-	private JTextField quantity;
+
+    private static final long serialVersionUID = 1L;
     private JButton okayButton, cancelButton;
     private ActionListener listener;
     
@@ -30,8 +30,8 @@ public class ReminderDialog extends JDialog implements ActionListener {
     }
     
     /**
-    Panel used for spacing purposes between Radio Button and okay/cancel
-	buttons.
+     * Panel used for spacing purposes between Radio Button
+	 * and okay/cancel buttons.
      */	
 	private JPanel createMiddlePanel(){
 		JPanel middlePanel=new JPanel(new BorderLayout());
@@ -89,13 +89,11 @@ public class ReminderDialog extends JDialog implements ActionListener {
     
      public void actionPerformed(ActionEvent e) {
         JButton b = (JButton) e.getSource();
-        if (b == okayButton) {
-    
+        if (b == okayButton)
             listener.actionPerformed(e);
-        }
         setVisible(false);
-        
     }
+
     /**
      * main method to simply test the dialog class
      */
@@ -125,7 +123,6 @@ public class ReminderDialog extends JDialog implements ActionListener {
                     }
                 });
                 frame.getContentPane().add(b);
-                
                	frame.pack();
                 frame.setVisible(true);
             }
