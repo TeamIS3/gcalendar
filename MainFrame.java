@@ -48,7 +48,7 @@ public class MainFrame extends JFrame implements ActionListener {
         setJMenuBar(createMenuBar());
         
         
-        views = new BaseView[3];
+        views = new BaseView[4];
 
         viewMap = new HashMap<JButton, BaseView>();
         viewLabel = new JLabel();
@@ -156,26 +156,29 @@ public class MainFrame extends JFrame implements ActionListener {
 
     private void createButtons() {
         // Create view buttons.
-        JButton week, month, year;
-        viewMap.put(week = new JButton("Week"), views[0]);
-        viewMap.put(month = new JButton("Month"), views[1]);
-        viewMap.put(year = new JButton("Year"), views[2]);
+        JButton day, week, month, year;					//-edit
+	viewMap.put(day = new JButton("Day"), views[0]);		//-added
+        viewMap.put(week = new JButton("Week"), views[1]);
+        viewMap.put(month = new JButton("Month"), views[2]);
+        viewMap.put(year = new JButton("Year"), views[3]);
 
         // Add to views
+	viewPanel.add(day, BorderLayout.LINE_START);			//-added
         viewPanel.add(week, BorderLayout.WEST);
         viewPanel.add(month, BorderLayout.CENTER);
-        viewPanel.add(year, BorderLayout.EAST);
+        viewPanel.add(year, BorderLayout.LINE_END);
         for (JButton b : viewMap.keySet())
             b.addActionListener(this);
 
         // Default is month view
-        currentButton = month;
+        currentButton = day;
         currentButton.setEnabled(false);
     }
 
     private void createViews() {
-        views[0] = new WeekView(model, viewLabel);
-        views[1] = new MonthView(model, viewLabel);
-        views[2] = new YearView(model, viewLabel);
+	views[0] = new DayView(model, viewLabel);			//added
+        views[1] = new WeekView(model, viewLabel);
+        views[2] = new MonthView(model, viewLabel);
+        views[3] = new YearView(model, viewLabel);
     }
 }
