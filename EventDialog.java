@@ -237,7 +237,7 @@ public class EventDialog extends JDialog implements ActionListener {
             }
         });
         
-        catDialog.addActionListener(new ActionListener() {
+        category.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 catDialog.setVisible(true);
             }
