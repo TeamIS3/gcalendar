@@ -11,6 +11,7 @@ public class Event {
     private String desc; // description
     private Date startDate;
     private Date endDate;
+    private Repetition rep;
     
     public Event(String name, String loc, String desc, Date start,
                  Date end) {
@@ -30,6 +31,7 @@ public class Event {
     public String getDescription() { return desc; }
     public Date getStartDate() { return startDate; }
     public Date getEndDate() { return endDate; }
+    public Repetition getRepetition() {return rep; }
     
     
     public void setName(String name) { this.name = name; }
@@ -37,6 +39,7 @@ public class Event {
     public void setDescription(String desc) { this.desc = desc; }
     public void setStartDate(Date start) { startDate = start; }
     public void setEndDate(Date end) { endDate = end; }
+    public void setRepetition(Repetition rp) { rep = rp; }
     
     public String toString() {
         StringBuilder str = new StringBuilder();
@@ -45,7 +48,8 @@ public class Event {
         str.append(String.format("Location : "+location+"%n"));
         str.append(String.format("Description : "+desc+"%n"));
         str.append(String.format("Start Date : "+startDate+"%n"));
-        str.append(String.format("End Date : "+endDate));
+        str.append(String.format("End Date : "+endDate+"%n"));
+        str.append(String.format("Repetition : "+rep));
         
         return str.toString();
     }
