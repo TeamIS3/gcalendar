@@ -66,6 +66,7 @@ public class MonthView extends BaseView {
                 }
                 // Update offset for where the new month starts
                 int offset = monthView.getOffset();
+		days = Date.getDaysInMonth(currentDate.getYear()); 
                 int numDays = days[currentDate.getMonth() - 1];
                 offset = (offset - numDays) % 7;
                 if (offset < 0)
@@ -97,6 +98,7 @@ public class MonthView extends BaseView {
                 // Update offset to work out where this
                 // new month starts in the week.
                 offset = (offset + numDays) % 7;
+		days = Date.getDaysInMonth(currentDate.getYear()); 
                 numDays = days[currentDate.getMonth() - 1];
                 monthView.setOffset(offset);
                 monthView.setDays(numDays);
