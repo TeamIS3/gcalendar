@@ -1,7 +1,7 @@
 import javax.swing.*;
-import javax.swing.event.*;
 import java.awt.*;
 import java.awt.event.*;
+
 /**
  * Dialog to set a repetitive event
  *
@@ -9,8 +9,9 @@ import java.awt.event.*;
  * @version 1.0
  */
 public class CategoryDialog extends JDialog implements ActionListener {
-    
-   	private JRadioButton homeButton,WorkButton,otherButton;
+
+    private static final long serialVersionUID = 1L;
+    private JRadioButton homeButton,workButton,otherButton;
     private JButton cancelButton;
     private ActionListener listener;
     
@@ -39,11 +40,11 @@ public class CategoryDialog extends JDialog implements ActionListener {
 		return middlePanel;
 		
 	}
-    private JPanel createRadioPanel() {
-        JRadioButton workButton = new JRadioButton("Work");
-		JRadioButton homeButton = new JRadioButton("Home");
-		JRadioButton otherButton= new JRadioButton("Other");
 
+    private JPanel createRadioPanel() {
+        workButton = new JRadioButton("Work");
+		homeButton = new JRadioButton("Home");
+		otherButton= new JRadioButton("Other");
 		ButtonGroup group = new ButtonGroup();
     	group.add(workButton);
     	group.add(homeButton);
@@ -64,19 +65,16 @@ public class CategoryDialog extends JDialog implements ActionListener {
         cancelButton.addActionListener(this);
         buttonPanel.add(cancelButton);
 		buttonPanel.add(cancelButton,BorderLayout.NORTH);
-     
         return buttonPanel;
     }
     
      public void actionPerformed(ActionEvent e) {
         JButton b = (JButton) e.getSource();
-        if (b == cancelButton) {
-  
+        if (b == cancelButton)
             listener.actionPerformed(e);
-        }
-        setVisible(false);
-        
+        setVisible(false);   
     }
+
     /**
      * main method to simply test the dialog class
      */
@@ -92,21 +90,18 @@ public class CategoryDialog extends JDialog implements ActionListener {
                                            "button clicks.");
                     }
                 };
-                
                 JButton b = new JButton("Open dialog");
                 final CategoryDialog dialog = new CategoryDialog(frame,
                                                  "This is a Category dialog",
                                                    testListener);
                 dialog.setVisible(false);
                 dialog.pack();
-                
                 b.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
                         dialog.setVisible(true);
                     }
                 });
                 frame.getContentPane().add(b);
-                
                	frame.pack();
                 frame.setVisible(true);
             }
