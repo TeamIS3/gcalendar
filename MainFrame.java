@@ -67,8 +67,8 @@ public class MainFrame extends JFrame implements ActionListener {
         for (BaseView v : views)
             v.setupGui();
 
-        scrollPane = new JScrollPane(views[1]);
-        viewLabel.setText(views[1].toString());
+        scrollPane = new JScrollPane(views[2]);
+        viewLabel.setText(views[2].toString());
         
         mainPanel.add(scrollPane, BorderLayout.CENTER);
         
@@ -163,15 +163,15 @@ public class MainFrame extends JFrame implements ActionListener {
         viewMap.put(year = new JButton("Year"), views[3]);
 
         // Add to views
-	viewPanel.add(day, BorderLayout.LINE_START);			//-added
-        viewPanel.add(week, BorderLayout.WEST);
-        viewPanel.add(month, BorderLayout.CENTER);
-        viewPanel.add(year, BorderLayout.LINE_END);
+	viewPanel.add(day, BorderLayout.WEST);			//-added
+        viewPanel.add(week, BorderLayout.EAST);
+        viewPanel.add(month, BorderLayout.NORTH);
+        viewPanel.add(year, BorderLayout.SOUTH);
         for (JButton b : viewMap.keySet())
             b.addActionListener(this);
 
         // Default is month view
-        currentButton = day;
+        currentButton = month;
         currentButton.setEnabled(false);
     }
 
