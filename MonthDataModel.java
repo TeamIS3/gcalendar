@@ -51,6 +51,9 @@ public class MonthDataModel extends AbstractTableModel {
     }
 
     public int getRowCount() {
+        // The number of rows is the number of full weeks
+        // plus the number of part weeks which make up a
+        // month. Expected output will either be 4, 5, or 6
         int result = (days + offset) / names.length;
         if ((days + offset) % names.length != 0)
             result++;
@@ -58,6 +61,11 @@ public class MonthDataModel extends AbstractTableModel {
     }
 
     public Object getValueAt(int row, int col) {
+        // Eventless days will just show the date number
+        // Days with events will show the date number
+        // and a string representation of the relevant
+        // event.
+        // Other cells will be blank.
         int i = ((7 * row) + (col + 1) - offset);
         if (data != null)
             return data.first().toString();
