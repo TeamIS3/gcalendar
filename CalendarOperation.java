@@ -38,6 +38,7 @@ public class CalendarOperation {
 		    	 Event ev;
 		    	 String name=null,loc=null,desc=null;
 		    	 Date start=null,end=null;
+			 Repetition rep=null;
 			     //String categories=null;
 			     //Time startTime=null,endTime=null;
 			     //repetition,reminder
@@ -54,8 +55,12 @@ public class CalendarOperation {
 		    	 			.useDelimiter("/");		    	 
 		    	 end = new Date(sc.nextInt(),
 		    			 sc.nextInt(),sc.nextInt());
+			 sc = new Scanner(bis.readLine());
+			 if(sc.hasNextInt())
+			 	rep = new Repetition("",sc.nextInt());
+			 else rep = new Repetition(sc.next(),sc.nextInt());
 		    	 //push event
-		    	 ev = new Event(name,loc,desc,start,end);
+		    	 ev = new Event(name,loc,desc,start,end,rep);
 		    	 this.events.push(ev);
 		    	 
 		    	 //read delimiters
@@ -106,6 +111,10 @@ public class CalendarOperation {
 				 p.println(ev.getDescription());		
 				 p.println(ev.getStartDate());				
 				 p.println(ev.getEndDate());
+				 Repetition rep = ev.getRepetition();
+				 if(rep==null)p.println(" 0");
+				 else
+				 	p.println(ev.getRepetition());
 				 // more stuff to be added
 				 p.println("vvvvvvvvvv");				
 			 }
@@ -127,10 +136,14 @@ public class CalendarOperation {
 			return;
 		}			
 		boolean loaded = false;
+		Event ev = new Event("d","e","f",new Date(),new Date(),new Repetition("weekly",0));
+		Event ev2 = new Event("a","b","c",new Date(),new Date(),new Repetition());
 		System.out.println(loaded);
 		CalendarOperation test = 
 		        new CalendarOperation(new CalendarModel());
 		loaded = test.loadCalendar(args[0]);
+		test.events.push(ev);
+		test.events.push(ev2);
 		System.out.println(loaded);
 		System.out.println(test.events.peek());
 		test.saveCalendar(args[1]);

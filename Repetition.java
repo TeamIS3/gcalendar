@@ -22,14 +22,17 @@ public class Repetition {
     public void setFrequency(String freq) { frequency = freq; }
     public void setQuantity(int quant) { quantity = quant; }
 
-    public String toString() {
+    /*public String toString2() {
         StringBuilder str = new StringBuilder();
         
         str.append(String.format("Frequency : "+frequency+"%n"));
         str.append(String.format("Quantity : "+quantity+"%n"));
 
         return str.toString();
+    }*/
+	
+    public String toString(){
+	return frequency+" "+quantity;
     }
-
 
 }
