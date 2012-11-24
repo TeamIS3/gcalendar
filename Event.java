@@ -14,16 +14,17 @@ public class Event implements Comparable<Event> {
     private Repetition rep;
     
     public Event(String name, String loc, String desc, Date start,
-                 Date end) {
+                 Date end, Repetition rep) {
         this.name = name;
         location = loc;
         this.desc = desc;
         startDate = start;
         endDate = end;
+	this.rep = rep;
     }
     
     public Event() {
-        this("", "", "", new Date(), new Date());
+        this("", "", "", new Date(), new Date(), new Repetition());
     }
     
     public String getName() { return name; }
@@ -64,7 +65,7 @@ public class Event implements Comparable<Event> {
     public static void main(String[] args) {
         Event e1 = new Event("Partae", "Ma hoose", 
                 "Gettin' wrecked", new Date(31, 12, 2012), 
-                new Date(2, 1, 2013));
+                new Date(2, 1, 2013),new Repetition("Weekly",3));
         Event e2 = new Event();
         System.out.println(e1);
         System.out.println("==============");
