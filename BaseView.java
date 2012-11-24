@@ -21,7 +21,7 @@ public abstract class BaseView extends JPanel {
     protected JButton nextB, previousB;
     protected Map<Date, SortedSet<Event>> dateMap;
     protected Date beginDate, endDate; // calendar range.
-    protected Date currentDate;
+    protected static Date currentDate;
     
     public BaseView(CalendarModel model, JLabel viewLabel) {
         super();
