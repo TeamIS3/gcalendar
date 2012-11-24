@@ -12,7 +12,7 @@ public class DateDialog extends JDialog implements ActionListener {
  
     private static final long serialVersionUID = 1L;
     private Date currentDate; // date user selected on last viewing.
-    private JComboBox<Integer> dayBox, monthBox, yearBox;
+    private JComboBox dayBox, monthBox, yearBox;
     private JButton okayButton, cancelButton;
     private ActionListener listener;
     
@@ -82,9 +82,9 @@ public class DateDialog extends JDialog implements ActionListener {
     private JPanel createDatePanel() {
         JPanel datePanel = new SpacedPanel(new Dimension(5, 5));
         
-        dayBox = new JComboBox<Integer>(Date.days);
-        monthBox = new JComboBox<Integer>(Date.months);
-        yearBox = new JComboBox<Integer>(Date.years);
+        dayBox = new JComboBox(Date.days);
+        monthBox = new JComboBox(Date.months);
+        yearBox = new JComboBox(Date.years);
         
         updateSelections();
         
