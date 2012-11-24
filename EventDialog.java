@@ -264,6 +264,7 @@ public class EventDialog extends JDialog implements ActionListener {
             Date start = startDateDialog.getDate();
             Date end = endDateDialog.getDate();
             Repetition rep = repetitionDialog.getRepetition();
+	    Reminder rem = reminderDialog.getReminder();
             if (event != null) {
                 event.setName(name);
                 event.setLocation(loc);
@@ -271,7 +272,8 @@ public class EventDialog extends JDialog implements ActionListener {
                 event.setStartDate(start);
                 event.setEndDate(end);
                 event.setRepetition(rep);
-            } else model.push(new Event(name, loc, desc, start, end, rep));
+		event.setReminder(rem);
+            } else model.push(new Event(name, loc, desc, start, end, rep, rem));
         } else if (b == delButton) {
             if (model.peek() != null) model.pop();
         }

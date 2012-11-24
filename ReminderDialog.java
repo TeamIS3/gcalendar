@@ -13,6 +13,7 @@ public class ReminderDialog extends JDialog implements ActionListener {
     private static final long serialVersionUID = 1L;
     private JButton okayButton, cancelButton;
     private ActionListener listener;
+    private Reminder rem;
     
     /**
      * Constructor for a Reminder dialog.
@@ -27,6 +28,10 @@ public class ReminderDialog extends JDialog implements ActionListener {
         add(createSelectionPanel(), BorderLayout.WEST);
 		add(createMiddlePanel(),BorderLayout.CENTER);
         add(createButtonPanel(), BorderLayout.EAST);
+    }
+
+    public Reminder getReminder(){
+        return rem;
     }
     
     /**

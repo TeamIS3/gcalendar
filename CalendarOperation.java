@@ -39,6 +39,7 @@ public class CalendarOperation {
 		    	 String name=null,loc=null,desc=null;
 		    	 Date start=null,end=null;
 			 Repetition rep=null;
+			 Reminder rem=null;
 			     //String categories=null;
 			     //Time startTime=null,endTime=null;
 			     //repetition,reminder
@@ -59,8 +60,14 @@ public class CalendarOperation {
 			 if(sc.hasNextInt())
 			 	rep = new Repetition("",sc.nextInt());
 			 else rep = new Repetition(sc.next(),sc.nextInt());
+			 sc = new Scanner(bis.readLine())
+		    	 			.useDelimiter("[/|:]");
+			 rem = new Reminder(new Date(sc.nextInt(),
+		    			    sc.nextInt(),sc.nextInt()),
+				            new Time(sc.nextInt(),
+					    sc.nextInt()));
 		    	 //push event
-		    	 ev = new Event(name,loc,desc,start,end,rep);
+		    	 ev = new Event(name,loc,desc,start,end,rep,rem);
 		    	 this.events.push(ev);
 		    	 
 		    	 //read delimiters
@@ -115,6 +122,7 @@ public class CalendarOperation {
 				 if(rep==null)p.println(" 0");
 				 else
 				 	p.println(ev.getRepetition());
+				 p.println(ev.getReminder());
 				 // more stuff to be added
 				 p.println("vvvvvvvvvv");				
 			 }
@@ -136,8 +144,9 @@ public class CalendarOperation {
 			return;
 		}			
 		boolean loaded = false;
-		Event ev = new Event("d","e","f",new Date(),new Date(),new Repetition("weekly",0));
-		Event ev2 = new Event("a","b","c",new Date(),new Date(),new Repetition());
+		Event ev = new Event("d","e","f",new Date(),new Date(),new Repetition("weekly",0),
+					new Reminder(new Date(23,2,2012),new Time(13,21)));
+		Event ev2 = new Event("a","b","c",new Date(),new Date(),new Repetition(), new Reminder());
 		System.out.println(loaded);
 		CalendarOperation test = 
 		        new CalendarOperation(new CalendarModel());
