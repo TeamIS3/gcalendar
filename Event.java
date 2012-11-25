@@ -38,8 +38,8 @@ public class Event implements Comparable<Event> {
     public Repetition getRepetition() {return rep; }
     public Reminder getReminder() {return rem; }
     
-    public int compareTo(Event v) {
-        return 0;
+    public int compareTo(Event e) {
+        return startDate.compareTo(e.startDate);
     }
     
     public void setName(String name) { this.name = name; }
@@ -70,13 +70,24 @@ public class Event implements Comparable<Event> {
      */
     public static void main(String[] args) {
         Event e1 = new Event("Partae", "Ma hoose", 
-                "Gettin' wrecked", new Date(31, 12, 2012), 
-                new Date(2, 1, 2013),new Repetition("Weekly",3),
-		new Reminder(new Date(31,12,2012),new Time(20,05)));
-        Event e2 = new Event();
+                             "Gettin' wrecked",
+                             new Date(31, 12, 2012), 
+                             new Date(2, 1, 2013),
+                             new Repetition("Weekly", 3),
+                             new Reminder(new Date(31, 12, 2012),
+                                          new Time(20, 05)));
+        Event e2 = new Event("Blah", "Some place", "Not much",
+                             new Date(), new Date(),
+                             new Repetition("Weekly", 3),
+                             new Reminder(new Date(),
+                                          new Time(20, 05)));
         System.out.println(e1);
         System.out.println("==============");
         System.out.println(e2);
+        if (e2.compareTo(e1) < 0)
+            System.out.println("The second event precedes the first event");
+        else
+            System.out.println("The first event happens before the second event.");
     }
     
 }
