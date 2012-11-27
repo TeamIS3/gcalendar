@@ -66,6 +66,7 @@ public class EventDialog extends JDialog implements ActionListener {
         endDateDialog.pack();
         
         reminderDialog.pack();
+		reminderDialog.getOkayButton().requestFocusInWindow();
         repetitionDialog.pack();
         catDialog.pack();
         

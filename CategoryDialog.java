@@ -35,8 +35,7 @@ public class CategoryDialog extends JDialog implements ActionListener {
      */
     private JPanel createMiddlePanel() {
         JPanel middlePanel = new JPanel();
-        JLabel topLabel = new JLabel("          ");
-        middlePanel.add(topLabel);
+      	middlePanel.setPreferredSize(new Dimension(60,50));
         return middlePanel;
 
     }
