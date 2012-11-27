@@ -97,35 +97,13 @@ public class Date implements Comparable<Date> {
         return (o instanceof Date && ((Date)o).day == day &&
             ((Date)o).month == month && ((Date)o).year == year);
     }
+    
+    public int hashCode() {
+        return (day << 5) ^ (month >> 2) ^ ((year << 6) ^ (year >> 8));
+    } 
 
     public String dayName() {
-        Date temp = new Date(1,1,1970);
-        int count = 0;
-        while (getYear()>temp.getYear()) {
-            if (temp.isLeapYear())
-                count+=366;
-            else count +=365;
-            temp.setYear(temp.getYear()+1);
-        }
-        Integer[] daysInMonth = getDaysInMonth(year);
-        while (getMonth()>temp.getMonth()) {
-            count+=daysInMonth[temp.getMonth()];
-            temp.setMonth(temp.getMonth()+1);
-        }
-        while (getDay()>temp.getDay()) {
-            count+=1;
-            temp.increment();
-        }
-        switch (count%7) {
-                    case 0: return dayNames[3];
-                    case 1: return dayNames[4];
-                    case 2: return dayNames[5];
-                    case 3: return dayNames[6];
-                    case 4: return dayNames[0];
-                    case 5: return dayNames[1];
-                    case 6: return dayNames[2];
-                }
-        return "Mathematical impossibility has occurred. Congrats.";
+        return dayNames[getDayFromDate(this)];
     }
             
     
@@ -166,6 +144,8 @@ public class Date implements Comparable<Date> {
                      !notEndOfFeb.equals(new Date(1, 3, 2012))),
             new Pair("23/11/2012 == Friday",
                      getDayFromDate(new Date(23, 11, 2012)) == 4),
+            new Pair("3/09/1992 == Thursday",
+                     getDayFromDate(new Date(3, 9, 1992)) == 3),
         };
         
         for (Pair p : tests) {
