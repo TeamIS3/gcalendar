@@ -51,7 +51,7 @@ public class ReminderDialog extends JDialog implements ActionListener {
     private JPanel createSelectionPanel() {
 		
 		final String start_text = "Number of...";
-    	final JTextField quantity = new JTextField(start_text);
+    	final JTextField quantity = new JEventField(start_text);
     	quantity.addFocusListener(new FocusListener() {
 
         @Override

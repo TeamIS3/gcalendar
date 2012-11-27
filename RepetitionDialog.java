@@ -45,7 +45,7 @@ public class RepetitionDialog extends JDialog implements ActionListener {
 									 95));
 		JLabel space=new JLabel("");
 		JPanel bottomMiddlePanel=new JPanel(new FlowLayout());
-		JTextField quantity=new JTextField("intitial");
+		JTextField quantity=new JEventField("intitial");
 		JLabel daysLabel=new JLabel("days");
 		bottomMiddlePanel.add(quantity);
 		bottomMiddlePanel.add(daysLabel);
