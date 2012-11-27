@@ -31,6 +31,7 @@ public class ReminderDialog extends JDialog implements ActionListener {
         add(createSelectionPanel(), BorderLayout.WEST);
 		add(createMiddlePanel(),BorderLayout.CENTER);
         add(createButtonPanel(), BorderLayout.EAST);
+		
     }
 
     public Reminder getReminder(){
@@ -43,12 +44,32 @@ public class ReminderDialog extends JDialog implements ActionListener {
      */	
 	private JPanel createMiddlePanel(){
 		JPanel middlePanel=new JPanel(new BorderLayout());
-		JLabel spaceLabel=new JLabel("                   ");	
-		middlePanel.add(spaceLabel,BorderLayout.NORTH);
+		middlePanel.setPreferredSize(new Dimension(80,50));
 		return middlePanel;
 	}
 
     private JPanel createSelectionPanel() {
+		
+		final String start_text = "Number of...";
+    	final JTextField quantity = new JTextField(start_text);
+    	quantity.addFocusListener(new FocusListener() {
+
+        @Override
+        public void focusGained(FocusEvent e) {
+            if (quantity.getText().equals(start_text)) {
+                quantity.setText("");
+            }
+
+        }
+
+        @Override
+        public void focusLost(FocusEvent e) {
+			 if (quantity.getText().equals("")) {
+                quantity.setText(start_text);
+            }
+        }
+    });
+
         JRadioButton minutesButton = new JRadioButton("Minutes");
 		JRadioButton hoursButton = new JRadioButton("Hours");
 		JRadioButton daysButton = new JRadioButton("Days");
@@ -60,7 +81,6 @@ public class ReminderDialog extends JDialog implements ActionListener {
 
 		JPanel inputPanel = new JPanel();
 		JPanel radioPanel = new JPanel(new GridLayout(3, 1));
-		JTextField quantity=new JEventField("Number of   ");
 
 		inputPanel.add(quantity);
         radioPanel.add(minutesButton);
@@ -69,8 +89,8 @@ public class ReminderDialog extends JDialog implements ActionListener {
 
 		//creates a space between input box and radio buttons
 		JPanel selectionPanel = new JPanel(new BorderLayout(0, 10));
-		selectionPanel.add(inputPanel,BorderLayout.NORTH);
 		selectionPanel.add(radioPanel,BorderLayout.SOUTH);
+		selectionPanel.add(inputPanel,BorderLayout.NORTH);
         return selectionPanel;
     }
     
@@ -101,6 +121,9 @@ public class ReminderDialog extends JDialog implements ActionListener {
             listener.actionPerformed(e);
         setVisible(false);
     }
+	public JButton getOkayButton(){
+		return okayButton;
+	}
 
     /**
      * main method to simply test the dialog class

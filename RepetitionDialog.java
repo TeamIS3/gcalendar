@@ -41,18 +41,17 @@ public class RepetitionDialog extends JDialog implements ActionListener {
 		input box associated with 'every' radio button
      */
 	private JPanel createMiddlePanel(){
-		JPanel middlePanel=new JPanel(new BorderLayout());
-		JLabel topLabel=new JLabel("");	
-		JPanel lowerPanel= new JPanel(new BorderLayout());
-
-		JTextField quantity=new JEventField("      ");
-		JLabel daysLabel=new JLabel("  Days");
-
-		lowerPanel.add(quantity,BorderLayout.WEST);
-		lowerPanel.add(daysLabel,BorderLayout.EAST);
-		middlePanel.add(topLabel,BorderLayout.NORTH);
-		middlePanel.add(topLabel,BorderLayout.CENTER);
-		middlePanel.add(lowerPanel,BorderLayout.SOUTH);
+		JPanel middlePanel=new JPanel(new GridLayout(2, 1, 0,
+									 95));
+		JLabel space=new JLabel("");
+		JPanel bottomMiddlePanel=new JPanel(new FlowLayout());
+		JTextField quantity=new JTextField("intitial");
+		JLabel daysLabel=new JLabel("days");
+		bottomMiddlePanel.add(quantity);
+		bottomMiddlePanel.add(daysLabel);
+		middlePanel.add(space);
+		middlePanel.add(bottomMiddlePanel);
+				
 		return middlePanel;
 		
 	}
