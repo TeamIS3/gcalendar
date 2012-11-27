@@ -25,7 +25,7 @@ public class DayDataModel extends AbstractTableModel {
     }
 
     public String getColumnName(int col) {
-        return names[col];
+        return "";
     }
 
     public int getColumnCount() {
