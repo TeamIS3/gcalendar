@@ -156,14 +156,14 @@ public class MainFrame extends JFrame implements ActionListener {
 
     private void createButtons() {
         // Create view buttons.
-        JButton day, week, month, year;					//-edit
-	viewMap.put(day = new JButton("Day"), views[0]);		//-added
+        JButton day, week, month, year;
+        viewMap.put(day = new JButton("Day"), views[0]);
         viewMap.put(week = new JButton("Week"), views[1]);
         viewMap.put(month = new JButton("Month"), views[2]);
         viewMap.put(year = new JButton("Year"), views[3]);
 
         // Add to views
-	viewPanel.add(day, BorderLayout.WEST);			//-added
+        viewPanel.add(day, BorderLayout.WEST);
         viewPanel.add(week, BorderLayout.EAST);
         viewPanel.add(month, BorderLayout.NORTH);
         viewPanel.add(year, BorderLayout.SOUTH);
@@ -176,7 +176,7 @@ public class MainFrame extends JFrame implements ActionListener {
     }
 
     private void createViews() {
-	views[0] = new DayView(model, viewLabel);			//added
+	    views[0] = new DayView(model, viewLabel);
         views[1] = new WeekView(model, viewLabel);
         views[2] = new MonthView(model, viewLabel);
         views[3] = new YearView(model, viewLabel);
