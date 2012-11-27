@@ -50,7 +50,7 @@ public class Event implements Comparable<Event> {
     public void setRepetition(Repetition rp) { rep = rp; }
     public void setReminder(Reminder rm) { rem = rm; }
     
-    public String toString() {
+    public String toFileString() {
         StringBuilder str = new StringBuilder();
         
         str.append(String.format("Name : "+name+"%n"));
@@ -63,6 +63,8 @@ public class Event implements Comparable<Event> {
         
         return str.toString();
     }
+    
+    public String toString() { return name; }
     
     /**
      * Test method
@@ -81,9 +83,9 @@ public class Event implements Comparable<Event> {
                              new Repetition("Weekly", 3),
                              new Reminder(new Date(),
                                           new Time(20, 05)));
-        System.out.println(e1);
+        System.out.println(e1.toFileString());
         System.out.println("==============");
-        System.out.println(e2);
+        System.out.println(e2.toFileString());
         if (e2.compareTo(e1) < 0)
             System.out.println("The second event precedes the first event");
         else

@@ -67,10 +67,7 @@ public class MonthDataModel extends AbstractTableModel {
     
     public Class getColumnClass(int c) {
         Object obj = getValueAt(1, c);
-        if (obj != null) {
-            //System.err.println(obj.getClass());
-            return obj.getClass();
-        } else return super.getColumnClass(c);
+        return obj != null ? obj.getClass() : Object.class;
     }
 
     public Object getValueAt(int row, int col) {
@@ -85,15 +82,7 @@ public class MonthDataModel extends AbstractTableModel {
             Date date = new Date(day, BaseView.currentDate.getMonth(),
                                  BaseView.currentDate.getYear());
             SortedSet<Event> set = dateMap.get(date);
-           /* if (set == null) System.err.println(date);
-            for (Date d : dateMap.keySet()) {
-                System.err.println("IN");
-                if (d.equals(date)) {
-                    System.err.println("FOUND");
-                    break;
-                }
-            }*/
-            return set == null ? day : set;
+            return set;
         } else return day;
     }
 }

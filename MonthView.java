@@ -2,6 +2,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
+import java.util.SortedSet;
+import java.util.TreeSet;
+
 /**
  * Month view for the calendar
  * 
@@ -40,6 +43,7 @@ public class MonthView extends BaseView {
         month.getTableHeader().setReorderingAllowed(false);
         month.setRowHeight(100);
         month.setRowSelectionAllowed(false);
+        month.setDefaultRenderer(TreeSet.class, new EventRenderer());
         JScrollPane scrollPane = new JScrollPane(month);
         this.add(scrollPane, BorderLayout.CENTER);
         panel.add(scrollPane, gbc);
