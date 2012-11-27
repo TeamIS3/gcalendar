@@ -6,6 +6,7 @@ import java.awt.event.*;
  * Dialog to set a reminder
  *
  * @author rifl
+ * @author cmcl
  * @version 1.0
  */
 public class ReminderDialog extends JDialog implements ActionListener {
@@ -19,8 +20,10 @@ public class ReminderDialog extends JDialog implements ActionListener {
      * Constructor for a Reminder dialog.
      */
     public ReminderDialog(Window window, String title,
-                      ActionListener listener) {
+                          ActionListener listener) {
         super(window, title);
+        
+        rem = new Reminder();
         this.listener = listener;
         
         setLocationRelativeTo(window);

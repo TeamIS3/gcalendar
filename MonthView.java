@@ -6,7 +6,7 @@ import java.awt.event.*;
  * Month view for the calendar
  * 
  * @author gordon
- * 
+ * @author cmcl
  */
 public class MonthView extends BaseView {
 
@@ -29,9 +29,10 @@ public class MonthView extends BaseView {
     }
 
     private void addTable() {
-        int offset = Date.getDayFromDate(new Date(1, 1, currentDate.getYear()));
+        int offset = Date.getDayFromDate(new Date(1, 1,
+                                                currentDate.getYear()));
         monthView = new MonthDataModel(offset, 
-                    days[currentDate.getMonth() - 1]);
+                    days[currentDate.getMonth() - 1], dateMap);
         // Load currently known events for the date into
         // the table.
         monthView.setData(dateMap.get(currentDate));
@@ -59,17 +60,12 @@ public class MonthView extends BaseView {
                 // now refers to the last day of the previous
                 // month
                 int month = currentDate.getMonth();
-                currentDate.decrement();
-                while (month == currentDate.getMonth()) {
-                    currentDate.decrement();
-                }
+                currentDate = currentDate.decrementMonth();
+                currentDate.setDay(1);
                 // Update offset for where the new month starts
-                int offset = monthView.getOffset();
+                int offset = Date.getDayFromDate(currentDate);
                 days = Date.getDaysInMonth(currentDate.getYear()); 
                 int numDays = days[currentDate.getMonth() - 1];
-                offset = (offset - numDays) % 7;
-                if (offset < 0)
-                    offset += 7;
                 numDays = days[currentDate.getMonth() - 1];
                 monthView.setOffset(offset);
                 monthView.setDays(numDays);
@@ -85,22 +81,14 @@ public class MonthView extends BaseView {
     private void addNextButton() {
         nextB.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                // Increment current date until it ticks
-                // over to a new month. Current date then
-                // points to the 1st of the next month.
-                currentDate.increment();
-                while (currentDate.getDay() != 1) {
-                    currentDate.increment();
-                }
-                int offset = monthView.getOffset();
-                int numDays = monthView.getDays();
-                // Update offset to work out where this
-                // new month starts in the week.
-                offset = (offset + numDays) % 7;
-                days = Date.getDaysInMonth(currentDate.getYear()); 
-                numDays = days[currentDate.getMonth() - 1];
+                currentDate = currentDate.incrementMonth();
+                currentDate.setDay(1);
+                // Update offset to where this new month starts in the
+                // week.
+                int offset = Date.getDayFromDate(currentDate);
+                days = Date.getDaysInMonth(currentDate.getYear());
                 monthView.setOffset(offset);
-                monthView.setDays(numDays);
+                monthView.setDays(days[currentDate.getMonth() - 1]);
                 // Update table with data for new month.
                 monthView.setData(dateMap.get(currentDate));
                 monthView.fireTableDataChanged();

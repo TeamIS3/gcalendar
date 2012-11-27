@@ -1,3 +1,4 @@
+import java.util.Map;
 import java.util.SortedSet;
 import javax.swing.table.AbstractTableModel;
 
@@ -5,7 +6,8 @@ import javax.swing.table.AbstractTableModel;
  * Data Model for the Month table
  * 
  * @author gordon
- * 
+ * @author cmcl
+ *
  */
 public class MonthDataModel extends AbstractTableModel {
 
@@ -13,13 +15,16 @@ public class MonthDataModel extends AbstractTableModel {
     private int offset;
     private int days;
     private SortedSet<Event> data;
-
+    private Map<Date, SortedSet<Event>> dateMap;
+    
     private String[] names = { "Monday", "Tuesday", "Wednesday",
             "Thursday", "Friday", "Saturday", "Sunday" };
 
-    public MonthDataModel(int off, int d) {
+    public MonthDataModel(int off, int d,
+                          Map<Date, SortedSet<Event>> dateMap) {
         offset = off;
         days = d;
+        this.dateMap = dateMap;
     }
 
     public int getOffset() {
@@ -59,6 +64,14 @@ public class MonthDataModel extends AbstractTableModel {
             result++;
         return result;
     }
+    
+    public Class getColumnClass(int c) {
+        Object obj = getValueAt(1, c);
+        if (obj != null) {
+            //System.err.println(obj.getClass());
+            return obj.getClass();
+        } else return super.getColumnClass(c);
+    }
 
     public Object getValueAt(int row, int col) {
         // Eventless days will just show the date number
@@ -67,10 +80,20 @@ public class MonthDataModel extends AbstractTableModel {
         // event.
         // Other cells will be blank.
         int i = ((7 * row) + (col + 1) - offset);
-        if (data != null)
-            return data.first();
-        else
-            return (i <= days && i > 0) ? i : null;
+        Integer day = (i <= days && i > 0) ? i : null;
+        if (day != null) {
+            Date date = new Date(day, BaseView.currentDate.getMonth(),
+                                 BaseView.currentDate.getYear());
+            SortedSet<Event> set = dateMap.get(date);
+           /* if (set == null) System.err.println(date);
+            for (Date d : dateMap.keySet()) {
+                System.err.println("IN");
+                if (d.equals(date)) {
+                    System.err.println("FOUND");
+                    break;
+                }
+            }*/
+            return set == null ? day : set;
+        } else return day;
     }
-
 }

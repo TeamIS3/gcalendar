@@ -16,7 +16,7 @@ public class Reminder implements Comparable<Reminder> {
     
     public Reminder() {
         this.d = new Date();
-	this.t = new Time();
+        this.t = new Time();
     }
     
     public Reminder(Reminder r) {
@@ -31,24 +31,24 @@ public class Reminder implements Comparable<Reminder> {
     public void setTime(Time t) { this.t = t; }
 
     public int compareTo(Reminder r) {
-        if (this.d.compareTo(r.getDate()) == 0) return this.t.compareTo(r.getTime());
+        if (this.d.compareTo(r.getDate()) == 0)
+            return this.t.compareTo(r.getTime());
         return this.d.compareTo(r.getDate());
     }
     
     public boolean equals(Object o) {
-        return (o instanceof Reminder && ((Reminder)o).d == d &&
-            ((Reminder)o).t == t);
+        return (o instanceof Reminder && ((Reminder)o).d.equals(d) &&
+            ((Reminder)o).t.equals(t));
     }
 
     public String toString() {
         return d + "|" + t;
     }
 
-    public static void main(String[] args){
-
-	Reminder r1 = new Reminder();
-	Reminder r2 = new Reminder(new Date(23,2,2012),new Time(15,50));
-	System.out.println(r1+"\n"+r2);
+    public static void main(String[] args) {
+        Reminder r1 = new Reminder();
+        Reminder r2 = new Reminder(new Date(23,2,2012),new Time(15,50));
+        System.out.println(r1+"\n"+r2);
     }
 
 }

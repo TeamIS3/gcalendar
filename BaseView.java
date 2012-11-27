@@ -43,7 +43,9 @@ public abstract class BaseView extends JPanel {
             Date st = e.getStartDate();
             Date temp = new Date(st);
             Date end = e.getEndDate();
-            for (; !temp.equals(end); temp.increment()) {
+            // Assign a new Date object each iteration.
+            // Behaviour not specified if key of map is modified.
+            for (; temp.compareTo(end) <= 0; temp = temp.increment()) {
                 SortedSet<Event> eventSet = dateMap.get(temp);
                 if (eventSet == null) eventSet = new TreeSet<Event>();
                 eventSet.add(e);

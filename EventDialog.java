@@ -264,7 +264,7 @@ public class EventDialog extends JDialog implements ActionListener {
             Date start = startDateDialog.getDate();
             Date end = endDateDialog.getDate();
             Repetition rep = repetitionDialog.getRepetition();
-	    Reminder rem = reminderDialog.getReminder();
+            Reminder rem = reminderDialog.getReminder();
             if (event != null) {
                 event.setName(name);
                 event.setLocation(loc);

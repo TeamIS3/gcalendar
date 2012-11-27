@@ -57,33 +57,74 @@ public class Date implements Comparable<Date> {
     
     /**
      * Increment the date by one day.
+     * 
+     * @returns this date incremented by one day.
      */
-    public void increment() {
+    public Date increment() {
         Integer[] daysInMonth = getDaysInMonth(year);
-        
-        if (day == daysInMonth[month-1]) {
-            if (month == DEC) {
-                month = JAN;
-                year++;
-            } else month++;
-            day = 1;
-        } else day++;
+        Date d = new Date(this);
+        if (d.day == daysInMonth[month-1]) {
+            if (d.month == DEC) {
+                d.month = JAN;
+                d.year++;
+            } else d.month++;
+            d.day = 1;
+        } else d.day++;
+        return d;
+    }
+    
+    /**
+     * Increment the date by one day.
+     * 
+     * @returns this date incremented by one day.
+     */
+    public Date incrementMonth() {
+        Integer[] daysInMonth = getDaysInMonth(year);
+        Date d = new Date(this);
+        if (d.month == DEC) {
+            d.month = JAN;
+            d.year++;
+        } else d.month++;
+        if (d.day > daysInMonth[d.month - 1])
+            d.day = daysInMonth[d.month - 1];
+        return d;
     }
     
     /**
      * Decrement the date by one day.
+     * 
+     * @returns this date decremented by one day.
      */
-    public void decrement() {
+    public Date decrement() {
         Integer[] daysInMonth = getDaysInMonth(year);
-        if (day == 1) {
-            if (month == JAN) {
-                month = DEC;
-                year--;
+        Date d = new Date(this);
+        
+        if (d.day == 1) {
+            if (d.month == JAN) {
+                d.month = DEC;
+                d.year--;
             } else
-                month--;
-            day = daysInMonth[month - 1];
-        } else
-            day--;
+                d.month--;
+            d.day = daysInMonth[d.month - 1];
+        } else d.day--;
+        return d;
+    }
+    
+    /**
+     * Decrement the date by one day.
+     * 
+     * @returns this date decremented by one day.
+     */
+    public Date decrementMonth() {
+        Integer[] daysInMonth = getDaysInMonth(year);
+        Date d = new Date(this);
+        if (d.month == JAN) {
+            d.month = DEC;
+            d.year--;
+        } else d.month--;
+        if (d.day > daysInMonth[d.month - 1])
+            d.day = daysInMonth[d.month - 1];
+        return d;
     }
     
     public int compareTo(Date d) {
