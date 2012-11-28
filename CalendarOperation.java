@@ -15,21 +15,18 @@ import java.util.Scanner;
  * @author cmcl
  * @version 1.1
  */
-public class CalendarOperation
-{
+public class CalendarOperation {
 
     private CalendarModel events;
 
-    public CalendarOperation(CalendarModel m)
-    {
+    public CalendarOperation(CalendarModel m) {
         this.events = m;
     }
 
     // load the events into the calendar from a given filename
     // boolean to be used by CalendarModel to check if a file
     // is already loaded
-    public boolean loadCalendar(String filename)
-    {
+    public boolean loadCalendar(String filename) {
         BufferedReader bis = null;
         try {
             try {
@@ -109,8 +106,7 @@ public class CalendarOperation
     }
 
     // saves the calendar to the given file
-    public boolean saveCalendar(String filename)
-    {
+    public boolean saveCalendar(String filename) {
         FileOutputStream out;
         PrintStream p;
         try {
