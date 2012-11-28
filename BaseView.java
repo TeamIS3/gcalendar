@@ -57,8 +57,8 @@ public abstract class BaseView extends JPanel {
     public void setupGui() {
         // Set up main panel for frame.
         this.setLayout(new BorderLayout());
-        nextB = new JButton("Next");
-        previousB = new JButton("Previous");
+        nextB = new JButton("-\u25BA");
+        previousB = new JButton("\u25C4-");
         panel = new JPanel(new GridBagLayout());
         setupCalendar();
     }

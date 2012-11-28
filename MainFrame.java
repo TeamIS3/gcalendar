@@ -52,6 +52,8 @@ public class MainFrame extends JFrame implements ActionListener {
 
         viewMap = new HashMap<JButton, BaseView>();
         viewLabel = new JLabel();
+        Font f = new Font(viewLabel.getFont().getFontName(), 1, 18);
+        viewLabel.setFont(f);
         
         createViews();
         
