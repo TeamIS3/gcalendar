@@ -144,21 +144,21 @@ public class CalendarOperation
         }
     }
 
-    //test method
-    public static void main(String[] args)
-    {
-        if(args.length!=2) {
-            System.out.println("Usage: java "+
-                               "CalendarOperations inputfilename outputfilename");
+    // test method
+    public static void main(String[] args) {
+        if (args.length != 2) {
+            System.out.println("Usage: java "
+                    + "CalendarOperations inputfilename outputfilename");
             return;
         }
         boolean loaded = false;
-        Event ev = new Event("d","e","f",new Date(),new Date(),new Repetition("weekly",0),
-                             new Reminder(new Date(23,2,2012),new Time(13,21)));
-        Event ev2 = new Event("a","b","c",new Date(),new Date(),new Repetition(), new Reminder());
+        Event ev = new Event("d", "e", "f", new Date(), new Date(),
+                new Repetition("weekly", 0), new Reminder(
+                        new Date(23, 2, 2012), new Time(13, 21)));
+        Event ev2 = new Event("a", "b", "c", new Date(), new Date(),
+                new Repetition(), new Reminder());
         System.out.println(loaded);
-        CalendarOperation test =
-            new CalendarOperation(new CalendarModel());
+        CalendarOperation test = new CalendarOperation(new CalendarModel());
         loaded = test.loadCalendar(args[0]);
         test.events.push(ev);
         test.events.push(ev2);
