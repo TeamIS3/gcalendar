@@ -63,7 +63,6 @@ public class MonthView extends BaseView {
                 // until the month value changes. currentDate
                 // now refers to the last day of the previous
                 // month
-                int month = currentDate.getMonth();
                 currentDate = currentDate.decrementMonth();
                 currentDate.setDay(1);
                 // Update offset for where the new month starts
