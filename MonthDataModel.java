@@ -1,5 +1,7 @@
 import java.util.Map;
 import java.util.SortedSet;
+import java.util.TreeSet;
+
 import javax.swing.table.AbstractTableModel;
 
 /**
@@ -82,6 +84,12 @@ public class MonthDataModel extends AbstractTableModel {
             Date date = new Date(day, BaseView.currentDate.getMonth(),
                                  BaseView.currentDate.getYear());
             SortedSet<Event> set = dateMap.get(date);
+            if (set == null) {
+                set = new TreeSet<Event>();
+            }
+            Event e = new Event();
+            e.setName(day.toString());
+            set.add(e);
             return set;
         } else return day;
     }
