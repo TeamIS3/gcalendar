@@ -1,7 +1,5 @@
 \documentclass{article}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 \usepackage{fullpage}
 \usepackage{url}
 \usepackage{graphicx}
@@ -24,17 +22,10 @@
 	showspaces=false,
 	showstringspaces=false
 }
-%\usepackage{fullpage}
-
-% Remove red border around refs and make them stand out.
 \usepackage[colorlinks=true,linkcolor=blue]{hyperref}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% Check these macro values for appropriateness for your own document.
 
 \title{IS3 Group Report}
 
-%%authors
 \author{
   Richard Fleming \\
   James Gallagher \\
@@ -43,19 +34,11 @@
   Gordon Reid \\
   Ross Taylor}
 
-%%release date 
 \date{\today}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{document}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 \maketitle
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% Standard section for all documents
 
 \section{Overview}
 
@@ -94,63 +77,86 @@ The swing prototype does not meet every detail in the specification.
 
 \section{Evaluation of design}
 
-To evaluate the design of the Swing prototype that the group produced, two main techneques were used.  
+To evaluate the design of the Swing prototype that the group produced, two main techniques
+were used.  
 
-The first method the group decided to use for evaluating the design of the prototype was an heuristic evaluation. 
-the group felt that a heuristic evaluation is a fast and cheap way to preform a usability inspection on the prototype, and would be a easy way to identify usability problems with the design of the system. 
+The first method the group decided to use for evaluating the design of the prototype was a
+heuristic evaluation. 
+the group felt that a heuristic evaluation is a fast and cheap way to preform a usability
+inspection on the prototype, and would be a easy way to identify usability problems with the
+design of the system. 
 
-one member of the team (James) was selected as an evaluator, and tasked with examing the interface of the prototype calendar and evaluating how it complies with recognized usability principles. 
+one member of the team (James) was selected as an evaluator, and tasked with examing the
+interface of the prototype calendar and evaluating how it complies with recognized usability
+principles. 
 
-The first thing the evaluator did was to select a collection of use cases, which he could then use to evaluate the extent to which the interface is likely to be compatible with the intended users’ needs. 
+The first thing the evaluator did was to select a collection of use cases, which he could
+then use to evaluate the extent to which the interface is likely to be compatible with the
+intended users’ needs. 
 
 The use cases selected were : 
 \begin{itemize}
 \item Add an appointment.
-
-\item 1.Change views from month, to week, to day 
-\item 2.Add an appointment 
-\item 3.Set a recurring appointment to occur once a week and finish in three months time
-\item 4.Find the busiest and quietest days in the month
-\item 5.Set different categories for university, social and job appointments
+\item Change views from month, to week, to day.
+\item Add an appointment.
+\item Set a recurring appointment to occur once a week and finish in three months time.
+\item Find the busiest and quietest days in the month.
+\item Set different categories for university, social and job appointments.
 \end{itemize}
 
-Afer this the evaluator decided on a set of heuristics on which the prototype should be judged. 
+After this the evaluator decided on a set of heuristics on which the prototype should be
+judged. 
 
 \subsection{Heuristic Evaluation}
 
-The evaluator decided upon a set of heuristics on which the Swing prototype the team built should be judged.
+The evaluator decided upon a set of heuristics on which the Swing prototype the team built
+should be judged.
 
-The heuristics sellected were as follows : 
+The heuristics selected were as follows: 
 \begin{itemize}
-\item Visibility of system status : The system should always keep users informed about what is going on, through appropriate feedback within reasonable time. 
+\item Visibility of system status: The system should always keep users informed about what is
+going on, through appropriate feedback within reasonable time. 
 
-\item Match between system and the real world : The system should speak the users' language, with words, phrases and concepts familiar to the user, rather than system-oriented terms. Follow real-world conventions, making information appear in a natural and logical order.
+\item Match between system and the real world: The system should speak the users' language,
+with words, phrases and concepts familiar to the user, rather than system-oriented terms.
+Follow real-world conventions, making information appear in a natural and logical order.
  
-\item User control and freedom : Users often choose system functions by mistake and will need a clearly marked "emergency exit" to leave the unwanted state without having to go through an extended dialogue. Support undo and redo. 
+\item User control and freedom: Users often choose system functions by mistake and will need
+a clearly marked "emergency exit" to leave the unwanted state without having to go through an
+extended dialogue. Support undo and redo. 
 
-\item Consistency and standards : Users should not have to wonder whether different words, situations, or actions mean the same thing. Follow platform conventions. 
+\item Consistency and standards: Users should not have to wonder whether different words,
+situations, or actions mean the same thing. Follow platform conventions. 
 
-\item Error prevention : Even better than good error messages is a careful design which prevents a problem from occurring in the first place. Either eliminate error-prone conditions or check for them and present users with a confirmation option before they commit to the action. 
+\item Error prevention: Even better than good error messages is a careful design which
+prevents a problem from occurring in the first place. Either eliminate error-prone conditions
+or check for them and present users with a confirmation option before they commit to the
+action. 
 
-\item Recognition rather than recall : Minimize the user's memory load by making objects, actions, and options visible. The user should not have to remember information from one part of the dialogue to another. Instructions for use of the system should be visible or easily retrievable whenever appropriate. 
+\item Recognition rather than recall: Minimize the user's memory load by making objects,
+actions, and options visible. The user should not have to remember information from one part
+of the dialogue to another. Instructions for use of the system should be visible or easily
+retrievable whenever appropriate. 
 
-\item Flexibility and efficiency of use : Accelerators -- unseen by the novice user -- may often speed up the interaction for the expert user such that the system can cater to both inexperienced and experienced users. Allow users to tailor frequent actions. 
+\item Flexibility and efficiency of use: Accelerators, unseen by the novice user, may often
+speed up the interaction for the expert user such that the system can cater to both
+inexperienced and experienced users. Allow users to tailor frequent actions. 
     
-\item Aesthetic and minimalist design :Dialogues should not contain information which is irrelevant or rarely needed. Every extra unit of information in a dialogue competes with the relevant units of information and diminishes their relative visibility. 
+\item Aesthetic and minimalist design: Dialogues should not contain information which is
+irrelevant or rarely needed. Every extra unit of information in a dialogue competes with the
+relevant units of information and diminishes their relative visibility. 
     
-\item Help users recognize, diagnose, and recover from errors : Error messages should be expressed in plain language (no codes), precisely indicate the problem, and constructively suggest a solution. 
+\item Help users recognize, diagnose, and recover from errors: Error messages should be
+expressed in plain language (no codes), precisely indicate the problem, and constructively
+suggest a solution. 
     
-\item Help and documentation : Even though it is better if the system can be used without documentation, it may be necessary to provide help and documentation. Any such information should be easy to search, focused on the user's task, list concrete steps to be carried out, and not be too large.    
+\item Help and documentation: Even though it is better if the system can be used without
+documentation, it may be necessary to provide help and documentation. Any such information
+should be easy to search, focused on the user's task, list concrete steps to be carried out,
+and not be too large.    
 \end{itemize}
 
 Below are the findings from the evaluation:
-
-
-
-
-
-
-
 
 \section{Comparison with paper prototype}
 
@@ -167,15 +173,17 @@ simplifying the implementation process, we ultimately decided to
 implement this feature as a separate 'Day' view. The Week and Year
 views were then created the same as they appeared in the paper
 prototype, with the addition of an another button at the top of the
-screen to accomodate the new Day view.
+screen to allow the new Day view to be selected.
 
-Then we created the Dialogs for the pop up windows which appeared in our
+Then we created the dialogue boxes for the pop up windows which appeared in our
 paper prototype when the user was adding new events, adding event
 reminders and adding repetitions to events. These were implemented with
 the same features as they had in the paper prototype. We also
 implemented the pop up window for setting event categories the same as
 it appeared in the paper prototype but without the button for adding new
 categories.
+
+\newpage
 
 \appendix
 
@@ -286,5 +294,3 @@ categories.
 \lstinputlisting{../YearView.java}
 
 \end{document}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
