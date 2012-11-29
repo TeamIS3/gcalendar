@@ -62,18 +62,63 @@
 Basic stuff about what we did...
 
 \section{Specification}
+The swing prototype does not meet every detail in the specification.
+        The following list displays the current functionality with shortcomings,
+        when compared to the specification, that is currently included in the
+        prototype:
+        \begin{itemize}
+       
+        \item It is possible for the user to add and delete appointments. This is
+        done by manipulating a text file; writes to the text file when creating an
+         event and reading from the file when needed to retrieve events for deletion.
+        \item Edit an appointment is not currently possible, although the user can
+        always delete an event and re-create it to get around this problem.
+        \item The route the user would take to set a recurring appointment is
+        visually displayed however the functionality of mapping that appointment
+        is not included.
+        \item It's possible to switch between day, week ,month and year view
+        via buttons that are perpetually located at the top of the calendar. Current
+        system status is shown by which button is currently depressed.
+        \item In order for the user to determine the busiest/quietest days, in year
+        view each day has a cell and is coloured depending on busyness. There is a
+        gradual change from red, on the busy side of scale, to blue, on the non busy
+        side of the scale.
+        \item  During the event creation process, it is possible for the user to
+        select the category associated with the event, whether it be home, work or
+        other. However, as with the recurring appointment, the mapping of category
+        and events is not implemented.
+        \item As the events are not mapped to a category it is not currently
+        possible to display events of a given category.
 
-Our GUI meets/doesn't meet the given specification...
-
+        \end{itemize}
 \section{Evaluation of design}
 
 Including design of experience and what we found out...
 
 \section{Comparison with paper prototype}
 
-Say how much are GUI is the same as, or different to, the final paper
-prototype. Describe any changes made and why. What would we like to have
-added and how would it be done in swing.
+When implementing the Swing Prototype we first attempted to implement
+the more essential features of our paper prototype then moving on to
+implementing less important features.
+
+We began by implementing the Month view we had in our paper prototype.
+We decided to keep the majority of features the same as they appeared
+in the paper prototype, the only exception being the summary side bar.
+Initially we omitted the side bar, intending to implement it once more
+important features had been implemented. However, in the interest of
+simplifying the implementation process, we ultimately decided to
+implement this feature as a separate 'Day' view. The Week and Year
+views were then created the same as they appeared in the paper
+prototype, with the addition of an another button at the top of the
+screen to accomodate the new Day view.
+
+Then we created the Dialogs for the pop up windows which appeared in our
+paper prototype when the user was adding new events, adding event
+reminders and adding repetitions to events. These were implemented with
+the same features as they had in the paper prototype. We also
+implemented the pop up window for setting event categories the same as
+it appeared in the paper prototype but without the button for adding new
+categories.
 
 \appendix
 
