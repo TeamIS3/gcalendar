@@ -173,19 +173,19 @@ The option to change views from month, to week, to day to year in the prototype 
 \item Set a recurring appointment to occur once a week and finish in three months time.
 The option to add an appointment to the prototype calendar is clearly visible from all the views in the prototype.
 Once selected a clearly laid out add window opens up with a simple and easy to understand UI. The add appointment window which
-opens on top of the calendar is aesthetically pleasing  and has a minimal design . In the appointment window the user is displayed with a set repetition option. A third window is then opened in front of the user giving the option to set the appointment to be repeated every Day/Week/Fortnight/Month/Year or per x days. Again the design of this window is clear and minimal
-
-
-
+opens on top of the calendar is aesthetically pleasing  and has a minimal design . In the appointment window the user is displayed with a set repetition option. A third window is then opened in front of the user giving the option to set the appointment to be repeated every Day/Week/Fortnight/Month/Year or per x days. Again the design of this window is clear and minimal  
+    
+    
+    
 \item Find the busiest and quietest days in the month.
-Find the busiest and quietest days in the month has been implemented by a simple color coded display.
+
 
 
 \item Set different categories for university, social and job appointments.
-
+    
 The option to Set different categories to the prototype calendar is clearly visible from all the views in the prototype.
-
-
+    
+    
 \end{itemize}
 
 
