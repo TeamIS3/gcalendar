@@ -28,14 +28,24 @@ public class MonthView extends BaseView {
         addPreviousButton();
         addTable();
         addNextButton();
+        addDayViewPane();
         this.add(panel, BorderLayout.CENTER);
     }
 
+    private void addDayViewPane() {
+        JPanel temp = new JPanel();
+        JTable day = new JTable(new DayDataModel());
+        //JScrollPane scrollPane = new JScrollPane(day);
+        //this.add(scrollPane, BorderLayout.CENTER);
+        temp.add(day);
+        panel.add(temp);
+        //panel.add(scrollPane, gbc);
+    }
+
     private void addTable() {
-        int offset = Date.getDayFromDate(new Date(1, 1,
-                                                currentDate.getYear()));
-        monthView = new MonthDataModel(offset, 
-                    days[currentDate.getMonth() - 1], dateMap);
+        int offset = Date.getDayFromDate(new Date(1, 1, currentDate.getYear()));
+        monthView = new MonthDataModel(offset,
+                days[currentDate.getMonth() - 1], dateMap);
         // Load currently known events for the date into
         // the table.
         monthView.setData(dateMap.get(currentDate));
@@ -67,7 +77,7 @@ public class MonthView extends BaseView {
                 currentDate.setDay(1);
                 // Update offset for where the new month starts
                 int offset = Date.getDayFromDate(currentDate);
-                days = Date.getDaysInMonth(currentDate.getYear()); 
+                days = Date.getDaysInMonth(currentDate.getYear());
                 int numDays = days[currentDate.getMonth() - 1];
                 numDays = days[currentDate.getMonth() - 1];
                 monthView.setOffset(offset);
@@ -103,8 +113,7 @@ public class MonthView extends BaseView {
 
     public String toString() {
         // Label for Month view is <Month Name> + <Year>
-        return monthName(currentDate.getMonth()) + " "
-                        + currentDate.getYear();
+        return monthName(currentDate.getMonth()) + " " + currentDate.getYear();
     }
 
     private String monthName(int i) {
