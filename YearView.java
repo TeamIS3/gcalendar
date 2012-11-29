@@ -42,7 +42,8 @@ public class YearView extends BaseView {
     }
     
     private void updateMonths() {
-        offset = Date.getDayFromDate(new Date(1, 1, currentDate.getYear()));
+        offset = Date.getDayFromDate(new Date(1, 1, 
+                            currentDate.getYear()));
         // Check to see if we need to represent February as 29 days
         days[1] = currentDate.isLeapYear() ? 29 : 28;
         for (int i = 0; i < 12; i++)

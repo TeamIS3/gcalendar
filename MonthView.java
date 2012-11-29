@@ -43,7 +43,8 @@ public class MonthView extends BaseView {
     }
 
     private void addTable() {
-        int offset = Date.getDayFromDate(new Date(1, 1, currentDate.getYear()));
+        int offset = Date.getDayFromDate(new Date(1, 
+                        1, currentDate.getYear()));
         monthView = new MonthDataModel(offset,
                 days[currentDate.getMonth() - 1], dateMap);
         // Load currently known events for the date into
@@ -113,7 +114,8 @@ public class MonthView extends BaseView {
 
     public String toString() {
         // Label for Month view is <Month Name> + <Year>
-        return monthName(currentDate.getMonth()) + " " + currentDate.getYear();
+        return monthName(currentDate.getMonth()) + 
+                    " " + currentDate.getYear();
     }
 
     private String monthName(int i) {

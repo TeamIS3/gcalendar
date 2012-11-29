@@ -154,7 +154,8 @@ public class CalendarOperation {
         Event ev2 = new Event("a", "b", "c", new Date(), new Date(),
                 new Repetition(), new Reminder());
         System.out.println(loaded);
-        CalendarOperation test = new CalendarOperation(new CalendarModel());
+        CalendarOperation test = 
+                   new CalendarOperation(new CalendarModel());
         loaded = test.loadCalendar(args[0]);
         test.events.push(ev);
         test.events.push(ev2);

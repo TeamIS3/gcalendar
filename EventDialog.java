@@ -274,7 +274,8 @@ public class EventDialog extends JDialog implements ActionListener {
                 event.setEndDate(end);
                 event.setRepetition(rep);
 		event.setReminder(rem);
-            } else model.push(new Event(name, loc, desc, start, end, rep, rem));
+            } else model.push(new Event(name, loc, desc, 
+                                start, end, rep, rem));
         } else if (b == delButton) {
             if (model.peek() != null) model.pop();
         }

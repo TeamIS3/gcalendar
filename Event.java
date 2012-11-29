@@ -87,9 +87,11 @@ public class Event implements Comparable<Event> {
         System.out.println("==============");
         System.out.println(e2.toFileString());
         if (e2.compareTo(e1) < 0)
-            System.out.println("The second event precedes the first event");
+            System.out.println("The second event " +
+            		"precedes the first event");
         else
-            System.out.println("The first event happens before the second event.");
+            System.out.println("The first event happens " +
+            		"before the second event.");
     }
     
 }
