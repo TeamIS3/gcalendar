@@ -38,7 +38,7 @@ public abstract class BaseView extends JPanel {
     /**
      * Populate the date map with events.
      */
-    protected void populate() {
+    public void populate() {
         for (Event e : model) {
             Date st = e.getStartDate();
             Date temp = new Date(st);

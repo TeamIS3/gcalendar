@@ -59,20 +59,21 @@
 
 \section{Overview}
 
-To implement the Swing prototype the Model View Controller User
-Interface Management System architecture was used. In the system the
-Model is represented by a mapping of the events currently saved in the
-system to the dates on which they occur. The system has multiple views.
-One for `Week', one for `Month' and one for `Year'. These
-different views get information about the events they need to display
-from the Model. The Controllers are represented by the Action Listeners
+This report describes the design, development and evaluation of our 
+Java Swing Calendar application. To implement the Swing prototype, the
+Model View Controller architecture was used. In the system the Model
+is represented by a mapping of the events currently saved in the
+system to the dates on which they occur.\\The system has multiple views.
+One for `Week', one for `Month' and one for `Year'. The Month view 
+aquires information about the events it needs to display from the
+Model. The Controllers are represented by the Action Listeners
 as they are the parts of the system which listen for user input (button
 clicks).
 
 \subsection{Views}
 
 The first thing to be implemented was a Base View class which is an
-extension of JPanel. This class contains things which all views need
+extension of a JPanel. This class contains things which all views need
 such as various Swing components, information about the dates which
 the view must display and variables to store the Model data. All view
 classes, therefore, extend this class and add specific things required
@@ -80,7 +81,7 @@ only by that specific view.
 
 The `Month' view contains a JTable to represent the month with each cell
 in the table representing a day in the month. This view also contains a
-JPane at the side of the page which was intended to act as the summary
+JPanel at the side of the page which was intended to act as the summary
 side bar from the paper prototype. However, this was not implemented in
 time so it simply displays the hours in a certain day but shows no
 events.
@@ -124,12 +125,12 @@ prototype:
 \item It is possible for the user to add and delete appointments. This is
 done by manipulating a text file; writes to the text file when creating an
 event and reading from the file when needed to retrieve events for deletion.
-\item Edit an appointment is not currently possible, although the user can
-always delete an event and re-create it to get around this problem.
+\item Editing an appointment is currently possible, although the user can
+only edit the last event that was created.
 \item The route the user would take to set a recurring appointment is
 visually displayed however the functionality of mapping that appointment
 is not included.
-\item It is possible to switch between day, week, month and year view
+\item It is possible to switch between week, month and year view
 via buttons that are perpetually located at the top of the calendar. Current
 system status is shown by which button is currently depressed.
 \item  During the event creation process, it is possible for the user to
@@ -148,7 +149,7 @@ possible to display events of a given category.
 To evaluate the design of the Swing prototype that the group produced, two main techneques were used.  
 
 The first method the group decided to use for evaluating the design of the prototype was an heuristic evaluation. 
-the group felt that a heuristic evaluation is a fast and cheap way to preform a usability inspection on the prototype, and would be a easy way to identify usability problems with the design of the system. 
+The group felt that a heuristic evaluation is a fast and cheap way to preform a usability inspection on the prototype, and would be an easy way to identify usability problems with the design of the system. 
 
 One member of the team (James) was selected as an evaluator, and tasked with examing the interface of the prototype calendar and evaluating how it complies with recognized usability principles. 
 
@@ -169,11 +170,11 @@ Afer this the evaluator decided on a set of heuristics on which the prototype sh
 
 The evaluator decided upon a set of heuristics on which the Swing prototype the team built should be judged.
 
-The heuristics sellected were as follows : 
+The heuristics selected were as follows : 
 \begin{itemize}
 \item Visibility of system status : The system should always keep users informed about what is going on, through appropriate feedback within reasonable time. 
 
-\item Match between system and the real world : The system should speak the users' language, with words, phrases and concepts familiar to the user, rather than system-oriented terms. Follow real-world conventions, making information appear in a natural and logical order.
+\item Match between system and the real world : The system should speak the users' language, with words, phrases and concepts familiar to the user, rather than system-oriented terms, making information appear in a natural and logical order.
  
 \item User control and freedom : Users often choose system functions by mistake and will need a clearly marked "emergency exit" to leave the unwanted state without having to go through an extended dialogue. Support undo and redo. 
 
@@ -197,9 +198,9 @@ Below is a summary of the findings from the evaluation:
 \begin{itemize}
 \item \textbf{Add an appointment}
 The option to add an event to the prototype calendar is clearly visible from all the views in the prototype from the menu bar.
-Once selected a clearly laid out window opens up with a simple and easy to understand UI. In the Event Dialog window the user is presented with two panels to enter the start and end time of their appointment. The user is also given the option to enter this information in a third window with specific day/month and year drop down boxes to enter these details.
+Once selected, a clearly laid out window opens up with a simple and easy to understand UI. In the Event Dialog window the user is presented with two panels to enter the start and end date of their event. The user enters this information through pop-up windows with specific day/month and year drop down boxes to enter these details. During the evaluation, it was found that users took a long time to complete all the forms of the Event Dialog, most of which were not mandatory. It was suggested that a faster, simpler input method might be needed. 
 \item \textbf{Change views from month, to week, to year}
-The option to change views from month, to week, to year in the Swing prototype is clearly visible from all the views in the prototype. The option to change view is show in the top right corner by 3 simple buttons. This task was
+The option to change views from month, to week, to year in the Swing prototype is clearly visible from all the views in the prototype. The option to change view is shown in the top right corner by 3 simple buttons. This task was
 completed quickly and without issue by all participants.
 \item \textbf{Set a recurring appointment to occur once a week and finish in three months time}
 The option to add an event to the prototype calendar is clearly visible from all the views in the prototype from the menu bar.
@@ -224,12 +225,32 @@ participants attempted to click this option nothing happened and a
 category was not created.
 \end{itemize}
 
+\subsection{Timing}
+
+\begin{table}[ht]
+\caption{Heuristic Evaluation timing results (seconds)} % title of Table
+\centering % used for centering table
+\begin{tabular}{c c c c} % centered columns (4 columns)
+\hline\hline %inserts double horizontal lines
+Case & User\#1 & User\#2 & User\#3 \\ [0.5ex] % inserts table
+%heading
+\hline % inserts single horizontal line
+1 & 9.96 & 12.34 & 12.23 \\ % inserting body of the table
+2 & 1.62 & 2.01 & 1.71 \\
+3 & 17.54 & 12.20 & 15.67 \\
+4 & 23.32 & N/A & 5.44 \\
+5 & 22.85 & 18.93 & 26.42 \\ [1ex] % [1ex] adds vertical space
+\hline %inserts single line
+\end{tabular}
+\label{table:nonlin} % is used to refer this table in the text
+\end{table}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Comparison with paper prototype}
 
-When implementing the Swing Prototype the more essential features of the
-paper prototype were implemented first then work was started on the less
+When implementing the Swing Prototype, the more essential features of the
+paper prototype were implemented first, then work was started on the less
 essential features.
 
 The Month view from the paper prototype was implemented first. The
@@ -248,10 +269,10 @@ The pop up window for setting event categories was then implemented the
 same as it appeared in the paper prototype but without the button for 
 adding new categories.
 
-Due to time contsraints the decision not to implement the
+Due to time contsraints the decision was made not to implement the
 `click-and-drag to edit event dates' feature. Due to the fact that the
 ability to edit events on each view already existed within the standard
-menu bar this implementing this feature for each different view was
+menu bar, implementing this feature for each different view was
 unnecessary.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

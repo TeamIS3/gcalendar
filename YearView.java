@@ -2,17 +2,23 @@ import javax.swing.*;
 import javax.swing.table.*;
 import java.awt.*;
 import java.awt.event.*;
+
+import java.util.SortedSet;
+import java.util.TreeSet;
+
 /**
  * This class represents a given year by a grid of tables, each table
  * represents a single month.
  * 
  * @author gordon
- * 
+ * @author VictorPantazi
  */
 public class YearView extends BaseView {
 
     private static final long serialVersionUID = 1L;
+    private int localMonth;
     private JPanel gridPanel;
+    private YearDataModel yearView;
     // 1 Jan 2011 is a Saturday
     private int offset = 5;
     // Local copy of array of month names
@@ -42,24 +48,32 @@ public class YearView extends BaseView {
     }
     
     private void updateMonths() {
-        offset = Date.getDayFromDate(new Date(1, 1, 
-                            currentDate.getYear()));
+	Date temp = currentDate;
+        offset = Date.getDayFromDate(new Date(1, 1, currentDate.getYear()));
         // Check to see if we need to represent February as 29 days
         days[1] = currentDate.isLeapYear() ? 29 : 28;
-        for (int i = 0; i < 12; i++)
+        for (int i = 0; i < 12; i++){
+            localMonth = i+1;
             addTable(i);
+	}
+	currentDate = temp;
     }
 
     private void addTable(int i) {
-        TableModel temp = new YearDataModel(names[i], offset, days[i]);
+        yearView = new YearDataModel(names[i], offset, days[i], dateMap);
+        yearView.setData(dateMap.get(currentDate));
         // Work out where in the week this month starts
         offset = (offset + days[i]) % 7;
-        JTable month = new JTable(temp);
+	yearView.setYearDateMonth(localMonth);
+        JTable month = new JTable(yearView);
         month.getTableHeader().setReorderingAllowed(false);
         month.setRowSelectionAllowed(false);
         month.setRowHeight(30);
+ //       month.setDefaultRenderer(Object.class, new EventRenderer());  //!!!!
+//	month.setBackground(new Color((float)(1-(localMonth/12.0)),(float)0.2,
+//				(float)0.1));
         JScrollPane scrollPane = new JScrollPane(month);
-        this.add(scrollPane, BorderLayout.CENTER);
+        this.add(scrollPane, BorderLayout.CENTER); 
         gridPanel.add(scrollPane);
     }
     
@@ -72,6 +86,8 @@ public class YearView extends BaseView {
                 gridPanel = new JPanel(gridPanel.getLayout());
                 updateMonths();
                 panel.add(gridPanel, BorderLayout.CENTER);
+		yearView.setData(dateMap.get(currentDate));
+                yearView.fireTableDataChanged();
                 // Update JLabel string to show new date
                 viewLabel.setText(YearView.this.toString());
             }
@@ -88,6 +104,8 @@ public class YearView extends BaseView {
                 gridPanel = new JPanel(gridPanel.getLayout());
                 updateMonths();
                 panel.add(gridPanel, BorderLayout.CENTER);
+		yearView.setData(dateMap.get(currentDate));
+                yearView.fireTableDataChanged();
                 // Update JLabel string to show new date
                 viewLabel.setText(YearView.this.toString());
             }

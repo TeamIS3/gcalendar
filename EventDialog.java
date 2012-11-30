@@ -26,13 +26,16 @@ public class EventDialog extends JDialog implements ActionListener {
     private final ReminderDialog reminderDialog;
     private final RepetitionDialog repetitionDialog;
     private final CategoryDialog catDialog;
+    private CalendarOperation calOp;
+    private MonthDataModel mv;
     
-    public EventDialog(JFrame frame, String title, CalendarModel model) {
+    public EventDialog(JFrame frame, String title, CalendarModel model, MonthDataModel ml) {
         super(frame, title, Dialog.ModalityType.DOCUMENT_MODAL);
-        
         this.model = model;
+	this.mv=ml;
         textMap = new HashMap<JTextComponent, String>();
         createEvent = true;
+	this.calOp = new CalendarOperation(model);
         
         DateListener startListener = new DateListener();
         DateListener endListener = new DateListener();
@@ -276,6 +279,9 @@ public class EventDialog extends JDialog implements ActionListener {
 		event.setReminder(rem);
             } else model.push(new Event(name, loc, desc, 
                                 start, end, rep, rem));
+calOp.saveCalendar("Calendar.cal");
+calOp.loadCalendar("Calendar.cal");
+this.mv.fireTableDataChanged();
         } else if (b == delButton) {
             if (model.peek() != null) model.pop();
         }
@@ -338,7 +344,7 @@ public class EventDialog extends JDialog implements ActionListener {
     
     /**
      * main method to simply test the dialog class
-     */
+     
     public static void main(String[] args) {
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
@@ -362,7 +368,7 @@ public class EventDialog extends JDialog implements ActionListener {
                 frame.setVisible(true);
             }
         });
-    }
+    }*/
     
 }
 

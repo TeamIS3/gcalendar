@@ -1,3 +1,7 @@
+import java.util.Map;
+import java.util.SortedSet;
+import java.util.TreeSet;
+
 import javax.swing.table.AbstractTableModel;
 
 /**
@@ -9,6 +13,8 @@ import javax.swing.table.AbstractTableModel;
 public class WeekDataModel extends AbstractTableModel {
 
     private static final long serialVersionUID = 1L;
+    private SortedSet<Event> data;
+    private Map<Date, SortedSet<Event>> dateMap;
     private String[] hours = { "00:00", "01:00", "02:00", "03:00",
             "04:00", "05:00", "06:00", "07:00", "08:00", "09:00",
             "10:00", "11:00", "12:00", "13:00", "14:00", "15:00",
@@ -19,6 +25,10 @@ public class WeekDataModel extends AbstractTableModel {
             "Thursday", "Friday", "Saturday", "Sunday" };
 
     public WeekDataModel() {
+    }
+
+    public void setData(SortedSet<Event> e) {
+        data = e;
     }
 
     public String getColumnName(int col) {

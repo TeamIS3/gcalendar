@@ -1,4 +1,4 @@
-import java.util.Map;
+import java.util.*;
 import java.util.HashMap;
 import javax.swing.*;
 import java.awt.event.*;
@@ -45,8 +45,8 @@ public class MainFrame extends JFrame implements ActionListener {
 ActionListener dummyListener = new ActionListener() {
             public void actionPerformed(ActionEvent e) {}
         };
-        
-        eventDialog = new EventDialog(this, "Add an Event", model);
+        Map<Date, SortedSet<Event>> dateMap = new HashMap<Date, SortedSet<Event>>();
+        eventDialog = new EventDialog(this, "Add an Event", model, new MonthDataModel(0,0,dateMap));
 	catDialog = new CategoryDialog(this, "Event Category",
                                        dummyListener);
 	catDialog.setVisible(false);
