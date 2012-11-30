@@ -20,6 +20,7 @@ public class MainFrame extends JFrame implements ActionListener {
     private JScrollPane scrollPane;
     private EventDialog eventDialog;
     private CalendarModel model;
+    private CategoryDialog catDialog;
     private final CalendarOperation calOp;
     
     public MainFrame() {
@@ -41,8 +42,15 @@ public class MainFrame extends JFrame implements ActionListener {
             }
         });
         
+ActionListener dummyListener = new ActionListener() {
+            public void actionPerformed(ActionEvent e) {}
+        };
         
         eventDialog = new EventDialog(this, "Add an Event", model);
+	catDialog = new CategoryDialog(this, "Event Category",
+                                       dummyListener);
+	catDialog.setVisible(false);
+	catDialog.pack();
         eventDialog.setVisible(false);
         eventDialog.pack();
         setJMenuBar(createMenuBar());
@@ -133,7 +141,18 @@ public class MainFrame extends JFrame implements ActionListener {
         JMenu categoryMenu = new JMenu("Category");
         // Category -> View categories
         JMenuItem viewCategoriesItem = new JMenuItem("View categories");
+viewCategoriesItem.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                
+                catDialog.setVisible(true);
+            }
+        });
         categoryMenu.add(viewCategoriesItem);
+//categoryMenu.addActionListener(new ActionListener() {
+  //          public void actionPerformed(ActionEvent e) {
+    //            catDialog.setVisible(true);
+     //       }
+     //   });
         // Category menu finished.
         menuBar.add(categoryMenu);
 

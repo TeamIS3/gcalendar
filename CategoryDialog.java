@@ -13,6 +13,7 @@ public class CategoryDialog extends JDialog implements ActionListener {
     private static final long serialVersionUID = 1L;
     private JRadioButton homeButton, workButton, otherButton;
     private JButton cancelButton;
+    private JButton addNewButton;
     private ActionListener listener;
 
     /**
@@ -61,12 +62,15 @@ public class CategoryDialog extends JDialog implements ActionListener {
     private JPanel createButtonPanel() {
         JPanel buttonPanel = new JPanel(new BorderLayout());
         cancelButton = new JButton("Close");
+	addNewButton = new JButton("Add new");
         cancelButton.addActionListener(this);
         buttonPanel.add(cancelButton);
+	buttonPanel.add(addNewButton);
         buttonPanel.add(cancelButton, BorderLayout.NORTH);
+	buttonPanel.add(addNewButton, BorderLayout.SOUTH);
         return buttonPanel;
     }
-
+	
     public void actionPerformed(ActionEvent e) {
         JButton b = (JButton) e.getSource();
         if (b == cancelButton)
