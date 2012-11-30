@@ -1,6 +1,8 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.SortedSet;
+import java.util.TreeSet;
 
 /**
  * Week view for the calendar. A week is represented by a JTable
@@ -54,8 +56,10 @@ public class WeekView extends BaseView {
             public void actionPerformed(ActionEvent e) {
                 // Move on to last week
                 for (int i = 0; i < 7; i++)
-                    currentDate.decrement();
+                    currentDate = currentDate.decrement();
                 // Update JLabel string to show new date
+		weekView.setData(dateMap.get(currentDate));
+                weekView.fireTableDataChanged();
                 viewLabel.setText(WeekView.this.toString());
             }
         });
@@ -67,8 +71,10 @@ public class WeekView extends BaseView {
             public void actionPerformed(ActionEvent e) {
                 // Move on to next week
                 for (int i = 0; i < 7; i++)
-                    currentDate.increment();
+                    currentDate = currentDate.increment();
                 // Update JLabel string to show new date
+		weekView.setData(dateMap.get(currentDate));
+                weekView.fireTableDataChanged();
                 viewLabel.setText(WeekView.this.toString());
             }
         });
