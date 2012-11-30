@@ -13,7 +13,7 @@ public class RepetitionDialog extends JDialog implements ActionListener {
     private static final long serialVersionUID = 1L;
     private JTextField quantity;
    	private JRadioButton dailyButton, weeklyButton, fortButton,
-			monthlyButton, yearlyButton;
+			monthlyButton, yearlyButton,everyButton;
     private JButton okayButton, cancelButton;
     private ActionListener listener;
     private Repetition rep;
@@ -45,7 +45,7 @@ public class RepetitionDialog extends JDialog implements ActionListener {
 									 95));
 		JLabel space=new JLabel("");
 		JPanel bottomMiddlePanel=new JPanel(new FlowLayout());
-		JTextField quantity = new JEventField("intitial");
+		quantity = new JEventField("0");
 		JLabel daysLabel=new JLabel("days");
 		bottomMiddlePanel.add(quantity);
 		bottomMiddlePanel.add(daysLabel);
@@ -56,12 +56,12 @@ public class RepetitionDialog extends JDialog implements ActionListener {
 		
 	}
     private JPanel createRadioPanel() {
-        JRadioButton dailyButton = new JRadioButton("Daily");
-		JRadioButton weeklyButton = new JRadioButton("Weekly");
-		JRadioButton fortButton = new JRadioButton("Fortnightly");
-		JRadioButton monthlyButton = new JRadioButton("Monthly");
-		JRadioButton yearlyButton = new JRadioButton("Yearly");
-		JRadioButton everyButton = new JRadioButton("Every");
+        dailyButton = new JRadioButton("Daily");
+		 weeklyButton = new JRadioButton("Weekly");
+		 fortButton = new JRadioButton("Fortnightly");
+		 monthlyButton = new JRadioButton("Monthly");
+		 yearlyButton = new JRadioButton("Yearly");
+		 everyButton = new JRadioButton("Every");
 
 		ButtonGroup group = new ButtonGroup();
     	group.add(dailyButton);

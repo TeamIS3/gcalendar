@@ -48,7 +48,7 @@ public class MainFrame extends JFrame implements ActionListener {
         setJMenuBar(createMenuBar());
         
         
-        views = new BaseView[4];
+        views = new BaseView[3];
 
         viewMap = new HashMap<JButton, BaseView>();
         viewLabel = new JLabel();
@@ -69,8 +69,8 @@ public class MainFrame extends JFrame implements ActionListener {
         for (BaseView v : views)
             v.setupGui();
 
-        scrollPane = new JScrollPane(views[2]);
-        viewLabel.setText(views[2].toString());
+        scrollPane = new JScrollPane(views[1]);
+        viewLabel.setText(views[1].toString());
         
         mainPanel.add(scrollPane, BorderLayout.CENTER);
         
@@ -159,16 +159,14 @@ public class MainFrame extends JFrame implements ActionListener {
     private void createButtons() {
         // Create view buttons.
         JButton day, week, month, year;
-        viewMap.put(day = new JButton("Day"), views[0]);
-        viewMap.put(week = new JButton("Week"), views[1]);
-        viewMap.put(month = new JButton("Month"), views[2]);
-        viewMap.put(year = new JButton("Year"), views[3]);
+        viewMap.put(week = new JButton("Week"), views[0]);
+        viewMap.put(month = new JButton("Month"), views[1]);
+        viewMap.put(year = new JButton("Year"), views[2]);
 
         // Add to views
-        viewPanel.add(day, BorderLayout.WEST);
-        viewPanel.add(week, BorderLayout.EAST);
-        viewPanel.add(month, BorderLayout.NORTH);
-        viewPanel.add(year, BorderLayout.SOUTH);
+        viewPanel.add(week, BorderLayout.LINE_START);
+        viewPanel.add(month, BorderLayout.CENTER);
+        viewPanel.add(year, BorderLayout.LINE_END);
         for (JButton b : viewMap.keySet())
             b.addActionListener(this);
 
@@ -178,9 +176,8 @@ public class MainFrame extends JFrame implements ActionListener {
     }
 
     private void createViews() {
-	    views[0] = new DayView(model, viewLabel);
-        views[1] = new WeekView(model, viewLabel);
-        views[2] = new MonthView(model, viewLabel);
-        views[3] = new YearView(model, viewLabel);
+        views[0] = new WeekView(model, viewLabel);
+        views[1] = new MonthView(model, viewLabel);
+        views[2] = new YearView(model, viewLabel);
     }
 }
