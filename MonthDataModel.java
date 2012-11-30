@@ -21,7 +21,7 @@ public class MonthDataModel extends AbstractTableModel {
     
     private String[] names = { "Monday", "Tuesday", "Wednesday",
             "Thursday", "Friday", "Saturday", "Sunday" };
-
+    private static boolean DEBUG = true;
     public MonthDataModel(int off, int d,
                           Map<Date, SortedSet<Event>> dateMap) {
         offset = off;
@@ -93,4 +93,15 @@ public class MonthDataModel extends AbstractTableModel {
             return set;
         } else return day;
     }
+    
+    public void setValueAt(Object value, int row, int col) {
+            if (DEBUG) {
+                System.out.println("Setting value at " + row + "," + col
+                                   + " to " + value
+                                   + " (an instance of "
+                                   + value.getClass() + ")");
+            }
+
+            fireTableCellUpdated(row, col);
+        }
 }
