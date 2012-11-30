@@ -63,7 +63,7 @@ To implement the Swing prototype the Model View Controller User
 Interface Management System architecture was used. In the system the
 Model is represented by a mapping of the events currently saved in the
 system to the dates on which they occur. The system has multiple views.
-One for `Day', one for `Week', one for `Month' and one for `Year'. These
+One for `Week', one for `Month' and one for `Year'. These
 different views get information about the events they need to display
 from the Model. The Controllers are represented by the Action Listeners
 as they are the parts of the system which listen for user input (button
@@ -82,21 +82,17 @@ The `Month' view contains a JTable to represent the month with each cell
 in the table representing a day in the month. This view also contains a
 JPane at the side of the page which was intended to act as the summary
 side bar from the paper prototype. However, this was not implemented in
-time so it simply displays an abbrieviated `Day' view which shows no
+time so it simply displays the hours in a certain day but shows no
 events.
 
 The `Week' view also contains a table. Here, the table has 8 columns and
 24 rows. 7 of the columns represent the days of the week and the
 remaining column shows an hour of the day. Therefore, each cell
-represents one hour in a certain day of the week. `Day' view is
-implemented similarly to this but the table only has one column which
-displays one hour of the day currently being shown by the view.
+represents one hour in a certain day of the week.
 
 The `Year' view contains a 4x3 grid which holds 12 tables to represent
 months of the year. The cells of the tables each display a number to
 show which day of the month the cell represents.
-
-Each of these views is Implemented using two classes: a 
 
 \subsection{Pop-up Windows}
 
@@ -196,9 +192,37 @@ The heuristics sellected were as follows :
 \item Help and documentation : Even though it is better if the system can be used without documentation, it may be necessary to provide help and documentation. Any such information should be easy to search, focused on the user's task, list concrete steps to be carried out, and not be too large.    
 \end{itemize}
 
-Below are the findings from the evaluation:
+Below is a summary of the findings from the evaluation:
 
-%%%%%%%%%% PUT SOMETHING HERE WHEN IMPLEMENTATION HAS STOPPED 
+\begin{itemize}
+\item \textbf{Add an appointment}
+The option to add an event to the prototype calendar is clearly visible from all the views in the prototype from the menu bar.
+Once selected a clearly laid out window opens up with a simple and easy to understand UI. In the Event Dialog window the user is presented with two panels to enter the start and end time of their appointment. The user is also given the option to enter this information in a third window with specific day/month and year drop down boxes to enter these details.
+\item \textbf{Change views from month, to week, to year}
+The option to change views from month, to week, to year in the Swing prototype is clearly visible from all the views in the prototype. The option to change view is show in the top right corner by 3 simple buttons. This task was
+completed quickly and without issue by all participants.
+\item \textbf{Set a recurring appointment to occur once a week and finish in three months time}
+The option to add an event to the prototype calendar is clearly visible from all the views in the prototype from the menu bar.
+Once selected the Event Dialog window opens up with a simple and easy to understand UI. This was easily found by all participants. In the appointment window the user is displayed with a set repetition option. A third window is then opened in front of the user giving the option to set the appointment to be repeated every Day/Week/Fortnight/Month/Year or per x days.
+However, the repetitions were not actually implemented so, while all
+participants followed the correct procedure and had no major problems,
+no repeating event was actually displayed.
+\item \textbf{Find the busiest and quietest days in the month}
+Finding the busiest day in the month can only be done by entering month
+view and counting the number of events which occur in each day. During
+the evaluation this was found to be rather awkward and a number of
+participants remarked that a something like a colour coding system or a
+simple display of the number of events in a day would be more
+user-friendly and convenient.
+\item \textbf{Set different categories for university, social and job appointments}
+The `Category' option is clearly visible on the menu bar from all views
+and all participants found this option with ease and in a reasonable
+time. When clicked, this option caused the pop-up Category Dialog window
+to open. All participants then clicked the `Add New' button. However,
+this feature was not implemented in time. This meant that when
+participants attempted to click this option nothing happened and a
+category was not created.
+\end{itemize}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -212,12 +236,9 @@ The Month view from the paper prototype was implemented first. The
 majority of features we implemented are the same as they appeared in the
 paper prototype, the only exception being the summary side bar.
 Initially the side bar was omitted from the Swing prototype to be
-implemented once more important features had been completed. % However, in
-% the interest of simplifying the implementation process, we ultimately decided to
-% implement this feature as a separate `Day' view .
-The Week and Year views were then created the same as they appeared in the paper
-prototype, with the addition of an another button at the top of the
-% screen to accomodate the new Day view.
+implemented once more important features had been completed.
+The Week and Year views were then created the same as they appeared in 
+the paper prototype.
 
 Then the Dialogs for the pop up windows (which appeared in the paper
 prototype when the user was adding new events, adding event
@@ -239,109 +260,42 @@ unnecessary.
 
 \section{Code listing}
 
-\subsection{BaseView.java}
+\subsection{Views and View Data Models}
+\begin{itemize}
+\item{BaseView.java}
+\item{CalendarModel.java}
+\item{CategoryDialog.java}
+\item{DayDataModel.java}
+\item{MonthDataModel.java}
+\item{MonthView.java}
+\item{WeekDataModel.java}
+\item{WeekView.java}
+\item{YearDataModel.java}
+\item{YearView.java}
+\end{itemize}
 
-\lstinputlisting{../BaseView.java}
+\subsection{Dialogs and Variable Classes}
+\begin{itemize}
+\item{Date.java}
+\item{DateDialog.java}
+\item{Event.java}
+\item{EventDialog.java}
+\item{JEventField.java}
+\item{Reminder.java}
+\item{ReminderDialog.java}
+\item{Repetition.java}
+\item{RepetitionDialog.java}
+\item{Time.java}
+\end{itemize}
 
-\subsection{CalendarModel.java}
-
-\lstinputlisting{../CalendarModel.java}
-
-\subsection{CalendarOperation.java}
-
-\lstinputlisting{../CalendarOperation.java}
-
-\subsection{CategoryDialog.java}
-
-\lstinputlisting{../CategoryDialog.java}
-
-\subsection{Date.java}
-
-\lstinputlisting{../Date.java}
-
-\subsection{DateDialog.java}
-
-\lstinputlisting{../DateDialog.java}
-
-\subsection{DayDataModel.java}
-
-\lstinputlisting{../DayDataModel.java}
-
-\subsection{DayView.java}
-
-\lstinputlisting{../DayView.java}
-
-\subsection{Event.java}
-
-\lstinputlisting{../Event.java}
-
-\subsection{EventDialog.java}
-
-\lstinputlisting{../EventDialog.java}
-
-\subsection{EventRenderer.java}
-
-\lstinputlisting{../EventRenderer.java}
-
-\subsection{JEventField.java}
-
-\lstinputlisting{../JEventField.java}
-
-\subsection{Main.java}
-
-\lstinputlisting{../Main.java}
-
-\subsection{MainFrame.java}
-
-\lstinputlisting{../MainFrame.java}
-
-\subsection{MonthDataModel.java}
-
-\lstinputlisting{../MonthDataModel.java}
-
-\subsection{MonthView.java}
-
-\lstinputlisting{../MonthView.java}
-
-\subsection{Reminder.java}
-
-\lstinputlisting{../Reminder.java}
-
-\subsection{ReminderDialog.java}
-
-\lstinputlisting{../ReminderDialog.java}
-
-\subsection{Repetition.java}
-
-\lstinputlisting{../Repetition.java}
-
-\subsection{RepetitionDialog.java}
-
-\lstinputlisting{../RepetitionDialog.java}
-
-\subsection{SpacedPanel.java}
-
-\lstinputlisting{../SpacedPanel.java}
-
-\subsection{Time.java}
-
-\lstinputlisting{../Time.java}
-
-\subsection{WeekDataModel.java}
-
-\lstinputlisting{../WeekDataModel.java}
-
-\subsection{WeekView.java}
-
-\lstinputlisting{../WeekView.java}
-
-\subsection{YearDataModel.java}
-
-\lstinputlisting{../YearDataModel.java}
-
-\subsection{YearView.java}
-
-\lstinputlisting{../YearView.java}
+\section{Main and Misc}
+\begin{itemize}
+\item{Main.java}
+\item{MainFrame.java}
+\item{EventRenderer.java}
+\item{JEventField.java}
+\item{SpacedPanel.java}
+\end{itemize}
 
 \end{document}
 
